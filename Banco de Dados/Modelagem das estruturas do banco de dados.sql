@@ -52,7 +52,10 @@ CREATE TABLE Produto (
     nome VARCHAR(100),
     preco FLOAT,
     qtdEstoque INT
+    categoria VARCHAR(50), 
+    descricao VARCHAR(255),
 );
+-- adicionado campo categoria e descricao para o produto
 
 CREATE TABLE Carrinho (
     ID_carrinho INT PRIMARY KEY AUTO_INCREMENT,
