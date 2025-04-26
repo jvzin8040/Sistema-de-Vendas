@@ -1,1 +1,1 @@
-# Sistema-de-Vendas
+# Sistema de Vendas EID Store
