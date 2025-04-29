@@ -1,0 +1,282 @@
+/* Estilo base para resetar margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.linha {
+    display: flex; /* Deixa os itens na mesma linha */
+    justify-content: space-between; /* Espaço igual entre colunas */
+    align-items: flex-end; /* Alinha verticalmente */
+    padding: 10px;
+  }
+  
+  .coluna {
+    width: 30%; /* Cada coluna ocupa 30% da linha */
+    text-align: center; /* Centraliza o texto dentro da coluna */
+  }
+
+/* Fundo e cor de texto padrão */
+body {
+    background: #ffffff;
+    color: #333;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #1C1D22;
+    color: white;
+    padding: 10px 20px;
+}
+
+/* Área superior do cabeçalho */
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ações do usuário (conta, login, carrinho) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Links nas ações do header */
+.header-actions a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Botão de login */
+.login-button {
+    color: white;
+    background: #8000ff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Logo da loja */
+.logo-img {
+    width: 80px;
+    height: auto;
+}
+
+/* Wrapper da barra de busca */
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+/* Barra de busca */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 600px;
+    height: 45px;
+}
+
+/* Categoria de busca */
+.search-category {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0 12px;
+    font-size: 14px;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Campo de busca */
+.search-bar input {
+    flex: 1;
+    border: none;
+    padding: 0 12px;
+    font-size: 16px;
+}
+
+/* Botão de busca */
+.search-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Wrapper do CEP e Navegação */
+.cep-wrapper {
+    display: flex;
+    justify-content: space-between; /* Espaço entre CEP e links */
+    align-items: center; /* 🔥 Agora sim: alinha verticalmente no centro */
+    padding: 10px 20px;
+    background-color: #1C1D22;
+}
+
+/* Grupo do input de CEP */
+.cep-input-group {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Ícone de localização */
+.cep-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+/* Estilo do input de CEP */
+.input-cep {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Navegação principal abaixo da busca */
+.bottom-nav {
+    display: flex;
+    justify-content: center; /* 🔥 Centraliza horizontalmente */
+    align-items: center;
+    gap: 30px; /* Espaçamento entre Categorias e Ofertas */
+    margin-top: 20px; /* Espaçamento acima (entre a busca e os links) */
+}
+
+/* Links da navegação */
+.bottom-nav a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Efeito hover nos links */
+.bottom-nav a:hover {
+    color: #820AD1;
+}
+
+.banner {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .carousel {
+    display: flex;
+    width: 100%; /* 100% x quantidade de banners */
+    transition: transform 0.5s ease;
+  }
+  
+  .slide {
+    width: 100%;
+    flex-shrink: 0;
+    display: none; /* Esconde todas */
+  }
+  
+  .slide.active {
+    display: block; /* Só mostra o banner ativo */
+  }
+
+/* Produtos em destaque */
+.products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Permite quebra de linha para responsividade */
+    padding: 20px;
+    background-color: #820AD1;
+}
+
+/* Card de produto */
+.product-card {
+    display: flex;
+    flex-direction: column; /* Deixa imagem, título, preço e parcelas em coluna */
+    justify-content: flex-end; /* Empurra tudo para o final da altura da div */
+    align-items: center; /* Centraliza horizontalmente */
+    width: 200px; /* Largura fixa */
+    height: 350px; /* Altura fixa para alinhar tudo certinho */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    background-color: #fff; /* Fundo branco para destacar */
+}
+
+/* Imagem do produto */
+.product-card img {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Seção de categorias */
+.categories {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Cada categoria */
+.category {
+    margin-top: 20px;
+}
+
+.category img {
+    width: 300px; /* Largura desejada */
+    height: auto; /* Altura automática para manter a proporção */
+    object-fit: cover; /* Cobre o espaço sem distorcer */
+}
+
+/* Rodapé */
+.footer {
+    background-color: #1C1D22; /* Azul escuro */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-links {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.linha {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Espaço entre as colunas */
+    margin-bottom: 20px;
+}
+
+.coluna p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Estilo responsivo para telas menores */
+@media (max-width: 768px) {
+    .top-header, .search-wrapper, .bottom-nav, .product-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-bar {
+        width: 90%;
+    }
+
+    .product-card {
+        width: 90%;
+    }
+
+    .header-actions {
+        margin-top: 10px;
+    }
+}
