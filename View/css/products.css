@@ -1,0 +1,29 @@
+/* Produtos em destaque */
+.products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Permite quebra de linha para responsividade */
+    padding: 20px;
+    background-color: #820AD1;
+}
+
+/* Card de produto */
+.product-card {
+    display: flex;
+    flex-direction: column; /* Deixa imagem, título, preço e parcelas em coluna */
+    justify-content: flex-end; /* Empurra tudo para o final da altura da div */
+    align-items: center; /* Centraliza horizontalmente */
+    width: 200px; /* Largura fixa */
+    height: 350px; /* Altura fixa para alinhar tudo certinho */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    background-color: #fff; /* Fundo branco para destacar */
+}
+
+/* Imagem do produto */
+.product-card img {
+    width: 100%;
+    max-width: 100%;
+}

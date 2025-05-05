@@ -1,0 +1,16 @@
+/* Seção de categorias */
+.categories {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Cada categoria */
+.category {
+    margin-top: 20px;
+}
+
+.category img {
+    width: 300px; /* Largura desejada */
+    height: auto; /* Altura automática para manter a proporção */
+    object-fit: cover; /* Cobre o espaço sem distorcer */
+}

@@ -1,0 +1,48 @@
+.cep-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1C1D22;
+}
+
+.cep-input-group {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.cep-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.input-cep {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    width: 100%;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.bottom-nav a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.bottom-nav a:hover {
+    color: #820AD1;
+}

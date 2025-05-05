@@ -1,0 +1,47 @@
+/* Wrapper da barra de busca */
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+/* Barra de busca */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 600px;
+    height: 45px;
+}
+
+/* Categoria de busca */
+.search-category {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0 12px;
+    font-size: 14px;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Campo de busca */
+.search-bar input {
+    flex: 1;
+    border: none;
+    padding: 0 12px;
+    font-size: 16px;
+}
+
+/* Botão de busca */
+.search-button {
+    background-color: #f0f0f0;
+    border: none;
+    width: 45px; /* controla a largura */
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 8px 8px 0; /* se quiser arredondar à direita apenas */
+}

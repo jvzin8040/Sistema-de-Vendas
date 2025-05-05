@@ -1,0 +1,24 @@
+/* Reset e configurações base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #ffffff;
+    color: #333;
+}
+
+  .linha {
+    display: flex; /* Deixa os itens na mesma linha */
+    justify-content: space-between; /* Espaço igual entre colunas */
+    align-items: flex-end; /* Alinha verticalmente */
+    padding: 10px;
+  }
+  
+  .coluna {
+    width: 30%; /* Cada coluna ocupa 30% da linha */
+    text-align: center; /* Centraliza o texto dentro da coluna */
+  }
