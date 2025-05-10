@@ -1,10 +1,10 @@
 <footer class="footer">
     <!-- Ícones sociais -->
     <div class="social-icons">
-        <a href="#"><img src="../images/facebook-icon.png" alt="Facebook"></a>
-        <a href="#"><img src="../images/linkedin-icon.png" alt="LinkedIn"></a>
-        <a href="#"><img src="../images/youtube-icon.png" alt="YouTube"></a>
-        <a href="#"><img src="../images/insta-icon.png" alt="Instagram"></a>
+        <a href="https://www.facebook.com/"><img src="images/facebook-icon.png" alt="Facebook"></a>
+        <a href="https://www.linkedin.com/"><img src="images/linkedin-icon.png" alt="LinkedIn"></a>
+        <a href="https://www.youtube.com/"><img src="images/youtube-icon.png" alt="YouTube"></a>
+        <a href="https://www.instagram.com/"><img src="images/insta-icon.png" alt="Instagram"></a>
     </div>
 
     <!-- Links do rodapé -->
