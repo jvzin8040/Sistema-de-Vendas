@@ -9,7 +9,6 @@ CREATE TABLE Pessoa (
     nome VARCHAR(100),
     sobrenome VARCHAR(100), -- adicionado sobrenome
     email VARCHAR(100),
-    telefone VARCHAR(20), -- adicionado telefone
     senha VARCHAR(100),
     dataNascimento DATE,
     logradouro VARCHAR(100),
