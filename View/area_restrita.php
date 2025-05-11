@@ -2,7 +2,7 @@
 // Define o título da página
 $title = "EID Store"; 
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -43,7 +43,7 @@ $title = "EID Store";
     <div style="background-color: white; max-width: 500px; margin: 0 auto; padding: 40px; border-radius: 10px;">
         <h2 style="text-align: center; margin-bottom: 30px;">Área Restrita</h2>
 
-        <form method="post" action="login.php">
+        <form method="post" action="../Controller/loginStaffAction.php">
       <label for="registro">Número de registro</label>
       <input type="text" name="registro" id="registro" placeholder="Value" required>
 
@@ -55,8 +55,9 @@ $title = "EID Store";
     </div>
 </div>
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ 
+ <?php
+   /* if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $registro = $_POST['registro'];
       $senha = $_POST['senha'];
 
@@ -66,7 +67,7 @@ $title = "EID Store";
       } else {
         echo "<p style='color: red; text-align: center; margin-top: 15px;'>Registro ou senha inválidos.</p>";
       }
-    }
+    } */
     ?>
   </div>
 

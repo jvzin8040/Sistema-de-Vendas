@@ -28,7 +28,7 @@ $title = "EID Store";
     <div class="top-header">
         <img src="images/eid_store_logo.png" alt="Logo EID Store" class="logo-img">
         <div class="header-actions">
-            <a href="#">Login</a>
+            <a href="criar_conta.php">Criar Conta</a>
             <a href="#">Minha Conta</a>
             <a href="#" aria-label="Carrinho de compras"> <!-- Ícone do carrinho -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">

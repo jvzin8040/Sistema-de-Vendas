@@ -1,5 +1,5 @@
 <!-- Categorias -->
-<section class="categories">
+<section class="categories" id="categorias">
     <h2>Categorias</h2>
     <div class="linha">
         <!-- Coluna 1 (CEP Input e Navegação) -->

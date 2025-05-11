@@ -55,7 +55,7 @@
             <div class="coluna">
                 <!-- Navegação Principal -->
                 <nav class="bottom-nav">
-                    <a href="#">Categorias</a>
+                    <a href="#categorias">Categorias</a>
                     <a href="#">Ofertas</a>
                 </nav>
             </div>

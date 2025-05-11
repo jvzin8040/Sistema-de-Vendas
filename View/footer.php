@@ -9,10 +9,11 @@
 
     <!-- Links do rodapé -->
     <ul class="footer-links" style="display: flex; justify-content: center; gap: 20px; list-style: none; padding: 0; margin-bottom: 10px;">
+        <li><a href="cadastrar_funcionario.php">Cadastrar Colaborador</a></li>
         <li><a href="#">Condições de Uso</a></li>
         <li><a href="#">Política de Privacidade</a></li>
-        <li><a href="#">Ajuda</a></li>
-        <li><a href="#">Cookies</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="area_restrita.php">Área do Colaborador </a></li>
     </ul>
 
     <!-- Informações finais -->

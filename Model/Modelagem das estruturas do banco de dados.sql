@@ -29,7 +29,7 @@ CREATE TABLE Funcionario (
     cargo VARCHAR(50),
     salario FLOAT,
     dataAdmissao DATE,
-    login VARCHAR(50),
+    registro VARCHAR(50),
     senha VARCHAR(100),
     FOREIGN KEY (ID_funcionario) REFERENCES Pessoa(ID_pessoa)
 );

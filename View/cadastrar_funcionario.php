@@ -41,14 +41,14 @@ $title = "EID Store";
  
 <div style="background-color: #820AD1; padding: 50px 20px; min-height: 100vh;">
     <div style="background-color: white; max-width: 500px; margin: 0 auto; padding: 40px; border-radius: 10px;">
-        <h2 style="text-align: center; margin-bottom: 30px;">Criar Conta</h2>
+        <h2 style="text-align: center; margin-bottom: 30px;">Cadastrar Colaborador</h2>
 
-        <form action="../Controller/cadastroAction.php" method="post" style="display: flex; flex-direction: column; gap: 15px;">
-            <label for="nome">Seu nome</label>
+        <form action="../Controller/cadastroStaffAction.php" method="post" style="display: flex; flex-direction: column; gap: 15px;">
+            <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome" required>
 
-            <label for="email">E-mail</label>
-            <input type="email" name="email" id="email" required>
+            <label for="registro">Registro</label>
+            <input type="text" name="registro" id="registro" required>
 
             <label for="telefone">Telefone</label>
             <input type="tel" name="telefone" id="telefone" required>
