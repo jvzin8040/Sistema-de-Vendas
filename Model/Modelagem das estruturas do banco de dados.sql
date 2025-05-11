@@ -7,7 +7,9 @@ USE site_de_vendas;
 CREATE TABLE Pessoa (
     ID_pessoa INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
+    sobrenome VARCHAR(100), -- adicionado sobrenome
     email VARCHAR(100),
+    telefone VARCHAR(20), -- adicionado telefone
     senha VARCHAR(100),
     dataNascimento DATE,
     logradouro VARCHAR(100),
@@ -62,9 +64,11 @@ CREATE TABLE Produto (
     ID_categoria INT,
     descricao VARCHAR(255),
     imagem VARCHAR(255),
+    imagem_2 VARCHAR(255),
+    imagem_3 VARCHAR(255),
     FOREIGN KEY (ID_categoria) REFERENCES Categoria(ID_categoria)
 );
--- adicionado nova tabela categoria e imagem para o produto
+-- adicionado nova tabela categoria e imagens para o produto
 
 CREATE TABLE Carrinho (
     ID_carrinho INT PRIMARY KEY AUTO_INCREMENT,
