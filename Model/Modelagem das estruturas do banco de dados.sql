@@ -109,3 +109,4 @@ CREATE TABLE Sistema (
     usuarioAtual INT,
     FOREIGN KEY (usuarioAtual) REFERENCES Pessoa(ID_pessoa)
 );
+
