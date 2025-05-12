@@ -1,7 +1,8 @@
 <header class="header">
     <div class="top-header">
+
         <!-- Logo -->
-        <img src="../images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
+        <img src="images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
 
         <!-- Busca -->
         <!-- Wrapper da barra de pesquisa -->
@@ -24,9 +25,9 @@
             <!-- Área de ações do usuário (Conta e login)-->
             <div class="header-actions"> 
                 <!-- Link para criar conta -->
-                <a href="#">Crie sua conta</a> 
+                <a href="criar_conta.php">Crie sua conta</a> 
                 <!-- Botão de login -->
-                <button class="login-button">Entre</button> 
+                <button class="login-button" onclick="window.location.href='pagina_login.php'">Entre</button> 
                 <!-- Ícone do carrinho -->
                 <a href="#" aria-label="Carrinho de compras"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">

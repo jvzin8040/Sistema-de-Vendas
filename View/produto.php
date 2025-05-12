@@ -9,17 +9,17 @@ $title = "Produto - EID Store";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo $title; ?></title>
     <!-- CSS Geral -->
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/search.css">
-    <link rel="stylesheet" href="../css/cep-nav.css">
-    <link rel="stylesheet" href="../css/banner.css">
-    <link rel="stylesheet" href="../css/products.css">
-    <link rel="stylesheet" href="../css/categories.css">
-    <link rel="stylesheet" href="../css/form.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-  <link rel="stylesheet" href="../css/produto.css"> <!-- Novo CSS exclusivo -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/cep-nav.css">
+    <link rel="stylesheet" href="css/banner.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/categories.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/produto.css"> <!-- Novo CSS exclusivo -->
 </head>
 <body>
 
@@ -28,13 +28,13 @@ $title = "Produto - EID Store";
 <main class="produto-container">
   <section class="produto-detalhe">
     <div class="galeria">
-      <img src="../images/miniatura1.png" alt="Miniatura 1">
-      <img src="../images/miniatura2.png" alt="Miniatura 2">
-      <img src="../images/miniatura3.png" alt="Miniatura 3">
+      <img src="images/miniatura1.png" alt="Miniatura 1">
+      <img src="images/miniatura2.png" alt="Miniatura 2">
+      <img src="images/miniatura3.png" alt="Miniatura 3">
     </div>
 
     <div class="imagem-principal">
-      <img src="../images/smartphone.png" alt="Smartphone Motorola G75">
+      <img src="images/smartphone.png" alt="Smartphone Motorola G75">
     </div>
 
     <div class="info-produto">
@@ -52,7 +52,7 @@ $title = "Produto - EID Store";
     </div>
   </section>
 
-  <?php include 'categories.php'; ?>
+  <?php include 'categoria.php'; ?>
 </main>
 
 

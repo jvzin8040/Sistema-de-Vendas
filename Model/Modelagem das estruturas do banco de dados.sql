@@ -1,8 +1,8 @@
 -- Modelagem das estruturas do banco de dados 
 
-CREATE DATABASE Site_de_Vendas;
+CREATE DATABASE site_de_vendas;
 
-USE Site_de_Vendas;
+USE site_de_vendas;
 
 CREATE TABLE Pessoa (
     ID_pessoa INT PRIMARY KEY AUTO_INCREMENT,
@@ -47,15 +47,24 @@ CREATE TABLE Proprietario (
     FOREIGN KEY (ID_proprietario) REFERENCES Pessoa(ID_pessoa)
 );
 
+CREATE TABLE Categoria (
+    ID_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT
+);
+-- adicionado nova tabela categoria para o produto
+
 CREATE TABLE Produto (
     ID_produto INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
     preco FLOAT,
-    qtdEstoque INT
-    categoria VARCHAR(50), 
+    qtdEstoque INT,
+    ID_categoria INT,
     descricao VARCHAR(255),
+    imagem VARCHAR(255),
+    FOREIGN KEY (ID_categoria) REFERENCES Categoria(ID_categoria)
 );
--- adicionado campo categoria e descricao para o produto
+-- adicionado nova tabela categoria e imagem para o produto
 
 CREATE TABLE Carrinho (
     ID_carrinho INT PRIMARY KEY AUTO_INCREMENT,
