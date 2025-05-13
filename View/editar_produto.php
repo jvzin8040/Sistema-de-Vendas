@@ -1,104 +1,164 @@
-<?php 
-// Define o título da página
-$title = "EID Store"; 
+<?php
+include('../controller/conexaoBD.php'); // Incluindo a conexão com o banco
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EID Store - Editar Produto</title>
 
     <!-- CSS Geral -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/search.css">
-    <link rel="stylesheet" href="css/cep-nav.css">
-    <link rel="stylesheet" href="css/banner.css">
-    <link rel="stylesheet" href="css/products.css">
-    <link rel="stylesheet" href="css/categories.css">
-    <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/form.css" />
+    <link rel="stylesheet" href="css/footer.css" />
 </head>
+
 <body>
 
-<header>
-    <div class="top-header">
-        <img src="images/eid_store_logo.png" alt="Logo EID Store" class="logo-img">
-        <div class="header-actions">
-            <a href="#">Login</a>
-            <a href="#">Minha Conta</a>
-            <a href="#" aria-label="Carrinho de compras"> <!-- Ícone do carrinho -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-                        <path d="M7 18c-1.104 0-2 .897-2 2s.896 2 2 2c1.103 0 2-.897 2-2s-.897-2-2-2zm10 0c-1.103 0-2 .897-2 2s.897 2 2 2c1.104 0 2-.897 2-2s-.896-2-2-2zm1.293-11.707l-1.086 5.434c-.098.489-.53.857-1.029.857h-8.535l-.389-2h7.863c.553 0 1-.447 1-1s-.447-1-1-1h-8.893l-.37-1.882c-.095-.484-.528-.828-1.025-.828h-1.807c-.553 0-1 .447-1 1s.447 1 1 1h.878l1.74 8.707c.096.485.528.829 1.025.829h9.645c.466 0 .868-.316.974-.769l1.374-6.869c.113-.564-.259-1.109-.823-1.223-.564-.113-1.109.259-1.223.823z"/>
-                    </svg>
-            </a>
+    <header>
+        <div class="top-header">
+            <img src="images/eid_store_logo.png" alt="Logo EID Store" class="logo-img" />
+            <div class="header-actions">
+                <a href="#">Login</a>
+                <a href="#">Minha Conta</a>
+                <a href="#">Carrinho</a>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<main>
-<div style="background-color: #820AD1; padding: 50px 20px; min-height: 100vh;">
-    <div style="background-color: white; max-width: 500px; margin: 0 auto; padding: 40px; border-radius: 10px;">
-        <h2 style="text-align: center; margin-bottom: 30px;">Editar produto</h2>
+    <main style="background-color: #820AD1; padding: 50px 20px; min-height: 100vh;">
+        <div style="background-color: white; max-width: 600px; margin: 0 auto; padding: 40px; border-radius: 10px;">
+            <h2 style="text-align: center; margin-bottom: 30px;">Editar produto</h2>
 
-        <div class="container">
-    <form action="processar-edicao.php" method="post" enctype="multipart/form-data">
-      <label for="codigo">Código do produto</label>
-      <input type="text" id="codigo" name="codigo" required>
+            <label for="produto_id">Escolha o produto</label>
+            <select id="produto_id" name="produto_id" onchange="carregarProdutoPorId()" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="">Selecione um produto</option>
+                <?php
+                // Consulta para pegar todos os produtos
+                $sql = "SELECT ID_produto, nome FROM Produto";
+                $result = $conexao->query($sql);
 
-      <label for="nome">Alterar nome do produto</label>
-      <input type="text" id="nome" name="nome">
+                if ($result) {
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . htmlspecialchars($row['ID_produto']) . "'>" . htmlspecialchars($row['nome']) . "</option>";
+                        }
+                    } else {
+                        echo "<option value=''>Nenhum produto encontrado</option>";
+                    }
+                } else {
+                    echo "<option value=''>Erro na consulta: " . htmlspecialchars($conexao->error) . "</option>";
+                }
+                ?>
+            </select>
 
-      <label for="descricao">Alterar descrição do produto</label>
-      <input type="text" id="descricao" name="descricao">
+            <form action="../Controller/editarProdutoAction.php" method="post" enctype="multipart/form-data">
+                <label for="nome">Alterar nome do produto</label>
+                <input type="text" id="nome" name="nome" required />
 
-      <label for="imagens">Imagens do produto</label>
-      <input type="file" id="imagens" name="imagens[]" multiple accept="image/*">
+                <label for="descricao">Alterar descrição do produto</label>
+                <input type="text" id="descricao" name="descricao" required />
 
-      <label for="categoria">Alterar categoria do produto</label>
-      <input type="text" id="categoria" name="categoria">
+                <label for="imagens">Imagens do produto</label>
+                <input type="file" id="imagens" name="imagens[]" multiple accept="image/*" />
 
-      <label for="preco">Alterar preço (R$) do produto</label>
-      <input type="text" id="preco" name="preco">
+                <label for="categoria">Alterar categoria do produto</label>
+                <select id="categoria" name="categoria" required style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="">Selecione uma categoria</option>
+                    <?php
+                    // Buscar categorias para popular o select
+                    $sqlCat = "SELECT ID_categoria, nome FROM Categoria";
+                    $resultCat = $conexao->query($sqlCat);
 
-      <label for="quantidade">Altera quantidade disponível</label>
-      <input type="number" id="quantidade" name="quantidade">
+                    if ($resultCat) {
+                        while ($cat = $resultCat->fetch_assoc()) {
+                            echo "<option value='" . htmlspecialchars($cat['ID_categoria']) . "'>" . htmlspecialchars($cat['nome']) . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
 
-      <button type="submit">Editar produto</button>
-    </form>
+                <label for="preco">Alterar preço (R$) do produto</label>
+                <input type="number" step="0.01" id="preco" name="preco" required />
 
-    <form action="excluir-produto.php" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este produto?');">
-      <input type="hidden" name="codigo" id="codigoExcluir">
-      <button type="submit" class="delete-button" style="background-color: #d11a2a; color: white; margin-top: 15px;">Excluir produto</button>
-    </form>
-  </div>
-</main>
+                <label for="quantidade">Alterar quantidade disponível</label>
+                <input type="number" id="quantidade" name="quantidade" required />
 
-  <script>
-    // Copia automaticamente o código digitado para o segundo formulário
-    document.getElementById('codigo').addEventListener('input', function() {
-      document.getElementById('codigoExcluir').value = this.value;
-    });
-  </script>
+                <input type="hidden" name="produto_id" id="produto_id_hidden" />
 
-<footer class="footer">
-        <div class="social-icons" style="margin-bottom: 15px;">
-            <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="images/linkedin-icon.png" alt="LinkedIn"></a>
-            <a href="#"><img src="images/youtube-icon.png" alt="YouTube"></a>
-            <a href="#"><img src="images/insta-icon.png" alt="Instagram"></a>
+                <button type="submit" style="background-color: #820AD1; color: white; padding: 10px; width: 100%; border: none; border-radius: 5px; margin-top: 20px; cursor:pointer;">Editar produto</button>
+            </form>
+
+            <form action="../Controller/excluirProdutoAction.php" method="post" onsubmit="return verificarProdutoSelecionado();" style="margin-top:15px;">
+                <input type="hidden" name="codigo" id="produto_id_hidden_excluir" />
+                <button type="submit" class="delete-button" style="background-color: #d11a2a; color: white; padding: 10px; width: 100%; border: none; border-radius: 5px; cursor:pointer;">Excluir produto</button>
+            </form>
+
+            <script>
+                function verificarProdutoSelecionado() {
+                    var produtoId = document.getElementById('produto_id_hidden_excluir').value;
+
+                    if (!produtoId) {
+                        alert('Por favor, selecione um produto antes de tentar excluí-lo.');
+                        return false; // Impede o envio do formulário
+                    }
+
+                    return confirm('Tem certeza que deseja excluir este produto?'); // Exibe a confirmação
+                }
+            </script>
         </div>
-        <ul class="footer-links" style="display: flex; justify-content: center; gap: 20px; list-style: none; padding: 0; margin-bottom: 10px;">
-            <li><a href="#">Condições de Uso</a></li>
-            <li><a href="#">Política de Privacidade</a></li>
-            <li><a href="#">Ajuda</a></li>
-            <li><a href="#">Cookies</a></li>
-        </ul>
-        <p style="font-size: 14px;">2025 - ETEC - Curso Técnico em Desenvolvimento de Sistemas - Turma: EID - Grupo 1</p>
-    </footer>
+    </main>
+
+    <script>
+        function carregarProdutoPorId() {
+            var produtoId = document.getElementById('produto_id').value;
+            if (!produtoId) {
+                // Limpar campos
+                document.getElementById('nome').value = '';
+                document.getElementById('descricao').value = '';
+                document.getElementById('categoria').value = '';
+                document.getElementById('preco').value = '';
+                document.getElementById('quantidade').value = '';
+                document.getElementById('produto_id_hidden').value = '';
+                document.getElementById('produto_id_hidden_excluir').value = '';
+                return;
+            }
+
+            fetch('../controller/get_produto.php?id=' + produtoId)
+                .then(response => {
+                    if (!response.ok) throw new Error('Produto não encontrado');
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('nome').value = data.nome || '';
+                    document.getElementById('descricao').value = data.descricao || '';
+                    document.getElementById('categoria').value = data.ID_categoria || '';
+                    document.getElementById('preco').value = data.preco || '';
+                    document.getElementById('quantidade').value = data.qtdEstoque || '';
+                    document.getElementById('produto_id_hidden').value = data.ID_produto || '';
+                    document.getElementById('produto_id_hidden_excluir').value = data.ID_produto || '';
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar produto:', error);
+                    alert("Produto não encontrado.");
+                    // Limpar campos
+                    document.getElementById('nome').value = '';
+                    document.getElementById('descricao').value = '';
+                    document.getElementById('categoria').value = '';
+                    document.getElementById('preco').value = '';
+                    document.getElementById('quantidade').value = '';
+                    document.getElementById('produto_id_hidden').value = '';
+                    document.getElementById('produto_id_hidden_excluir').value = '';
+                });
+        }
+    </script>
+
+    <?php include 'footer.php'; ?>
 
 </body>
+
 </html>

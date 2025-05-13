@@ -1,5 +1,24 @@
 <?php 
 $title = "Produto - EID Store"; 
+require_once('../Controller/conexaoBD.php');
+
+$idProduto = $_GET['id'] ?? null;
+
+if (!$idProduto) {
+    echo "<script>alert('Produto não encontrado!'); window.location.href='index.php';</script>";
+    exit;
+}
+
+$stmt = $conexao->prepare("SELECT p.*, c.nome AS categoria_nome FROM Produto p JOIN Categoria c ON p.ID_categoria = c.ID_categoria WHERE ID_produto = ?");
+$stmt->bind_param("i", $idProduto);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$produto = $resultado->fetch_assoc();
+
+if (!$produto) {
+    echo "<script>alert('Produto inválido.'); window.location.href='index.php';</script>";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,18 +27,17 @@ $title = "Produto - EID Store";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo $title; ?></title>
-    <!-- CSS Geral -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/search.css">
-    <link rel="stylesheet" href="css/cep-nav.css">
-    <link rel="stylesheet" href="css/banner.css">
-    <link rel="stylesheet" href="css/products.css">
-    <link rel="stylesheet" href="css/categories.css">
-    <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/produto.css"> <!-- Novo CSS exclusivo -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="css/cep-nav.css">
+  <link rel="stylesheet" href="css/banner.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/categories.css">
+  <link rel="stylesheet" href="css/form.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/produto.css">
 </head>
 <body>
 
@@ -28,22 +46,25 @@ $title = "Produto - EID Store";
 <main class="produto-container">
   <section class="produto-detalhe">
     <div class="galeria">
-      <img src="images/miniatura1.png" alt="Miniatura 1">
-      <img src="images/miniatura2.png" alt="Miniatura 2">
-      <img src="images/miniatura3.png" alt="Miniatura 3">
+      <?php if ($produto['imagem']) echo "<img src='../public/uploads/{$produto['imagem']}' alt='Imagem 1'>"; ?>
+      <?php if ($produto['imagem_2']) echo "<img src='../public/uploads/{$produto['imagem_2']}' alt='Imagem 2'>"; ?>
+      <?php if ($produto['imagem_3']) echo "<img src='../public/uploads/{$produto['imagem_3']}' alt='Imagem 3'>"; ?>
     </div>
 
     <div class="imagem-principal">
-      <img src="images/smartphone.png" alt="Smartphone Motorola G75">
+      <?php 
+        $imgPrincipal = $produto['imagem'] ?: 'default.png'; 
+        echo "<img src='../public/uploads/$imgPrincipal' alt='{$produto['nome']}'>";
+      ?>
     </div>
 
     <div class="info-produto">
-      <h1>Smartphone Motorola Moto G75 5G 256GB 16GB Ram Boost 50MP</h1>
-      <p class="preco">R$ 1.976 <span>em 12x R$189,93</span></p>
-      <p>Chegará terça-feira</p>
-      <p>Cor: <strong>Cinza</strong></p>
-      <p><strong style="color: green;">Estoque disponível</strong></p>
-      <p>Quantidade: <strong>1 unidade</strong></p>
+      <h1 style="color: #6C63FF;"><?php echo htmlspecialchars($produto['nome']); ?></h1>
+      <p class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+      <p>Categoria: <strong><?php echo htmlspecialchars($produto['categoria_nome']); ?></strong></p>
+      <p><strong style="color: green;"><?php echo $produto['qtdEstoque'] > 0 ? 'Estoque disponível' : 'Esgotado'; ?></strong></p>
+      <p>Quantidade: <strong><?php echo $produto['qtdEstoque']; ?> unidade(s)</strong></p>
+      <p><?php echo nl2br(htmlspecialchars($produto['descricao'])); ?></p>
 
       <div class="botoes-compra">
         <button class="comprar">Comprar agora</button>
@@ -55,9 +76,20 @@ $title = "Produto - EID Store";
   <?php include 'categoria.php'; ?>
 </main>
 
-
-
 <?php include 'footer.php'; ?>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const miniaturas = document.querySelectorAll('.galeria img');
+    const imagemPrincipal = document.querySelector('.imagem-principal img');
+
+    miniaturas.forEach(img => {
+      img.addEventListener('click', () => {
+        imagemPrincipal.src = img.src;
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
