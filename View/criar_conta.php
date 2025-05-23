@@ -1,5 +1,4 @@
 <?php 
-// Define o título da página
 $title = "EID Store"; 
 ?>
 
@@ -10,7 +9,6 @@ $title = "EID Store";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
 
-    <!-- CSS Geral -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/search.css">

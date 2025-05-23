@@ -1,5 +1,5 @@
 <?php
-include('../controller/conexaoBD.php'); // Incluindo a conexão com o banco
+include('../controller/conexaoBD.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,6 @@ include('../controller/conexaoBD.php'); // Incluindo a conexão com o banco
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>EID Store - Editar Produto</title>
 
-    <!-- CSS Geral -->
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/form.css" />
@@ -38,7 +37,7 @@ include('../controller/conexaoBD.php'); // Incluindo a conexão com o banco
             <select id="produto_id" name="produto_id" onchange="carregarProdutoPorId()" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
                 <option value="">Selecione um produto</option>
                 <?php
-                // Consulta para pegar todos os produtos
+
                 $sql = "SELECT ID_produto, nome FROM Produto";
                 $result = $conexao->query($sql);
 
@@ -70,7 +69,7 @@ include('../controller/conexaoBD.php'); // Incluindo a conexão com o banco
                 <select id="categoria" name="categoria" required style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                     <option value="">Selecione uma categoria</option>
                     <?php
-                    // Buscar categorias para popular o select
+
                     $sqlCat = "SELECT ID_categoria, nome FROM Categoria";
                     $resultCat = $conexao->query($sqlCat);
 
@@ -104,10 +103,10 @@ include('../controller/conexaoBD.php'); // Incluindo a conexão com o banco
 
                     if (!produtoId) {
                         alert('Por favor, selecione um produto antes de tentar excluí-lo.');
-                        return false; // Impede o envio do formulário
+                        return false;
                     }
 
-                    return confirm('Tem certeza que deseja excluir este produto?'); // Exibe a confirmação
+                    return confirm('Tem certeza que deseja excluir este produto?');
                 }
             </script>
         </div>
@@ -117,7 +116,7 @@ include('../controller/conexaoBD.php'); // Incluindo a conexão com o banco
         function carregarProdutoPorId() {
             var produtoId = document.getElementById('produto_id').value;
             if (!produtoId) {
-                // Limpar campos
+
                 document.getElementById('nome').value = '';
                 document.getElementById('descricao').value = '';
                 document.getElementById('categoria').value = '';

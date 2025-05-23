@@ -1,5 +1,4 @@
 <?php 
-// Define o título da página
 $title = "EID Store"; 
 ?>
 
@@ -10,7 +9,6 @@ $title = "EID Store";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
 
-    <!-- CSS Geral -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/search.css">
@@ -39,7 +37,7 @@ $title = "EID Store";
     </div>
 </header>
 
-<div style="background-color: #820AD1; padding: 50px 20px; min-height: 100vh;">
+<div style="background-color: #820AD1; padding: 100px 20px; min-height: 90vh;">
     <div style="background-color: white; max-width: 500px; margin: 0 auto; padding: 40px; border-radius: 10px;">
         <h2 style="text-align: center; margin-bottom: 30px;">Página de Login</h2>
 
@@ -54,24 +52,6 @@ $title = "EID Store";
     </form>
     </div>
 </div>
-
-
-    <?php
-   /* if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $registro = $_POST['registro'];
-      $senha = $_POST['senha'];
-
-      // Exemplo de validação simples
-      if ($registro === 'admin' && $senha === '1234') {
-        echo "<p style='color: green; text-align: center; margin-top: 15px;'>Login bem-sucedido!</p>";
-      } else {
-        echo "<p style='color: red; text-align: center; margin-top: 15px;'>Registro ou senha inválidos.</p>";
-      }
-    } */
-     ?> 
-      
-
-  </div>
 
 <?php include 'footer.php'; ?>
 

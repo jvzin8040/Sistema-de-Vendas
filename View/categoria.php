@@ -14,7 +14,7 @@
             <h3>Cama, mesa e banho</h3>
             <p>Encontre produtos exclusivos!</p>
         </div>
-  
+
         <!-- Coluna 3 -->
         <div class="category">
             <img src="images/eletrodomesticos.png" alt="Eletrodomésticos">
