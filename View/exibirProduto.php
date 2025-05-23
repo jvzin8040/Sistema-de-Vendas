@@ -1,20 +1,14 @@
 <?php
 $title = "Produto - EID Store";
-require_once('../Controller/conexaoBD.php');
+require_once(__DIR__ . '/../Model/Produto.php');
 
 $idProduto = $_GET['id'] ?? null;
-
 if (!$idProduto) {
   echo "<script>alert('Produto não encontrado!'); window.location.href='index.php';</script>";
   exit;
 }
 
-$stmt = $conexao->prepare("SELECT p.*, c.nome AS categoria_nome FROM Produto p JOIN Categoria c ON p.ID_categoria = c.ID_categoria WHERE ID_produto = ?");
-$stmt->bind_param("i", $idProduto);
-$stmt->execute();
-$resultado = $stmt->get_result();
-$produto = $resultado->fetch_assoc();
-
+$produto = Produto::buscarPorId($idProduto);
 if (!$produto) {
   echo "<script>alert('Produto inválido.'); window.location.href='index.php';</script>";
   exit;
@@ -23,7 +17,6 @@ if (!$produto) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,9 +33,7 @@ if (!$produto) {
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/produto.css">
 </head>
-
 <body>
-
   <?php include 'header.php'; ?>
 
   <main class="produto-container">
@@ -76,7 +67,6 @@ if (!$produto) {
     </section>
 
     <br>
-
     <?php include 'categoria.php'; ?>
   </main>
 
@@ -86,7 +76,6 @@ if (!$produto) {
     document.addEventListener('DOMContentLoaded', function() {
       const miniaturas = document.querySelectorAll('.galeria img');
       const imagemPrincipal = document.querySelector('.imagem-principal img');
-
       miniaturas.forEach(img => {
         img.addEventListener('click', () => {
           imagemPrincipal.src = img.src;
@@ -94,7 +83,5 @@ if (!$produto) {
       });
     });
   </script>
-
 </body>
-
 </html>
