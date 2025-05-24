@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,20 +59,28 @@
 
     <script>
         function applyFilters() {
-            const dateFilter = document.getElementById("filter-date").value;
-            const statusFilter = document.getElementById("filter-status").value;
-            const orders = document.querySelectorAll(".order-item");
+            const dateRange = document.getElementById("filter-date").value;
+            const status = document.getElementById("filter-status").value;
 
-            orders.forEach(order => {
-                const matchesDate = !dateFilter || order.innerText.includes(dateFilter);
-                const matchesStatus = statusFilter === "todos" || order.classList.contains(status);
-                order.style.display = matchesDate && matchesStatus ? "block" : "none";
-            });
+            fetch("../Model/filtro_pedidos.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `dateRange=${encodeURIComponent(dateRange)}&status=${status}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("order-list").innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("Erro ao filtrar pedidos:", error);
+                });
         }
     </script>
-    
+
     </div>
-    
+
     <?php include 'footer.php'; ?>
 </body>
 
