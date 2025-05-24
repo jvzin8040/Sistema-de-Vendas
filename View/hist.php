@@ -20,7 +20,7 @@
 </head>
 
 <body class="bdhistoricop">
-    <?php include 'pagina_inicial/header.php'; ?>
+    <?php include 'header.php'; ?>
     <div class="container">
         <div class="titulo">
             <h1 class="txthistoricoP">Histórico de Pedidos</h1>
@@ -69,8 +69,10 @@
             });
         }
     </script>
+    
     </div>
-    <?php include 'pagina_inicial/footer.php'; ?>
+    
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>
