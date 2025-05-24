@@ -24,7 +24,9 @@ $title = "EID Store";
 
 <header>
     <div class="top-header">
-        <img src="images/eid_store_logo.png" alt="Logo EID Store" class="logo-img">
+        <a href="../View/index.php">
+            <img src="../View/images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
+        </a>
         <div class="header-actions">
             <a href="criar_conta.php">Criar Conta</a>
             <a href="#">Minha Conta</a>

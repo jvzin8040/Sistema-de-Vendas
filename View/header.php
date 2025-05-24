@@ -2,7 +2,9 @@
     <div class="top-header">
 
         <!-- Logo -->
-        <img src="images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
+        <a href="../View/index.php">
+            <img src="../View/images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
+        </a>
 
         <!-- Busca -->
         <!-- Wrapper da barra de pesquisa -->
