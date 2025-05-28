@@ -47,7 +47,7 @@ if (!$produto) {
       <div class="imagem-principal">
         <?php
         $imgPrincipal = $produto['imagem'] ?: 'default.png';
-        echo "<img src='../public/uploads/$imgPrincipal' alt='{$produto['nome']}'>";
+        echo "<img src='../public/uploads/$imgPrincipal' alt='" . htmlspecialchars($produto['nome'], ENT_QUOTES) . "'>";
         ?>
       </div>
 
@@ -60,8 +60,23 @@ if (!$produto) {
         <p><?php echo nl2br(htmlspecialchars($produto['descricao'])); ?></p>
 
         <div class="botoes-compra">
-          <button class="comprar">Comprar agora</button>
-          <button class="adicionar-carrinho">Adicionar ao carrinho</button>
+          <!-- Campo de quantidade único para ambos os botões -->
+          <label for="quantidadeUnica" style="margin-right: 8px;">Quantidade:</label>
+          <input type="number" id="quantidadeUnica" value="1" min="1" max="<?php echo $produto['qtdEstoque']; ?>" style="width:60px; margin-bottom: 10px;">
+
+          <!-- Formulário para Comprar Agora -->
+          <form id="formComprar" method="POST" action="../Controller/comprarAgora.php" style="display:inline;">
+            <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
+            <input type="hidden" name="quantidade" id="quantidadeComprar">
+            <button type="submit" class="comprar" <?php if ($produto['qtdEstoque'] < 1) echo 'disabled'; ?>>Comprar agora</button>
+          </form>
+
+          <!-- Formulário para Adicionar ao Carrinho -->
+          <form id="formCarrinho" method="POST" action="../Controller/adicionar_ao_carrinho.php" style="display:inline;">
+            <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
+            <input type="hidden" name="quantidade" id="quantidadeCarrinho">
+            <button type="submit" class="adicionar-carrinho" <?php if ($produto['qtdEstoque'] < 1) echo 'disabled'; ?>>Adicionar ao carrinho</button>
+          </form>
         </div>
       </div>
     </section>
@@ -74,12 +89,30 @@ if (!$produto) {
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Miniaturas da galeria
       const miniaturas = document.querySelectorAll('.galeria img');
       const imagemPrincipal = document.querySelector('.imagem-principal img');
       miniaturas.forEach(img => {
         img.addEventListener('click', () => {
           imagemPrincipal.src = img.src;
         });
+      });
+
+      // Sincroniza quantidade única nos dois formulários antes de enviar
+      function syncQuantidadeAndSubmit(formId, inputId) {
+        const qty = document.getElementById('quantidadeUnica').value;
+        document.getElementById(inputId).value = qty;
+        document.getElementById(formId).submit();
+      }
+
+      document.getElementById('formComprar').addEventListener('submit', function(e) {
+        e.preventDefault();
+        syncQuantidadeAndSubmit('formComprar', 'quantidadeComprar');
+      });
+
+      document.getElementById('formCarrinho').addEventListener('submit', function(e) {
+        e.preventDefault();
+        syncQuantidadeAndSubmit('formCarrinho', 'quantidadeCarrinho');
       });
     });
   </script>

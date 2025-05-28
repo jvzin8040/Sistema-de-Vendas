@@ -22,6 +22,8 @@ $title = "EID Store";
 </head>
 
 <body>
+   
+
     <?php include 'header.php'; ?>
     <?php include 'banner.php'; ?>
     <?php include 'products.php'; ?>

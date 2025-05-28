@@ -1,0 +1,149 @@
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [usuario_id] => 2
+            [id_cliente] => 2
+            [compra_pendente] => Array
+                (
+                    [id_produto] => 10
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 11
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [usuario_id] => 2
+            [id_cliente] => 2
+            [compra_pendente] => Array
+                (
+                    [id_produto] => 1
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [usuario_id] => 2
+            [id_cliente] => 2
+            [compra_pendente] => Array
+                (
+                    [id_produto] => 11
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 
+    [_POST] => Array
+        (
+            [id_produto] => 10
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 10
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 10
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 11
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [compra_pendente] => Array
+                (
+                    [id_produto] => 10
+                    [quantidade] => 1
+                )
+
+        )
+
+)

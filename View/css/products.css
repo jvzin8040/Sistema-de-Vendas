@@ -7,6 +7,15 @@
     background-color: #820AD1;
 }
 
+/* Link faz o card inteiro ser clicável */
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    /* Remove highlight azul em mobile */
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* Card de produto */
 .product-card {
     display: flex;
@@ -20,10 +29,20 @@
     padding: 15px;
     text-align: center;
     background-color: #fff; /* Fundo branco para destacar */
+    transition: box-shadow .2s;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    box-shadow: 0 6px 32px rgba(130, 10, 209, 0.17);
+    transform: translateY(-4px) scale(1.03);
 }
 
 /* Imagem do produto */
 .product-card img {
     width: 100%;
     max-width: 100%;
+    /* Melhora visual */
+    object-fit: contain;
+    margin-bottom: 10px;
 }

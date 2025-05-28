@@ -3,7 +3,7 @@ class Funcionario
 {
     public static function cadastrar($nome, $registro, $telefone, $senha, $confirmar_senha)
     {
-        include(__DIR__ . '/../Controller/conexaoBD.php');
+        include(__DIR__ . '/../Model/conexaoBD.php');
 
         if ($senha !== $confirmar_senha) {
             return ['success' => false, 'message' => 'As senhas não coincidem.'];
@@ -57,7 +57,7 @@ class Funcionario
 
     public static function autenticar($registro, $senha)
     {
-        include(__DIR__ . '/../Controller/conexaoBD.php');
+        include(__DIR__ . '/../Model/conexaoBD.php');
         $stmt = $conexao->prepare("SELECT ID_funcionario, senha FROM Funcionario WHERE registro = ?");
         $stmt->bind_param("s", $registro);
         $stmt->execute();

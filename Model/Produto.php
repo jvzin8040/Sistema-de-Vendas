@@ -3,8 +3,8 @@ class Produto
 {
     public static function listarTodos()
     {
-        include(__DIR__ . '/../controller/conexaoBD.php');
-        $sql = "SELECT ID_produto, nome FROM Produto";
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $sql = "SELECT ID_produto, nome, preco, qtdEstoque, imagem FROM Produto";
         $result = $conexao->query($sql);
         $produtos = [];
         if ($result) {
@@ -17,7 +17,7 @@ class Produto
 
     public static function listarCategorias()
     {
-        include(__DIR__ . '/../controller/conexaoBD.php');
+        include(__DIR__ . '/../Model/conexaoBD.php');
         $sql = "SELECT ID_categoria, nome FROM Categoria";
         $result = $conexao->query($sql);
         $categorias = [];
@@ -31,7 +31,7 @@ class Produto
 
     public static function buscarPorId($id)
     {
-        include(__DIR__ . '/../Controller/conexaoBD.php');
+        include(__DIR__ . '/../Model/conexaoBD.php');
         $stmt = $conexao->prepare("SELECT p.*, c.nome AS categoria_nome FROM Produto p JOIN Categoria c ON p.ID_categoria = c.ID_categoria WHERE ID_produto = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -41,7 +41,7 @@ class Produto
 
     public static function cadastrar($nome, $descricao, $categoriaNome, $preco, $quantidade, $imagens)
     {
-        include(__DIR__ . '/../Controller/conexaoBD.php');
+        include(__DIR__ . '/../Model/conexaoBD.php');
 
         // Verifica se a categoria já existe
         $stmtCat = $conexao->prepare("SELECT ID_categoria FROM Categoria WHERE nome = ?");
@@ -89,7 +89,7 @@ class Produto
 
     public static function editar($produto_id, $nome, $descricao, $categoria, $preco, $quantidade, $imagens = null)
     {
-        include(__DIR__ . '/../Controller/conexaoBD.php');
+        include(__DIR__ . '/../Model/conexaoBD.php');
 
         // Verificar dados obrigatórios mínimos
         if (empty($nome) || empty($descricao) || $categoria === null) {
@@ -161,7 +161,7 @@ class Produto
 
     public static function excluir($produto_id)
     {
-        include(__DIR__ . '/../Controller/conexaoBD.php');
+        include(__DIR__ . '/../Model/conexaoBD.php');
 
         // Buscar nomes das imagens
         $sql_select = "SELECT imagem, imagem_2, imagem_3 FROM Produto WHERE ID_produto = ?";
@@ -215,7 +215,7 @@ class Produto
 
     public static function buscarPorId2($id)
     {
-        include(__DIR__ . '/../Controller/conexaoBD.php');
+        include(__DIR__ . '/../Model/conexaoBD.php');
         $sql = "SELECT ID_produto, nome, descricao, preco, qtdEstoque, ID_categoria FROM Produto WHERE ID_produto = ?";
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param("i", $id);

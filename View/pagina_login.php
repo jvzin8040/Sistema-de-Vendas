@@ -1,5 +1,15 @@
 <?php 
+session_start(); // Sempre inicie a sessão no topo
+
 $title = "EID Store"; 
+
+// Salva intenção de compra (caso venha de um botão "comprar agora")
+if (isset($_GET['comprar_agora']) && isset($_GET['id'])) {
+    $_SESSION['compra_pendente'] = [
+        'id_produto' => $_GET['id'],
+        'quantidade' => $_GET['quantidade'] ?? 1
+    ];
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +40,7 @@ $title = "EID Store";
         <div class="header-actions">
             <a href="criar_conta.php">Criar Conta</a>
             <a href="#">Minha Conta</a>
-            <a href="#" aria-label="Carrinho de compras"> <!-- Ícone do carrinho -->
+            <a href="#" aria-label="Carrinho de compras">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
                         <path d="M7 18c-1.104 0-2 .897-2 2s.896 2 2 2c1.103 0 2-.897 2-2s-.897-2-2-2zm10 0c-1.103 0-2 .897-2 2s.897 2 2 2c1.104 0 2-.897 2-2s-.896-2-2-2zm1.293-11.707l-1.086 5.434c-.098.489-.53.857-1.029.857h-8.535l-.389-2h7.863c.553 0 1-.447 1-1s-.447-1-1-1h-8.893l-.37-1.882c-.095-.484-.528-.828-1.025-.828h-1.807c-.553 0-1 .447-1 1s.447 1 1 1h.878l1.74 8.707c.096.485.528.829 1.025.829h9.645c.466 0 .868-.316.974-.769l1.374-6.869c.113-.564-.259-1.109-.823-1.223-.564-.113-1.109.259-1.223.823z"/>
                     </svg>
@@ -44,14 +54,23 @@ $title = "EID Store";
         <h2 style="text-align: center; margin-bottom: 30px;">Página de Login</h2>
 
         <form method="post" action="../Controller/loginAction.php">
-      <label for="registro">E-mail</label>
-      <input type="text" name="txtEmail"  placeholder="Digite o seu E-mail" required>
+            <label for="registro">E-mail</label>
+            <input type="text" name="txtEmail"  placeholder="Digite o seu E-mail" required>
 
-      <label for="senha">Senha</label>
-      <input type="password" name="txtSenha"  placeholder="Digite a sua Senha" required>
+            <label for="senha">Senha</label>
+            <input type="password" name="txtSenha"  placeholder="Digite a sua Senha" required>
 
-      <button type="submit">Continuar</button>
-    </form>
+            <button type="submit">Continuar</button>
+        </form>
+
+        <!-- Botão para área restrita (login admin/funcionário) -->
+        <div style="text-align:center; margin-top: 20px;">
+            <a href="area_restrita.php">
+                <button type="button" style="background:#6C63FF;color:#fff;padding:10px 25px;border:none;border-radius:5px;cursor:pointer;">
+                    Acessar Área Administrativa
+                </button>
+            </a>
+        </div>
     </div>
 </div>
 

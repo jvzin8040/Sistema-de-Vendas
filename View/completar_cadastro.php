@@ -1,5 +1,22 @@
 <?php
+session_start();
+if (!isset($_SESSION['id_cliente'])) {
+    header("Location: pagina_login.php");
+    exit();
+}
+
+if (!isset($_SESSION['checkout'])) {
+    header("Location: index.php");
+    exit();
+}
+
+$id_produto = $_SESSION['checkout']['id_produto'];
+$quantidade = $_SESSION['checkout']['quantidade'];
+
+// Aqui você pode buscar dados do produto, cliente, etc. se necessário
+
 $title = "EID Store";
+// include '../Controller/verifica_login.php'; // teste
 ?>
 
 <!DOCTYPE html>
@@ -44,10 +61,10 @@ $title = "EID Store";
 
 
     <div style="background-color: #820AD1; padding: 15px 40px; min-height: 145vh;">
-        <h1>Complete seu cadastro</h1>
+        <h1 style="font-size: 28px;">Quase lá!<br>Por favor, finalize seu cadastro para prosseguir.</h1>
 
         <div class="container">
-            <form action="cadastro-concluido.php" method="POST">
+            <form action="../Controller/completarCadastroAction.php" method="POST">
                 <label for="cpf">CPF</label>
                 <input type="text" id="cpf" name="CPF" placeholder="Digite seu CPF">
 
@@ -86,5 +103,4 @@ $title = "EID Store";
     <?php include 'footer.php'; ?>
 
 </body>
-
 </html>
