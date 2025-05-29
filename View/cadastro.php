@@ -48,8 +48,12 @@ $title = "EID Store";
                 <form action="cadastrar_produto.php" method="get">
                     <button type="submit">Cadastrar novo produto</button>
                 </form>
-                    <form action="editar_produto.php" method="get">
+                <form action="editar_produto.php" method="get">
                     <button type="submit">Editar produto</button>
+                </form>
+                <!-- Botão para editar status de pedidos -->
+                <form action="editarStatusPedido.php" method="get">
+                    <button type="submit">Editar status dos pedidos</button>
                 </form>
             </div>
         </div>

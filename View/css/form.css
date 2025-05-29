@@ -64,3 +64,34 @@ button:hover {
     background-color: #333;
 }
 
+.margin-ajustada-admin {
+    margin-top: 30px !important;
+    margin-bottom: 50px !important;
+    padding-bottom: 40px !important;
+}
+
+.titulo-admin {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4d4283;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    border-bottom: 3px solid #4d4283;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    animation: fadeInTitle 0.8s ease-in-out;
+}
+
+
+
+.h10 {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+}
+
+
+@keyframes fadeInTitle {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

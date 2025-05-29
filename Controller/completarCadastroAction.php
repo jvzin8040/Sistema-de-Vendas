@@ -9,8 +9,20 @@ if (!isset($_SESSION['id_cliente'])) {
 
 $id_cliente = $_SESSION['id_cliente'];
 
+// Busca nome e sobrenome atuais para verificar obrigatoriedade do sobrenome
+$sql_busca = "SELECT nome, sobrenome FROM Pessoa WHERE ID_pessoa = ?";
+$stmt_busca = $conexao->prepare($sql_busca);
+$stmt_busca->bind_param("i", $id_cliente);
+$stmt_busca->execute();
+$stmt_busca->bind_result($nome_atual, $sobrenome_atual);
+$stmt_busca->fetch();
+$stmt_busca->close();
+
 // Receba os dados do POST
+$nome        = $nome_atual; // não altera nome!
+$sobrenome   = $_POST['Sobrenome'] ?? '';
 $cpf         = $_POST['CPF'] ?? '';
+$cnpj        = $_POST['CNPJ'] ?? '';
 $rg          = $_POST['RG'] ?? '';
 $dataNasc    = $_POST['DataNascimento'] ?? '';
 $logradouro  = $_POST['Logradouro'] ?? '';
@@ -22,7 +34,7 @@ $cidade      = $_POST['Cidade'] ?? '';
 $estado      = $_POST['Estado'] ?? '';
 
 // Validação básica dos campos obrigatórios
-$camposObrigatorios = [$cpf, $rg, $dataNasc, $logradouro, $numero, $bairro, $cidade, $estado, $cep];
+$camposObrigatorios = [$sobrenome, $cpf, $rg, $dataNasc, $logradouro, $numero, $bairro, $cidade, $estado, $cep];
 $cadastroCompleto = true;
 foreach ($camposObrigatorios as $campo) {
     if (empty($campo)) {
@@ -32,7 +44,6 @@ foreach ($camposObrigatorios as $campo) {
 }
 
 if (!$cadastroCompleto) {
-    // Se algum campo obrigatório estiver vazio, retorne para o formulário com mensagem de erro
     $_SESSION['erro_cadastro'] = "Preencha todos os campos obrigatórios!";
     header("Location: ../View/completar_cadastro.php");
     exit();
@@ -40,33 +51,27 @@ if (!$cadastroCompleto) {
 
 // Atualize os dados na tabela Pessoa
 $sql = "UPDATE Pessoa SET 
-    cpf = ?, rg = ?, dataNascimento = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, cep = ?, cidade = ?, uf = ?
+    sobrenome = ?, cpf = ?, cnpj = ?, rg = ?, dataNascimento = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, cep = ?, cidade = ?, uf = ?
     WHERE ID_pessoa = ?";
 $stmt = $conexao->prepare($sql);
 $stmt->bind_param(
-    "ssssisssssi",
-    $cpf, $rg, $dataNasc, $logradouro, $numero, $bairro, $complemento, $cep, $cidade, $estado, $id_cliente
+    "ssssssisssssi",
+    $sobrenome, $cpf, $cnpj, $rg, $dataNasc, $logradouro, $numero, $bairro, $complemento, $cep, $cidade, $estado, $id_cliente
 );
 
 if ($stmt->execute()) {
     $stmt->close();
 
-    // Após salvar o cadastro, redirecione conforme intenção de compra
     if (isset($_SESSION['compra_pendente'])) {
-        $id_produto = (int)$_SESSION['compra_pendente']['id_produto'];
-        $quantidade = (int)$_SESSION['compra_pendente']['quantidade'];
+        $_SESSION['checkout'] = $_SESSION['compra_pendente'];
         unset($_SESSION['compra_pendente']);
 
-        // Só redireciona se id_produto for válido
-        if ($id_produto > 0 && $quantidade > 0) {
-            header("Location: ../View/checkout.php?id_produto=$id_produto&quantidade=$quantidade");
-            exit();
-        }
+        header("Location: ../View/checkout.php");
+        exit();
     }
     header("Location: ../View/index.php");
     exit();
 } else {
-    // Em caso de erro no UPDATE
     $_SESSION['erro_cadastro'] = "Erro ao atualizar cadastro. Tente novamente.";
     header("Location: ../View/completar_cadastro.php");
     exit();

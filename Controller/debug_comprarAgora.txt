@@ -147,3 +147,527 @@ Array
         )
 
 )
+Array
+(
+    [id_cliente] => 
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [compra_pendente] => Array
+                (
+                    [id_produto] => 1
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 10
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 1
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 11
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 10
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 12
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 10
+                    [quantidade] => 1
+                )
+
+            [compra_pendente] => Array
+                (
+                    [id_produto] => 11
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 11
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 12
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 11
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 11
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 11
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 11
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 10
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 11
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 10
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 1
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 1
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 1
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 10
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 1
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 11
+            [quantidade] => 5
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 10
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 12
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 11
+                    [quantidade] => 5
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 1
+            [quantidade] => 10
+        )
+
+    [session] => Array
+        (
+            [registro_funcionario] => 032007
+            [id_funcionario] => 7
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 12
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 12
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 10
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 12
+                    [quantidade] => 1
+                )
+
+        )
+
+)
+Array
+(
+    [id_cliente] => 2
+    [_POST] => Array
+        (
+            [id_produto] => 10
+            [quantidade] => 1
+        )
+
+    [session] => Array
+        (
+            [logado] => 1
+            [usuario_nome] => Carlos
+            [usuario_email] => carlos@gmail.com
+            [id_cliente] => 2
+            [checkout] => Array
+                (
+                    [id_produto] => 10
+                    [quantidade] => 1
+                )
+
+        )
+
+)

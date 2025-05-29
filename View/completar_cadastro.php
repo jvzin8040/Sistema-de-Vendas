@@ -5,29 +5,34 @@ if (!isset($_SESSION['id_cliente'])) {
     exit();
 }
 
-if (!isset($_SESSION['checkout'])) {
+if (!isset($_SESSION['compra_pendente'])) {
     header("Location: index.php");
     exit();
 }
 
-$id_produto = $_SESSION['checkout']['id_produto'];
-$quantidade = $_SESSION['checkout']['quantidade'];
+require_once('../Model/conexaoBD.php');
+$id_cliente = $_SESSION['id_cliente'];
 
-// Aqui você pode buscar dados do produto, cliente, etc. se necessário
+// Busca nome e sobrenome do usuário no banco
+$sql = "SELECT nome, sobrenome, cnpj FROM Pessoa WHERE ID_pessoa = ?";
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param("i", $id_cliente);
+$stmt->execute();
+$stmt->bind_result($nome, $sobrenome, $cnpj);
+$stmt->fetch();
+$stmt->close();
 
+$id_produto = $_SESSION['compra_pendente']['id_produto'];
+$quantidade = $_SESSION['compra_pendente']['quantidade'];
 $title = "EID Store";
-// include '../Controller/verifica_login.php'; // teste
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
-
-    <!-- CSS Geral -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/search.css">
@@ -39,14 +44,12 @@ $title = "EID Store";
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
-
 <body style="background-color: #820AD1;">
-
     <header>
         <div class="top-header">
-        <a href="../View/index.php">
-            <img src="../View/images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
-        </a>
+            <a href="../View/index.php">
+                <img src="../View/images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
+            </a>
             <div class="header-actions">
                 <a href="#">Login</a>
                 <a href="#">Minha Conta</a>
@@ -59,14 +62,21 @@ $title = "EID Store";
         </div>
     </header>
 
-
     <div style="background-color: #820AD1; padding: 15px 40px; min-height: 145vh;">
         <h1 style="font-size: 28px;">Quase lá!<br>Por favor, finalize seu cadastro para prosseguir.</h1>
-
         <div class="container">
             <form action="../Controller/completarCadastroAction.php" method="POST">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="Nome" value="<?php echo htmlspecialchars($nome ?? ''); ?>" readonly>
+
+                <label for="sobrenome">Sobrenome</label>
+                <input type="text" id="sobrenome" name="Sobrenome" value="<?php echo htmlspecialchars($sobrenome ?? ''); ?>" placeholder="Digite seu sobrenome" <?php if (empty($sobrenome)) echo "required"; ?>>
+
                 <label for="cpf">CPF</label>
                 <input type="text" id="cpf" name="CPF" placeholder="Digite seu CPF">
+
+                <label for="cnpj">CNPJ <span style="font-size:12px;color:#ddd;">(Opcional, se for empresa)</span></label>
+                <input type="text" id="cnpj" name="CNPJ" value="<?php echo htmlspecialchars($cnpj ?? ''); ?>" placeholder="Digite seu CNPJ">
 
                 <label for="rg">RG</label>
                 <input type="text" id="rg" name="RG" placeholder="Digite seu RG">
@@ -99,8 +109,6 @@ $title = "EID Store";
             </form>
         </div>
     </div>
-
     <?php include 'footer.php'; ?>
-
 </body>
 </html>
