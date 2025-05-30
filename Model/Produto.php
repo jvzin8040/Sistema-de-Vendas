@@ -320,4 +320,25 @@ class Produto
         $conexao->close();
         return $categoria;
     }
+
+
+     public static function listarPorCategoria($categoriaNome)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $con = $conexao;
+        $sql = "SELECT p.* FROM Produto p
+            JOIN Categoria c ON p.ID_categoria = c.ID_categoria
+            WHERE c.nome = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("s", $categoriaNome);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $produtos = [];
+        while ($row = $result->fetch_assoc()) {
+            $produtos[] = $row;
+        }
+        $stmt->close();
+        $con->close();
+        return $produtos;
+    }
 }

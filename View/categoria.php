@@ -1,25 +1,24 @@
+<?php
+require_once(__DIR__ . '/../Model/Produto.php');
+$categorias = Produto::listarCategorias();
+?>
+
 <!-- Categorias -->
 <section class="categories" id="categorias">
     <h2>Categorias</h2>
     <div class="linha">
-        <!-- Coluna 1 (CEP Input e Navegação) -->
-        <div class="category">
-            <img src="images/smartphone.png" alt="Smartphones">
-            <h3>Smartphones</h3>
-            <p>Os melhores smartphones estão aqui na EID Store!</p>
-        </div>
-        <!-- Coluna 2 -->
-        <div class="category">
-            <img src="images/cama-mesa-banho.png" alt="Cama, Mesa e Banho">
-            <h3>Cama, mesa e banho</h3>
-            <p>Encontre produtos exclusivos!</p>
-        </div>
-
-        <!-- Coluna 3 -->
-        <div class="category">
-            <img src="images/eletrodomesticos.png" alt="Eletrodomésticos">
-            <h3>Eletrodomésticos</h3>
-            <p>As melhores ofertas de eletrodomésticos que a sua casa precisa!</p>
-        </div>
+        <?php if ($categorias && count($categorias)): ?>
+            <?php foreach ($categorias as $cat): ?>
+                <div class="category">
+                    <a href="exibirCategoria.php?categoria=<?= urlencode($cat['nome']) ?>" style="text-decoration:none; color:inherit;">
+                        <img src="images/<?= strtolower(preg_replace('/[^a-zA-Z0-9]/', '-', $cat['nome'])) ?>.png" alt="<?= htmlspecialchars($cat['nome']) ?>" onerror="this.onerror=null;this.src='images/no-image.png';">
+                        <h3><?= htmlspecialchars($cat['nome']) ?></h3>
+                        <p>Confira produtos da categoria <?= htmlspecialchars($cat['nome']) ?>!</p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Nenhuma categoria encontrada.</p>
+        <?php endif; ?>
     </div>
 </section>

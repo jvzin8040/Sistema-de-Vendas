@@ -6,7 +6,7 @@ USE site_de_vendas;
 CREATE TABLE IF NOT EXISTS Pessoa (
     ID_pessoa INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
-    sobrenome VARCHAR(100), -- adicionado sobrenome
+    sobrenome VARCHAR(100),
     email VARCHAR(100),
     senha VARCHAR(100),
     dataNascimento DATE,
@@ -52,7 +52,6 @@ CREATE TABLE IF NOT EXISTS Categoria (
     nome VARCHAR(100) NOT NULL,
     descricao TEXT
 );
--- adicionado nova tabela categoria para o produto
 
 CREATE TABLE IF NOT EXISTS Produto (
     ID_produto INT PRIMARY KEY AUTO_INCREMENT,
@@ -66,7 +65,6 @@ CREATE TABLE IF NOT EXISTS Produto (
     imagem_3 VARCHAR(255),
     FOREIGN KEY (ID_categoria) REFERENCES Categoria(ID_categoria)
 );
--- adicionado nova tabela categoria e imagens para o produto
 
 CREATE TABLE IF NOT EXISTS Carrinho (
     ID_carrinho INT PRIMARY KEY AUTO_INCREMENT,
@@ -88,7 +86,7 @@ CREATE TABLE IF NOT EXISTS Pedido (
     ID_pedido INT PRIMARY KEY AUTO_INCREMENT,
     data DATE,
     status VARCHAR(30),
-    metodoPagamento VARCHAR(30), -- campo adicionado
+    metodoPagamento VARCHAR(30), 
     parcelas INT DEFAULT NULL,
     qtdDeProduto INT,
     precoUnitario FLOAT,
