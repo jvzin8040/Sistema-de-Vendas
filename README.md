@@ -31,14 +31,13 @@
 
 ```html
 
-CREATE DATABASE site_de_vendas;
-
+CREATE DATABASE IF NOT EXISTS site_de_vendas;
 USE site_de_vendas;
 
-CREATE TABLE Pessoa (
+CREATE TABLE IF NOT EXISTS Pessoa (
     ID_pessoa INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
-    sobrenome VARCHAR(100), -- adicionado sobrenome
+    sobrenome VARCHAR(100),
     email VARCHAR(100),
     senha VARCHAR(100),
     dataNascimento DATE,
@@ -55,7 +54,7 @@ CREATE TABLE Pessoa (
     cnpj VARCHAR(18)
 );
 
-CREATE TABLE Funcionario (
+CREATE TABLE IF NOT EXISTS Funcionario (
     ID_funcionario INT PRIMARY KEY,
     cargo VARCHAR(50),
     salario FLOAT,
@@ -65,28 +64,27 @@ CREATE TABLE Funcionario (
     FOREIGN KEY (ID_funcionario) REFERENCES Pessoa(ID_pessoa)
 );
 
-CREATE TABLE Cliente (
+CREATE TABLE IF NOT EXISTS Cliente (
     ID_cliente INT PRIMARY KEY,
     preferencias VARCHAR(100),
     historicoCompras VARCHAR(255),
     FOREIGN KEY (ID_cliente) REFERENCES Pessoa(ID_pessoa)
 );
 
-CREATE TABLE Proprietario (
+CREATE TABLE IF NOT EXISTS Proprietario (
     ID_proprietario INT PRIMARY KEY,
     empresa VARCHAR(100),
     dataRegistro DATE,
     FOREIGN KEY (ID_proprietario) REFERENCES Pessoa(ID_pessoa)
 );
 
-CREATE TABLE Categoria (
+CREATE TABLE IF NOT EXISTS Categoria (
     ID_categoria INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT
 );
--- adicionado nova tabela categoria para o produto
 
-CREATE TABLE Produto (
+CREATE TABLE IF NOT EXISTS Produto (
     ID_produto INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
     preco FLOAT,
@@ -98,16 +96,15 @@ CREATE TABLE Produto (
     imagem_3 VARCHAR(255),
     FOREIGN KEY (ID_categoria) REFERENCES Categoria(ID_categoria)
 );
--- adicionado nova tabela categoria e imagens para o produto
 
-CREATE TABLE Carrinho (
+CREATE TABLE IF NOT EXISTS Carrinho (
     ID_carrinho INT PRIMARY KEY AUTO_INCREMENT,
     ID_cliente INT,
     produtos VARCHAR(255),
     FOREIGN KEY (ID_cliente) REFERENCES Cliente(ID_cliente)
 );
 
-CREATE TABLE Carrinho_Produto (
+CREATE TABLE IF NOT EXISTS Carrinho_Produto (
     ID_carrinho INT,
     ID_produto INT,
     quantidade INT,
@@ -116,10 +113,12 @@ CREATE TABLE Carrinho_Produto (
     FOREIGN KEY (ID_produto) REFERENCES Produto(ID_produto)
 );
 
-CREATE TABLE Pedido (
+CREATE TABLE IF NOT EXISTS Pedido (
     ID_pedido INT PRIMARY KEY AUTO_INCREMENT,
     data DATE,
     status VARCHAR(30),
+    metodoPagamento VARCHAR(30), 
+    parcelas INT DEFAULT NULL,
     qtdDeProduto INT,
     precoUnitario FLOAT,
     precoTotal FLOAT,
@@ -127,7 +126,17 @@ CREATE TABLE Pedido (
     FOREIGN KEY (ID_cliente) REFERENCES Cliente(ID_cliente)
 );
 
-CREATE TABLE MetodoPagamento (
+CREATE TABLE IF NOT EXISTS item_pedido (
+    ID_item INT AUTO_INCREMENT PRIMARY KEY,
+    ID_pedido INT NOT NULL,
+    ID_produto INT NOT NULL,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (ID_pedido) REFERENCES Pedido(ID_pedido),
+    FOREIGN KEY (ID_produto) REFERENCES Produto(ID_produto)
+);
+
+CREATE TABLE IF NOT EXISTS MetodoPagamento (
     ID_metodo INT PRIMARY KEY AUTO_INCREMENT,
     cartaoDebito VARCHAR(30),
     cartaoCredito VARCHAR(30),
@@ -135,7 +144,7 @@ CREATE TABLE MetodoPagamento (
     boleto VARCHAR(50)
 );
 
-CREATE TABLE Sistema (    
+CREATE TABLE IF NOT EXISTS Sistema (    
     versao FLOAT,
     nome VARCHAR(100),
     anoDeCriacao DATE,
