@@ -76,6 +76,11 @@ $resultItens = $conexao->query($sqlItens);
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/histPedido.css">
     <style>
+        body {
+            background-color: #820AD1 !important;
+            min-height: 100vh;
+            margin: 0;
+        }
         .pedido-resumo {
             max-width: 500px;
             margin: 40px auto;

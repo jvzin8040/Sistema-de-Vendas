@@ -1,7 +1,16 @@
 /* Seção de categorias */
 .categories {
+    width: 100vw;             /* Garante 100% da largura da janela */
+    margin-left: 50%;
+    transform: translateX(-50%);
     padding: 40px 20px;
     text-align: center;
+    background: #fff;              
+    border-radius: 12px;           
+    box-shadow: 0 2px 12px #a17bf73a; 
+    max-width: 1200px;             
+    margin-top: 40px;             
+    margin-bottom: 40px;            
 }
 
 /* Cada categoria */

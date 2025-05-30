@@ -133,7 +133,7 @@ $total = $produto_preco * $quantidade;
 </head>
 <body style="background-color: #820AD1;">
 
-<?php include 'header.php'; ?>
+<?php include 'headerPrivativo.php'; ?>
 
 <div style="background-color: #820AD1; padding: 15px 40px; min-height: 145vh;">
     <h1 style="font-size: 28px; color: #fff; text-align: center; letter-spacing: 1px; margin-bottom: 25px; text-shadow: 0 1px 6px #7d40c7a0;">Finalizar Compra</h1>

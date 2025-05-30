@@ -12,7 +12,7 @@ $imagens = $_FILES['imagens'];
 $ok = Produto::cadastrar($nome, $descricao, $categoriaNome, $preco, $quantidade, $imagens);
 
 if ($ok) {
-    echo "<script>alert('Produto cadastrado com sucesso!'); window.location.href='../View/cadastro.php';</script>";
+    echo "<script>alert('Produto cadastrado com sucesso!'); window.location.href='../View/painelGestor.php';</script>";
 } else {
     echo "<script>alert('Erro ao cadastrar produto.'); window.history.back();</script>";
 }

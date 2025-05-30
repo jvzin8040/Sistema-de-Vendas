@@ -24,22 +24,7 @@ $title = "EID Store";
 
 <body>
 
-    <header>
-        <div class="top-header">
-        <a href="../View/index.php">
-            <img src="../View/images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
-        </a>
-            <div class="header-actions">
-                <a href="pagina_login.php">Login</a>
-                <a href="#">Minha Conta</a>
-                <a href="#" aria-label="Carrinho de compras"> <!-- Ícone do carrinho -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-                        <path d="M7 18c-1.104 0-2 .897-2 2s.896 2 2 2c1.103 0 2-.897 2-2s-.897-2-2-2zm10 0c-1.103 0-2 .897-2 2s.897 2 2 2c1.104 0 2-.897 2-2s-.896-2-2-2zm1.293-11.707l-1.086 5.434c-.098.489-.53.857-1.029.857h-8.535l-.389-2h7.863c.553 0 1-.447 1-1s-.447-1-1-1h-8.893l-.37-1.882c-.095-.484-.528-.828-1.025-.828h-1.807c-.553 0-1 .447-1 1s.447 1 1 1h.878l1.74 8.707c.096.485.528.829 1.025.829h9.645c.466 0 .868-.316.974-.769l1.374-6.869c.113-.564-.259-1.109-.823-1.223-.564-.113-1.109.259-1.223.823z" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </header>
+   <?php include 'headerAdministrativo.php'; ?>
 
     <div style="background-color: #820AD1; padding: 50px 20px; min-height: 100vh;">
         <div style="background-color: white; max-width: 500px; margin: 0 auto; padding: 40px; border-radius: 10px;">

@@ -1,3 +1,10 @@
+
+body {
+    background: #820AD1 !important;
+    min-height: 100vh;
+    margin: 0;
+}
+
 /* Produtos em destaque */
 .products {
     display: flex;

@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['pedido_id'], $_POST['
 }
 
 // Buscar todos os pedidos com nome do cliente
-$sql = "SELECT p.ID_pedido, p.data, p.status, p.metodoPagamento, p.precoTotal, p.qtdDeProduto, c.ID_cliente, pes.nome, pes.sobrenome
+$sql = "SELECT p.ID_pedido, p.data, p.status, p.precoTotal, p.qtdDeProduto, c.ID_cliente, pes.nome, pes.sobrenome
         FROM Pedido p
         JOIN Cliente c ON p.ID_cliente = c.ID_cliente
         JOIN Pessoa pes ON c.ID_cliente = pes.ID_pessoa
@@ -63,10 +63,15 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
     <link rel="stylesheet" href="css/products.css">
     <link rel="stylesheet" href="css/categories.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/search.css"> <!-- Incluindo o CSS da barra de busca -->
     <style>
         body { background-color: #820AD1; margin:0; min-height:100vh;}
-        .admin-container { max-width: 900px; margin: 50px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 1px 1px 20px rgba(0,0,0,0.2); padding: 32px;}
-        h1 { text-align: center; margin-bottom: 30px;}
+        .admin-container { max-width: 900px; margin: 50px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 1px 1px 20px rgba(0,0,0,0.2); padding: 32px; padding-bottom: 80px;}
+        h1 { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            color: #6A0AD6; /* Cor roxa */
+        }
         table { width: 100%; border-collapse: collapse;}
         th, td { padding: 12px 8px; text-align: center;}
         th { background: #6b5db6; color: #fff;}
@@ -74,6 +79,39 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
         tr:nth-child(odd) { background: #ece6f6; }
         .msg { background: #18ad52; color: #fff; padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align:center;}
         .erro { background: #D10A0A; color: #fff; padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align:center;}
+        footer { margin-top: 40px; }
+        .btn-voltar {
+            display: inline-block;
+            margin: 30px auto 0 auto;
+            padding: 10px 28px; /* aumento da largura lateral */
+            background-color: #6A0AD6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .btn-voltar:hover {
+            background-color: rgb(141, 100, 189);
+        }
+        button[type="submit"] {
+            background-color: rgb(144, 29, 190); /* roxo claro */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: rgb(85, 43, 163);
+        }
         @media (max-width: 1000px) {
             .admin-container { padding: 10px; max-width: 100vw; }
             table, thead, tbody, th, td, tr { font-size: 13px; }
@@ -81,8 +119,8 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
     </style>
 </head>
 <body>
-    <?php if (file_exists('header.php')) include 'header.php'; ?>
-    <div class="admin-container margin-ajustada-admin"> <!-- <-- CLASSE NOVA APLICADA AQUI -->
+    <?php if (file_exists('headerAdministrativo.php')) include 'headerAdministrativo.php'; ?>
+    <div class="admin-container margin-ajustada-admin">
         <h1>Editar Status dos Pedidos</h1>
         <?php if (!empty($mensagem)): ?>
             <div class="msg"><?= esc($mensagem) ?></div>
@@ -98,7 +136,6 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
                     <th>Data</th>
                     <th>Status Atual</th>
                     <th>Novo Status</th>
-                    <th>Método Pagamento</th>
                     <th>Qtd Produtos</th>
                     <th>Total</th>
                     <th>Ação</th>
@@ -111,7 +148,7 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
                         <td><?= esc(($pedido['nome'] ?? '') . ' ' . ($pedido['sobrenome'] ?? '')) ?></td>
                         <td><?= isset($pedido['data']) ? date('d/m/Y', strtotime($pedido['data'])) : '' ?></td>
                         <td><?= esc($pedido['status']) ?></td>
-                        <td colspan="2">
+                        <td>
                             <form class="inline" method="post" action="">
                                 <input type="hidden" name="pedido_id" value="<?= esc($pedido['ID_pedido']) ?>">
                                 <select name="novo_status">
@@ -130,6 +167,7 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
                 <?php endforeach;?>
             </tbody>
         </table>
+        <a href="painelGestor.php" class="btn-voltar">Voltar</a>
     </div>
     <?php if (file_exists('footer.php')) include 'footer.php'; ?>
 </body>

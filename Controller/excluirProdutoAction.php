@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = Produto::excluir($produto_id);
 
     if ($result['success']) {
-        echo "<script>alert('{$result['message']}'); window.location.href='../view/cadastro.php';</script>";
+        echo "<script>alert('{$result['message']}'); window.location.href='../view/painelGestor.php';</script>";
     } else {
         echo "<script>alert('{$result['message']}'); window.history.back();</script>";
     }

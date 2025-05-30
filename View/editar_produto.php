@@ -16,18 +16,7 @@ $categorias = Produto::listarCategorias();
     <link rel="stylesheet" href="css/footer.css" />
 </head>
 <body>
-    <header>
-        <div class="top-header">
-        <a href="../View/index.php">
-            <img src="../View/images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
-        </a>
-            <div class="header-actions">
-                <a href="#">Login</a>
-                <a href="#">Minha Conta</a>
-                <a href="#">Carrinho</a>
-            </div>
-        </div>
-    </header>
+    <?php include 'headerAdministrativo.php'; ?>
     <main style="background-color: #820AD1; padding: 50px 20px; min-height: 100vh;">
         <div style="background-color: white; max-width: 600px; margin: 0 auto; padding: 40px; border-radius: 10px;">
             <h2 style="text-align: center; margin-bottom: 30px;">Editar produto</h2>
@@ -44,16 +33,17 @@ $categorias = Produto::listarCategorias();
 
             <form action="../Controller/editarProdutoAction.php" method="post" enctype="multipart/form-data">
                 <label for="nome">Alterar nome do produto</label>
-                <input type="text" id="nome" name="nome" required />
+                <input type="text" id="nome" name="nome" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;" />
 
                 <label for="descricao">Alterar descrição do produto</label>
-                <input type="text" id="descricao" name="descricao" required />
+                <input type="text" id="descricao" name="descricao" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;" />
 
                 <label for="imagens">Imagens do produto</label>
-                <input type="file" id="imagens" name="imagens[]" multiple accept="image/*" />
+                <input type="file" id="imagens" name="imagens[]" multiple accept="image/*" style="width: 100%; margin-bottom: 5px;" onchange="limitarImagens(this)">
+                <small style="display:block; margin-bottom:10px; color:#666;">Máximo de 3 imagens por produto.</small>
 
                 <label for="categoria">Alterar categoria do produto</label>
-                <select id="categoria" name="categoria" required style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <select id="categoria" name="categoria" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
                     <option value="">Selecione uma categoria</option>
                     <?php foreach ($categorias as $cat): ?>
                         <option value="<?= htmlspecialchars($cat['ID_categoria']) ?>">
@@ -61,12 +51,15 @@ $categorias = Produto::listarCategorias();
                         </option>
                     <?php endforeach; ?>
                 </select>
+                <p style="font-size: 0.97em; margin-bottom: 12px; color: #555;">
+                    Caso deseje criar uma categoria, <a href="editar_categoria.php" style="color: #820AD1; text-decoration: underline;">clique aqui</a>.
+                </p>
 
                 <label for="preco">Alterar preço (R$) do produto</label>
-                <input type="number" step="0.01" id="preco" name="preco" required />
+                <input type="number" step="0.01" id="preco" name="preco" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;" />
 
                 <label for="quantidade">Alterar quantidade disponível</label>
-                <input type="number" id="quantidade" name="quantidade" required />
+                <input type="number" id="quantidade" name="quantidade" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;" />
 
                 <input type="hidden" name="produto_id" id="produto_id_hidden" />
 
@@ -86,6 +79,13 @@ $categorias = Produto::listarCategorias();
                         return false;
                     }
                     return confirm('Tem certeza que deseja excluir este produto?');
+                }
+                // Limita o número de imagens selecionadas para no máximo 3
+                function limitarImagens(input) {
+                    if (input.files.length > 3) {
+                        alert("Você pode enviar no máximo 3 imagens.");
+                        input.value = "";
+                    }
                 }
             </script>
         </div>

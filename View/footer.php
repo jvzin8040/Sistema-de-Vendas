@@ -10,9 +10,10 @@
     <ul class="footer-links" style="display: flex; justify-content: center; gap: 20px; list-style: none; padding: 0; margin-bottom: 10px;">
         
         <li><a href="index.php">Pagina Inicial</a></li>
-        <li><a href="cadastrar_funcionario.php">Cadastrar Colaborador</a></li>
+        <li><a href="index.php#categorias">Categorias</a></li>
+        <li><a href="formulario.php">Fale Conosco</a></li>
         <li><a href="historicoPedido.php">Histórico de Pedidos</a></li>
-        <li><a href="#">Sobre</a></li>
+        <li><a href="https://github.com/jvzin8040/Sistema-de-Vendas" target="_blank">Github</a></li>
         <li><a href="area_restrita.php">Área do Colaborador </a></li>
     </ul>
 

@@ -25,6 +25,12 @@ $stmt->close();
 $id_produto = $_SESSION['compra_pendente']['id_produto'];
 $quantidade = $_SESSION['compra_pendente']['quantidade'];
 $title = "EID Store";
+
+// Array de UFs
+$ufs = [
+    "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG",
+    "PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"
+];
 ?>
 
 <!DOCTYPE html>
@@ -45,23 +51,7 @@ $title = "EID Store";
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body style="background-color: #820AD1;">
-    <header>
-        <div class="top-header">
-            <a href="../View/index.php">
-                <img src="../View/images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
-            </a>
-            <div class="header-actions">
-                <a href="#">Login</a>
-                <a href="#">Minha Conta</a>
-                <a href="#" aria-label="Carrinho de compras">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-                        <path d="M7 18c-1.104 0-2 .897-2 2s.896 2 2 2c1.103 0 2-.897 2-2s-.897-2-2-2zm10 0c-1.103 0-2 .897-2 2s.897 2 2 2c1.104 0 2-.897 2-2s-.896-2-2-2zm1.293-11.707l-1.086 5.434c-.098.489-.53.857-1.029.857h-8.535l-.389-2h7.863c.553 0 1-.447 1-1s-.447-1-1-1h-8.893l-.37-1.882c-.095-.484-.528-.828-1.025-.828h-1.807c-.553 0-1 .447-1 1s.447 1 1 1h.878l1.74 8.707c.096.485.528.829 1.025.829h9.645c.466 0 .868-.316.974-.769l1.374-6.869c.113-.564-.259-1.109-.823-1.223-.564-.113-1.109.259-1.223.823z" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </header>
-
+    <?php include 'headerPrivativo.php'; ?>
     <div style="background-color: #820AD1; padding: 15px 40px; min-height: 145vh;">
         <h1 style="font-size: 28px;">Quase lá!<br>Por favor, finalize seu cadastro para prosseguir.</h1>
         <div class="container">
@@ -73,13 +63,13 @@ $title = "EID Store";
                 <input type="text" id="sobrenome" name="Sobrenome" value="<?php echo htmlspecialchars($sobrenome ?? ''); ?>" placeholder="Digite seu sobrenome" <?php if (empty($sobrenome)) echo "required"; ?>>
 
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="CPF" placeholder="Digite seu CPF">
+                <input type="text" id="cpf" name="CPF" placeholder="000.000.000-00" maxlength="14" autocomplete="off" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
 
                 <label for="cnpj">CNPJ <span style="font-size:12px;color:#ddd;">(Opcional, se for empresa)</span></label>
                 <input type="text" id="cnpj" name="CNPJ" value="<?php echo htmlspecialchars($cnpj ?? ''); ?>" placeholder="Digite seu CNPJ">
 
                 <label for="rg">RG</label>
-                <input type="text" id="rg" name="RG" placeholder="Digite seu RG">
+                <input type="text" id="rg" name="RG" placeholder="00.000.000-0" maxlength="12" autocomplete="off" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
 
                 <label for="nascimento">Data de nascimento</label>
                 <input type="date" id="nascimento" name="DataNascimento">
@@ -97,18 +87,96 @@ $title = "EID Store";
                 <input type="text" id="complemento" name="Complemento">
 
                 <label for="cep">CEP</label>
-                <input type="text" id="cep" name="CEP">
+                <input type="text" id="cep" name="CEP" maxlength="9" placeholder="00000-000" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
 
                 <label for="cidade">Cidade</label>
                 <input type="text" id="cidade" name="Cidade">
 
                 <label for="estado">Estado (UF)</label>
-                <input type="text" id="estado" name="Estado">
+                <select id="estado" name="Estado" required style="width: 100%; padding: 10px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="">Selecione o UF</option>
+                    <?php foreach ($ufs as $uf): ?>
+                        <option value="<?php echo $uf; ?>"><?php echo $uf; ?></option>
+                    <?php endforeach; ?>
+                </select>
 
                 <button type="submit">Concluir cadastro</button>
             </form>
         </div>
     </div>
+    <script>
+    // Formatação e sincronização do campo CEP (com header)
+    function formatarCep(valor) {
+        valor = valor.replace(/\D/g, "").slice(0, 8);
+        if (valor.length > 5) valor = valor.replace(/^(\d{5})(\d{0,3})/, "$1-$2");
+        return valor;
+    }
+
+    // Formatação para CPF: 000.000.000-00
+    function formatarCPF(valor) {
+        valor = valor.replace(/\D/g, "").slice(0, 11);
+        if (valor.length > 9) {
+            valor = valor.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2})/, "$1.$2.$3-$4");
+        } else if (valor.length > 6) {
+            valor = valor.replace(/^(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
+        } else if (valor.length > 3) {
+            valor = valor.replace(/^(\d{3})(\d{0,3})/, "$1.$2");
+        }
+        return valor;
+    }
+
+    // Formatação para RG: 00.000.000-0
+    function formatarRG(valor) {
+        valor = valor.replace(/\D/g, "").slice(0, 9);
+        if (valor.length > 7) {
+            valor = valor.replace(/^(\d{2})(\d{3})(\d{3})(\d{0,1})/, "$1.$2.$3-$4");
+        } else if (valor.length > 4) {
+            valor = valor.replace(/^(\d{2})(\d{3})(\d{0,3})/, "$1.$2.$3");
+        } else if (valor.length > 2) {
+            valor = valor.replace(/^(\d{2})(\d{0,3})/, "$1.$2");
+        }
+        return valor;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var headerCep = document.getElementById("header-cep");
+        var cadastroCep = document.getElementById("cep");
+        var cpf = document.getElementById("cpf");
+        var rg = document.getElementById("rg");
+
+        // Preenche os dois com o que estiver no sessionStorage
+        if (headerCep && sessionStorage.getItem("lastCep")) headerCep.value = sessionStorage.getItem("lastCep");
+        if (cadastroCep && sessionStorage.getItem("lastCep")) cadastroCep.value = sessionStorage.getItem("lastCep");
+
+        // CEP sync
+        if (headerCep) {
+            headerCep.addEventListener("input", function() {
+                headerCep.value = formatarCep(headerCep.value);
+                sessionStorage.setItem("lastCep", headerCep.value);
+                if (cadastroCep) cadastroCep.value = headerCep.value;
+            });
+        }
+        if (cadastroCep) {
+            cadastroCep.addEventListener("input", function() {
+                cadastroCep.value = formatarCep(cadastroCep.value);
+                sessionStorage.setItem("lastCep", cadastroCep.value);
+                if (headerCep) headerCep.value = cadastroCep.value;
+            });
+        }
+        // CPF
+        if (cpf) {
+            cpf.addEventListener("input", function() {
+                cpf.value = formatarCPF(cpf.value);
+            });
+        }
+        // RG
+        if (rg) {
+            rg.addEventListener("input", function() {
+                rg.value = formatarRG(rg.value);
+            });
+        }
+    });
+    </script>
     <?php include 'footer.php'; ?>
 </body>
 </html>

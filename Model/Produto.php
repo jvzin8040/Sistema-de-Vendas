@@ -86,7 +86,6 @@ class Produto
         return $ok;
     }
 
-
     public static function editar($produto_id, $nome, $descricao, $categoria, $preco, $quantidade, $imagens = null)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
@@ -212,7 +211,6 @@ class Produto
         }
     }
 
-
     public static function buscarPorId2($id)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
@@ -225,5 +223,101 @@ class Produto
         $stmt->close();
         $conexao->close();
         return $produto;
+    }
+
+    public static function buscarPorNome($nome)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $sql = "SELECT ID_produto, nome, preco, qtdEstoque, imagem FROM Produto WHERE nome LIKE ?";
+        $stmt = $conexao->prepare($sql);
+        $like = "%$nome%";
+        $stmt->bind_param("s", $like);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $produtos = [];
+        while ($row = $result->fetch_assoc()) {
+            $produtos[] = $row;
+        }
+        $stmt->close();
+        $conexao->close();
+        return $produtos;
+    }
+
+    public static function buscarPorNomeECategoria($nome, $categoria)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $sql = "SELECT p.ID_produto, p.nome, p.preco, p.qtdEstoque, p.imagem
+                FROM Produto p
+                JOIN Categoria c ON p.ID_categoria = c.ID_categoria
+                WHERE p.nome LIKE ?";
+        $params = ["%$nome%"];
+        $types = "s";
+        if (!empty($categoria)) {
+            $sql .= " AND c.nome = ?";
+            $params[] = $categoria;
+            $types .= "s";
+        }
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param($types, ...$params);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $produtos = [];
+        while ($row = $result->fetch_assoc()) {
+            $produtos[] = $row;
+        }
+        $stmt->close();
+        $conexao->close();
+        return $produtos;
+    }
+
+    // ----------- CATEGORIA CRUD -----------
+
+    // LISTAR TODAS AS CATEGORIAS (já existe: listarCategorias)
+
+    // CRIAR UMA NOVA CATEGORIA
+    public static function criarCategoria($nome)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $stmt = $conexao->prepare("INSERT INTO Categoria (nome) VALUES (?)");
+        $stmt->bind_param("s", $nome);
+        $stmt->execute();
+        $stmt->close();
+        $conexao->close();
+    }
+
+    // EDITAR UMA CATEGORIA
+    public static function editarCategoria($id, $nome)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $stmt = $conexao->prepare("UPDATE Categoria SET nome=? WHERE ID_categoria=?");
+        $stmt->bind_param("si", $nome, $id);
+        $stmt->execute();
+        $stmt->close();
+        $conexao->close();
+    }
+
+    // EXCLUIR UMA CATEGORIA
+    public static function excluirCategoria($id)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $stmt = $conexao->prepare("DELETE FROM Categoria WHERE ID_categoria=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+        $conexao->close();
+    }
+
+    // BUSCAR CATEGORIA POR ID
+    public static function buscarCategoriaPorId($id)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $stmt = $conexao->prepare("SELECT * FROM Categoria WHERE ID_categoria=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $categoria = $result->fetch_assoc();
+        $stmt->close();
+        $conexao->close();
+        return $categoria;
     }
 }

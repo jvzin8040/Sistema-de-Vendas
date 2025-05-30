@@ -1,0 +1,96 @@
+body {
+    background: #820AD1 !important;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.products-carousel-container, .pedido-resumo {
+    background: #faf7fd;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #a17bf73a;
+    padding: 35px 30px;
+    max-width: 1200px; /* ou 500px no caso do card de pedido */
+    margin: 40px auto;
+    position: relative;
+    min-height: 340px; /* Garante altura para setas centralizarem */
+}
+
+.products-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 24px;
+    padding: 16px 0;
+}
+
+.products-carousel::-webkit-scrollbar {
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+}
+.products-carousel::-webkit-scrollbar-thumb {
+    background: #d2b2ff;
+    border-radius: 4px;
+}
+
+.product-link {
+    min-width: 220px;
+    max-width: 240px;
+    flex: 0 0 220px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #820AD1;
+    color: #fff;
+    border: none;
+    font-size: 2.2em;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.85;
+    transition: background 0.2s, opacity 0.2s;
+    box-shadow: 0 2px 8px #0001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-btn:active,
+.carousel-btn:focus {
+    background: #630dbb;
+    opacity: 1;
+}
+.prev-btn {
+    left: -22px; /* deixa metade para fora da faixa branca */
+}
+.next-btn {
+    right: -22px;
+}
+.no-products-msg {
+    color: #820AD1;
+    padding: 32px;
+    text-align: center;
+    width: 100%;
+}
+@media (max-width: 700px) {
+    .products-carousel-container, .pedido-resumo {
+        min-height: 220px;
+        padding: 0 8px;
+    }
+    .product-link {
+        min-width: 160px;
+        max-width: 180px;
+        flex: 0 0 160px;
+    }
+    .prev-btn, .next-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.5em;
+        left: -12px;
+        right: -12px;
+    }
+}
