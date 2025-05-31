@@ -22,7 +22,17 @@ if ($msg === 'limiteEstoque') {
   echo "<script>alert('Você não pode adicionar mais do que o estoque disponível!');</script>";
 }
 
-
+// Prepara imagens
+$galeria = [];
+foreach (['imagem', 'imagem_2', 'imagem_3'] as $imgField) {
+    if (!empty($produto[$imgField])) {
+        $galeria[] = $produto[$imgField];
+    }
+}
+if (empty($galeria)) {
+    $galeria[] = 'no-image.png';
+}
+$imgPrincipal = $galeria[0];
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +53,71 @@ if ($msg === 'limiteEstoque') {
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/produto.css">
+  <style>
+    .produto-detalhe {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;  /* Centraliza o conteúdo */
+      gap: 40px;
+      margin-bottom: 50px;
+      align-items: flex-start;
+      width: 100%;
+    }
+    .media-produto {
+      display: flex;
+      align-items: center;
+      justify-content: center;  /* Centraliza o conjunto miniaturas + imagem */
+      gap: 18px;
+      min-width: 420px;
+    }
+    .galeria-vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .galeria-vertical img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border: 1.5px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: border 0.2s;
+      background: #fafafa;
+    }
+    .galeria-vertical img.selected {
+      border: 2px solid #6C63FF;
+    }
+    .imagem-principal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .imagem-principal img {
+      max-width: 320px;
+      max-height: 320px;
+      border-radius: 7px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      background: #fafafa;
+      transition: transform 0.3s cubic-bezier(.42,0,.58,1), box-shadow 0.3s;
+    }
+    .imagem-principal img.zoom {
+      transform: scale(1.18);
+      z-index: 2;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+    }
+    @media (max-width: 900px) {
+      .produto-detalhe, .media-produto {
+        flex-direction: column;
+        align-items: center;
+        min-width: 0;
+      }
+      .media-produto {
+        gap: 8px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -50,24 +125,19 @@ if ($msg === 'limiteEstoque') {
 
   <main class="produto-container">
     <section class="produto-detalhe">
-      <div class="galeria">
-        <?php
-        // Galeria: se não houver imagem, exibe no-image.png
-        $img1 = !empty($produto['imagem']) ? $produto['imagem'] : 'no-image.png';
-        echo "<img src='../public/uploads/{$img1}' alt='Imagem 1'>";
-        if (!empty($produto['imagem_2'])) echo "<img src='../public/uploads/{$produto['imagem_2']}' alt='Imagem 2'>";
-        if (!empty($produto['imagem_3'])) echo "<img src='../public/uploads/{$produto['imagem_3']}' alt='Imagem 3'>";
-        ?>
+      <div class="media-produto">
+        <div class="galeria-vertical">
+          <?php foreach ($galeria as $idx => $img): ?>
+            <img src="../public/uploads/<?php echo htmlspecialchars($img); ?>"
+                 alt="Miniatura <?php echo $idx+1; ?>"
+                 class="<?php echo $idx === 0 ? 'selected' : ''; ?>"
+                 data-idx="<?php echo $idx; ?>">
+          <?php endforeach; ?>
+        </div>
+        <div class="imagem-principal">
+          <img id="imgPrincipal" src="../public/uploads/<?php echo htmlspecialchars($imgPrincipal); ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>">
+        </div>
       </div>
-
-      <div class="imagem-principal">
-        <?php
-        // Imagem principal: se não houver imagem, exibe no-image.png
-        $imgPrincipal = !empty($produto['imagem']) ? $produto['imagem'] : 'no-image.png';
-        echo "<img src='../public/uploads/$imgPrincipal' alt='" . htmlspecialchars($produto['nome'], ENT_QUOTES) . "'>";
-        ?>
-      </div>
-
       <div class="info-produto">
         <h1 style="color: #6C63FF;"><?php echo htmlspecialchars($produto['nome']); ?></h1>
         <p class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
@@ -84,17 +154,13 @@ if ($msg === 'limiteEstoque') {
 
         <div class="botoes-compra">
           <?php if ($produto['qtdEstoque'] > 0): ?>
-            <!-- Campo de quantidade único para ambos os botões -->
             <label for="quantidadeUnica" style="margin-right: 8px;">Quantidade:</label>
             <input type="number" id="quantidadeUnica" value="1" min="1" max="<?php echo $produto['qtdEstoque']; ?>" style="width:60px; margin-bottom: 10px;">
-            <!-- Formulário para Comprar Agora -->
             <form id="formComprar" method="POST" action="../Controller/comprarAgora.php" style="display:inline;">
               <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
               <input type="hidden" name="quantidade" id="quantidadeComprar">
               <button type="submit" class="comprar">Comprar agora</button>
             </form>
-
-            <!-- Formulário para Adicionar ao Carrinho -->
             <form id="formCarrinho" method="POST" action="../Controller/adicionar_ao_carrinho.php" style="display:inline;">
               <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
               <input type="hidden" name="quantidade" id="quantidadeCarrinho">
@@ -115,37 +181,48 @@ if ($msg === 'limiteEstoque') {
 
   <?php include 'footer.php'; ?>
 
-  <?php if ($produto['qtdEstoque'] > 0): ?>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Miniaturas da galeria
-        const miniaturas = document.querySelectorAll('.galeria img');
-        const imagemPrincipal = document.querySelector('.imagem-principal img');
-        miniaturas.forEach(img => {
-          img.addEventListener('click', () => {
-            imagemPrincipal.src = img.src;
-          });
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Miniaturas
+      const miniaturas = document.querySelectorAll('.galeria-vertical img');
+      const imagemPrincipal = document.getElementById('imgPrincipal');
+      miniaturas.forEach(img => {
+        img.addEventListener('click', () => {
+          imagemPrincipal.src = img.src;
+          miniaturas.forEach(m => m.classList.remove('selected'));
+          img.classList.add('selected');
         });
+      });
 
-        // Sincroniza quantidade única nos dois formulários antes de enviar
-        function syncQuantidadeAndSubmit(formId, inputId) {
-          const qty = document.getElementById('quantidadeUnica').value;
-          document.getElementById(inputId).value = qty;
-          document.getElementById(formId).submit();
-        }
+      // Zoom ao passar o mouse sobre a imagem principal
+      imagemPrincipal.addEventListener('mouseenter', function() {
+        imagemPrincipal.classList.add('zoom');
+      });
+      imagemPrincipal.addEventListener('mouseleave', function() {
+        imagemPrincipal.classList.remove('zoom');
+      });
 
-        document.getElementById('formComprar').addEventListener('submit', function(e) {
+      // Sincroniza quantidade única nos dois formulários antes de enviar
+      function syncQuantidadeAndSubmit(formId, inputId) {
+        const qty = document.getElementById('quantidadeUnica') ? document.getElementById('quantidadeUnica').value : 1;
+        document.getElementById(inputId).value = qty;
+        document.getElementById(formId).submit();
+      }
+      const formComprar = document.getElementById('formComprar');
+      const formCarrinho = document.getElementById('formCarrinho');
+      if (formComprar) {
+        formComprar.addEventListener('submit', function(e) {
           e.preventDefault();
           syncQuantidadeAndSubmit('formComprar', 'quantidadeComprar');
         });
-
-        document.getElementById('formCarrinho').addEventListener('submit', function(e) {
+      }
+      if (formCarrinho) {
+        formCarrinho.addEventListener('submit', function(e) {
           e.preventDefault();
           syncQuantidadeAndSubmit('formCarrinho', 'quantidadeCarrinho');
         });
-      });
-    </script>
-  <?php endif; ?>
+      }
+    });
+  </script>
 </body>
-
 </html>

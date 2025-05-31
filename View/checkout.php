@@ -342,6 +342,7 @@ $total = $produto_preco * $quantidade;
         });
         toggleParcelamento();
     });
-</script>
+    
+</script> <script src="js/cep-sync.js"></script>
 </body>
 </html>

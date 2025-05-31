@@ -336,6 +336,6 @@ $stmt->close();
         });
         toggleParcelamento();
     });
-</script>
+</script> <script src="js/cep-sync.js"></script>
 </body>
 </html>

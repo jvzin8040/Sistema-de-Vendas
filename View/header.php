@@ -36,19 +36,17 @@ $categorias = Produto::listarCategorias();
             <?php if (isset($_SESSION['logado']) && $_SESSION['logado'] === true): ?>
                 <a href="minhaConta.php">Minha Conta</a>
                 <a href="historicoPedido.php">Histórico de Pedidos</a>
-                 <!-- Ícone do carrinho -->
-            <a href="carrinho.php" aria-label="Carrinho de compras">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-                    <path d="M7 18c-1.104 0-2 .897-2 2s.896 2 2 2c1.103 0 2-.897 2-2s-.897-2-2-2zm10 0c-1.103 0-2 .897-2 2s.897 2 2 2c1.104 0 2-.897 2-2s-.896-2-2-2zm1.293-11.707l-1.086 5.434c-.098.489-.53.857-1.029.857h-8.535l-.389-2h7.863c.553 0 1-.447 1-1s-.447-1-1-1h-8.893l-.37-1.882c-.095-.484-.528-.828-1.025-.828h-1.807c-.553 0-1 .447-1 1s.447 1 1 1h.878l1.74 8.707c.096.485.528.829 1.025.829h9.645c.466 0 .868-.316.974-.769l1.374-6.869c.113-.564-.259-1.109-.823-1.223-.564-.113-1.109.259-1.223.823z" />
-                </svg>
-            </a>
+                <!-- Ícone do carrinho -->
+                <a href="carrinho.php" aria-label="Carrinho de compras">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                        <path d="M7 18c-1.104 0-2 .897-2 2s.896 2 2 2c1.103 0 2-.897 2-2s-.897-2-2-2zm10 0c-1.103 0-2 .897-2 2s.897 2 2 2c1.104 0 2-.897 2-2s-.896-2-2-2zm1.293-11.707l-1.086 5.434c-.098.489-.53.857-1.029.857h-8.535l-.389-2h7.863c.553 0 1-.447 1-1s-.447-1-1-1h-8.893l-.37-1.882c-.095-.484-.528-.828-1.025-.828h-1.807c-.553 0-1 .447-1 1s.447 1 1 1h.878l1.74 8.707c.096.485.528.829 1.025.829h9.645c.466 0 .868-.316.974-.769l1.374-6.869c.113-.564-.259-1.109-.823-1.223-.564-.113-1.109.259-1.223.823z" />
+                    </svg>
+                </a>
                 <a href="#" class="login-button" onclick="confirmLogout('<?php echo addslashes($_SESSION['usuario_nome'] ?? 'usuario'); ?>')">Sair</a>
             <?php else: ?>
                 <a href="criar_conta.php">Crie sua conta</a>
                 <button class="login-button" onclick="window.location.href='pagina_login.php'">Entre</button>
             <?php endif; ?>
-
-           
         </div>
     </div>
 
@@ -162,18 +160,17 @@ $categorias = Produto::listarCategorias();
         });
     }
 
-    // --- Sincronização do campo CEP (header <-> completar cadastro) ---
-    // Função para formatar CEP como 00000-000
+    // --- Sincronização do campo CEP (header <-> forms de CEP) ---
     function formatarCep(valor) {
         valor = valor.replace(/\D/g, "").slice(0, 8);
         if (valor.length > 5) valor = valor.replace(/^(\d{5})(\d{0,3})/, "$1-$2");
         return valor;
     }
 
-    // Sincronização header-cep <-> completar-cep
     document.addEventListener("DOMContentLoaded", function() {
         var headerCep = document.getElementById("header-cep");
         var cadastroCep = document.getElementById("cep");
+
         // Preenche os dois com o que estiver no sessionStorage (permanece na aba)
         if (headerCep && sessionStorage.getItem("lastCep")) headerCep.value = sessionStorage.getItem("lastCep");
         if (cadastroCep && sessionStorage.getItem("lastCep")) cadastroCep.value = sessionStorage.getItem("lastCep");
@@ -186,7 +183,7 @@ $categorias = Produto::listarCategorias();
                 if (cadastroCep) cadastroCep.value = headerCep.value;
             });
         }
-        // Evento de digitação no completar cadastro CEP
+        // Evento de digitação no completar cadastro/checkout CEP
         if (cadastroCep) {
             cadastroCep.addEventListener("input", function() {
                 cadastroCep.value = formatarCep(cadastroCep.value);
@@ -202,4 +199,4 @@ $categorias = Produto::listarCategorias();
             window.location.href = '../Controller/logout.php';
         }
     }
-</script>
+</script> <script src="js/cep-sync.js"></script>
