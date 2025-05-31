@@ -1,7 +1,6 @@
 <?php
 require_once('../Model/Produto.php');
 
-// Função para upload da imagem
 function salvarImagemCategoria($file)
 {
     if ($file['error'] !== UPLOAD_ERR_OK) return null;
@@ -24,16 +23,19 @@ function salvarImagemCategoria($file)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_categoria'], $_POST['nome'])) {
     $id = intval($_POST['id_categoria']);
     $nome = trim($_POST['nome']);
-    $imagem = null;
 
-    // Se enviou imagem nova, salva ela
+    // Agora a imagem é obrigatória
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagem = salvarImagemCategoria($_FILES['imagem']);
-    }
-
-    if ($id > 0 && $nome !== '') {
-        Produto::editarCategoria($id, $nome, $imagem);
-        header('Location: ../View/editar_categoria.php?msg=Categoria editada com sucesso');
+        if ($id > 0 && $nome !== '' && $imagem !== null) {
+            Produto::editarCategoria($id, $nome, $imagem);
+            header('Location: ../View/editar_categoria.php?msg=Categoria editada com sucesso!');
+            exit;
+        }
+        header('Location: ../View/editar_categoria.php?msg=Erro: Imagem obrigatória para editar categoria.');
+        exit;
+    } else {
+        header('Location: ../View/editar_categoria.php?msg=Erro: Imagem obrigatória para editar categoria.');
         exit;
     }
 }

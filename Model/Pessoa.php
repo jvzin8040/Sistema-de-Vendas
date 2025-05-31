@@ -74,4 +74,50 @@ class Pessoa
         $conexao->close();
         return $dados;
     }
+
+    // NOVO MÉTODO
+    public static function buscarPessoaPorIdDados($id)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $stmt = $conexao->prepare("SELECT nome, sobrenome, email, telefone, rg, cpf, cnpj, dataNascimento, logradouro, numero, bairro, complemento, cidade, cep, uf FROM pessoa WHERE ID_pessoa = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $dados = $result->fetch_assoc();
+        $stmt->close();
+        $conexao->close();
+        return $dados;
+    }
+
+    public static function atualizarDados($id, $dados)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $sql = "UPDATE pessoa SET
+            nome=?, sobrenome=?, email=?, telefone=?, rg=?, cpf=?, cnpj=?, dataNascimento=?, logradouro=?, numero=?, bairro=?, complemento=?, cidade=?, cep=?, uf=?
+            WHERE ID_pessoa=?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param(
+            "sssssssssssssssi",
+            $dados['nome'],
+            $dados['sobrenome'],
+            $dados['email'],
+            $dados['telefone'],
+            $dados['rg'],
+            $dados['cpf'],
+            $dados['cnpj'],
+            $dados['dataNascimento'],
+            $dados['logradouro'],
+            $dados['numero'],
+            $dados['bairro'],
+            $dados['complemento'],
+            $dados['cidade'],
+            $dados['cep'],
+            $dados['uf'],
+            $id
+        );
+        $result = $stmt->execute();
+        $stmt->close();
+        $conexao->close();
+        return $result;
+    }
 }

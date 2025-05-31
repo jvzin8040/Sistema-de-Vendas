@@ -64,7 +64,7 @@
         function applyFilters() {
             const dateRange = document.getElementById("filter-date").value;
             const status = document.getElementById("filter-status").value;
-            fetch("../Model/filtrarPedido.php", {
+            fetch("../Controller/filtrarPedido.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"

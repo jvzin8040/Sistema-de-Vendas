@@ -30,7 +30,7 @@ body {
     justify-content: flex-end; /* Empurra tudo para o final da altura da div */
     align-items: center; /* Centraliza horizontalmente */
     width: 200px; /* Largura fixa */
-    height: 350px; /* Altura fixa para alinhar tudo certinho */
+    height: 325px; /* Altura fixa para alinhar tudo certinho */
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;

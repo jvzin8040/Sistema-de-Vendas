@@ -1,6 +1,6 @@
 <?php
 session_start();
-include(__DIR__ . '/conexaoBD.php');
+include('../Model/conexaoBD.php');
 
 if ($conexao->connect_error) {
     die("Erro na conexão: " . $conexao->connect_error);

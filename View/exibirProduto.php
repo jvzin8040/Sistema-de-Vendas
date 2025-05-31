@@ -1,4 +1,5 @@
 <?php
+session_start();
 $title = "Produto - EID Store";
 require_once(__DIR__ . '/../Model/Produto.php');
 
@@ -53,20 +54,33 @@ $imgPrincipal = $galeria[0];
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/produto.css">
-  <style>
+     <style>
+    body {
+      background: #820ad1 !important;
+    }
+    .produto-main-box {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 48px 28px 44px 28px; /* aumentou o padding */
+      max-width: 1020px;
+      margin: 20px auto 24px auto;
+      /* Se quiser forçar altura mínima, descomente: */
+      /* min-height: 560px; */
+    }
     .produto-detalhe {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;  /* Centraliza o conteúdo */
+      justify-content: center;
       gap: 40px;
-      margin-bottom: 50px;
+      margin-bottom: 0;
       align-items: flex-start;
       width: 100%;
     }
     .media-produto {
       display: flex;
       align-items: center;
-      justify-content: center;  /* Centraliza o conjunto miniaturas + imagem */
+      justify-content: center;
       gap: 18px;
       min-width: 420px;
     }
@@ -107,6 +121,18 @@ $imgPrincipal = $galeria[0];
       z-index: 2;
       box-shadow: 0 4px 25px rgba(0,0,0,0.25);
     }
+    .botoes-compra form,
+    .botoes-compra button {
+      display: inline-block;
+      margin-right: 28px;
+    }
+    .botoes-compra form:last-child,
+    .botoes-compra button:last-child {
+      margin-right: 0;
+    }
+    @media (max-width: 1100px) {
+      .produto-main-box {max-width: 98vw;}
+    }
     @media (max-width: 900px) {
       .produto-detalhe, .media-produto {
         flex-direction: column;
@@ -116,6 +142,7 @@ $imgPrincipal = $galeria[0];
       .media-produto {
         gap: 8px;
       }
+      .produto-main-box {padding: 28px 4vw;}
     }
   </style>
 </head>
@@ -123,60 +150,66 @@ $imgPrincipal = $galeria[0];
 <body>
   <?php include 'header.php'; ?>
 
-  <main class="produto-container">
-    <section class="produto-detalhe">
-      <div class="media-produto">
-        <div class="galeria-vertical">
-          <?php foreach ($galeria as $idx => $img): ?>
-            <img src="../public/uploads/<?php echo htmlspecialchars($img); ?>"
-                 alt="Miniatura <?php echo $idx+1; ?>"
-                 class="<?php echo $idx === 0 ? 'selected' : ''; ?>"
-                 data-idx="<?php echo $idx; ?>">
-          <?php endforeach; ?>
+  <main class="produto-container" style="background:transparent;">
+    <div class="produto-main-box">
+      <section class="produto-detalhe">
+        <div class="media-produto">
+          <div class="galeria-vertical">
+            <?php foreach ($galeria as $idx => $img): ?>
+              <img src="../public/uploads/<?php echo htmlspecialchars($img); ?>"
+                  alt="Miniatura <?php echo $idx+1; ?>"
+                  class="<?php echo $idx === 0 ? 'selected' : ''; ?>"
+                  data-idx="<?php echo $idx; ?>">
+            <?php endforeach; ?>
+          </div>
+          <div class="imagem-principal">
+            <img id="imgPrincipal" src="../public/uploads/<?php echo htmlspecialchars($imgPrincipal); ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>">
+          </div>
         </div>
-        <div class="imagem-principal">
-          <img id="imgPrincipal" src="../public/uploads/<?php echo htmlspecialchars($imgPrincipal); ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>">
-        </div>
-      </div>
-      <div class="info-produto">
-        <h1 style="color: #6C63FF;"><?php echo htmlspecialchars($produto['nome']); ?></h1>
-        <p class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
-        <p>Categoria: <strong><?php echo htmlspecialchars($produto['categoria_nome']); ?></strong></p>
-        <p>
-          <?php if ($produto['qtdEstoque'] > 0): ?>
-            <strong style="color: green;">Estoque disponível</strong>
-          <?php else: ?>
-            <strong style="color: red;">Esgotado</strong>
-          <?php endif; ?>
-        </p>
-        <p>Quantidade: <strong><?php echo $produto['qtdEstoque']; ?> unidade(s)</strong></p>
-        <p><?php echo nl2br(htmlspecialchars($produto['descricao'])); ?></p>
+        <div class="info-produto">
+          <h1 style="color: #6C63FF;"><?php echo htmlspecialchars($produto['nome']); ?></h1>
+          <p class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+          <p>Categoria: <strong><?php echo htmlspecialchars($produto['categoria_nome']); ?></strong></p>
+          <p>
+            <?php if ($produto['qtdEstoque'] > 0): ?>
+              <strong style="color: green;">Estoque disponível</strong>
+            <?php else: ?>
+              <strong style="color: red;">Esgotado</strong>
+            <?php endif; ?>
+          </p>
+          <p>Quantidade: <strong><?php echo $produto['qtdEstoque']; ?> unidade(s)</strong></p>
+          <p><?php echo nl2br(htmlspecialchars($produto['descricao'])); ?></p>
 
-        <div class="botoes-compra">
-          <?php if ($produto['qtdEstoque'] > 0): ?>
-            <label for="quantidadeUnica" style="margin-right: 8px;">Quantidade:</label>
-            <input type="number" id="quantidadeUnica" value="1" min="1" max="<?php echo $produto['qtdEstoque']; ?>" style="width:60px; margin-bottom: 10px;">
-            <form id="formComprar" method="POST" action="../Controller/comprarAgora.php" style="display:inline;">
-              <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
-              <input type="hidden" name="quantidade" id="quantidadeComprar">
-              <button type="submit" class="comprar">Comprar agora</button>
-            </form>
-            <form id="formCarrinho" method="POST" action="../Controller/adicionar_ao_carrinho.php" style="display:inline;">
-              <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
-              <input type="hidden" name="quantidade" id="quantidadeCarrinho">
-              <button type="submit" class="adicionar-carrinho">Adicionar ao carrinho</button>
-            </form>
-          <?php else: ?>
-            <div style="margin:16px 0; color:#a00; font-weight:bold; font-size:1.1em;">
-              Este produto está temporariamente indisponível para compra, pois não há unidades em estoque no momento.<br>
-            </div>
-          <?php endif; ?>
+          <div class="botoes-compra">
+            <?php if ($produto['qtdEstoque'] > 0): ?>
+              <label for="quantidadeUnica" style="margin-right: 8px;">Quantidade:</label>
+              <input type="number" id="quantidadeUnica" value="1" min="1" max="<?php echo $produto['qtdEstoque']; ?>" style="width:60px; margin-bottom: 10px;">
+              <form id="formComprar" method="POST" action="../Controller/comprarAgora.php" style="display:inline;">
+                <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
+                <input type="hidden" name="quantidade" id="quantidadeComprar">
+                <button type="submit" class="comprar">Comprar agora</button>
+              </form>
+              <?php if (isset($_SESSION['id_cliente'])): ?>
+                <form id="formCarrinho" method="POST" action="../Controller/adicionar_ao_carrinho.php" style="display:inline;">
+                  <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
+                  <input type="hidden" name="quantidade" id="quantidadeCarrinho">
+                  <button type="submit" class="adicionar-carrinho">Adicionar ao carrinho</button>
+                </form>
+              <?php else: ?>
+                <button class="adicionar-carrinho" onclick="window.location.href='../View/pagina_login.php'" style="background:#888; cursor:pointer;">Faça login para adicionar ao carrinho</button>
+              <?php endif; ?>
+            <?php else: ?>
+              <div style="margin:16px 0; color:#a00; font-weight:bold; font-size:1.1em;">
+                Este produto está temporariamente indisponível para compra, pois não há unidades em estoque no momento.<br>
+              </div>
+            <?php endif; ?>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <br>
     <?php include 'categoria.php'; ?>
+
   </main>
 
   <?php include 'footer.php'; ?>

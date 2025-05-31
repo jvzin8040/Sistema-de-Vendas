@@ -1,8 +1,13 @@
 <?php
 require_once('../Model/Produto.php');
 $categorias = Produto::listarCategorias();
-?>
 
+// Mostra mensagem de sucesso/erro
+$msg = '';
+if (isset($_GET['msg'])) {
+    $msg = htmlspecialchars($_GET['msg']);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,10 +25,20 @@ $categorias = Produto::listarCategorias();
         <div style="background-color: white; max-width: 600px; margin: 0 auto; padding: 40px; border-radius: 10px;">
             <h2 style="text-align: center; margin-bottom: 30px;">Gerenciar Categorias</h2>
 
+            <?php if ($msg): ?>
+                <div style="background:#e7ffe7; color:#144d1a; border-radius:7px; padding:12px 18px; margin-bottom: 18px; border:1px solid #b8dfc6; text-align:center;">
+                    <?= $msg ?>
+                </div>
+            <?php endif; ?>
+
             <!-- Criar nova categoria -->
-            <form action="../Controller/criarCategoriaAction.php" method="post" style="margin-bottom:24px;">
+            <form action="../Controller/criarCategoriaAction.php" method="post" enctype="multipart/form-data" style="margin-bottom:24px;">
                 <label for="nova_categoria">Nova Categoria</label>
                 <input type="text" id="nova_categoria" name="nome" required placeholder="Nome da nova categoria" />
+
+                <label for="imagem_nova_categoria">Imagem da Categoria</label>
+                <input type="file" id="imagem_nova_categoria" name="imagem" accept="image/*" required />
+
                 <button type="submit" style="background-color: #18ad52; color: white; padding: 10px; width: 100%; border: none; border-radius: 5px; margin-top: 12px; cursor:pointer;">
                     Criar categoria
                 </button>
@@ -47,7 +62,7 @@ $categorias = Produto::listarCategorias();
 
                 <!-- Novo campo para imagem -->
                 <label for="imagem_categoria">Imagem da Categoria</label>
-                <input type="file" id="imagem_categoria" name="imagem" accept="image/*" />
+                <input type="file" id="imagem_categoria" name="imagem" accept="image/*" required />
 
                 <input type="hidden" name="id_categoria" id="categoria_id_hidden" />
 

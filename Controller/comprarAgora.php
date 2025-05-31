@@ -1,13 +1,5 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-file_put_contents('debug_comprarAgora.txt', print_r([
-    'id_cliente' => $_SESSION['id_cliente'] ?? null,
-    '_POST' => $_POST,
-    'session' => $_SESSION
-], true), FILE_APPEND);
 
 require_once('../Model/conexaoBD.php');
 
@@ -36,20 +28,6 @@ $stmt->execute();
 $stmt->bind_result($sobrenome, $cpf, $rg, $dataNascimento, $logradouro, $numero, $bairro, $complemento, $cidade, $uf, $cep);
 $stmt->fetch();
 $stmt->close();
-
-// Para depuração opcional:
-file_put_contents('debug_camposObrigatorios.txt', print_r([
-    'sobrenome' => $sobrenome,
-    'cpf' => $cpf,
-    'rg' => $rg,
-    'dataNascimento' => $dataNascimento,
-    'logradouro' => $logradouro,
-    'numero' => $numero,
-    'bairro' => $bairro,
-    'cidade' => $cidade,
-    'uf' => $uf,
-    'cep' => $cep
-], true), FILE_APPEND);
 
 $camposObrigatorios = [$sobrenome, $cpf, $rg, $dataNascimento, $logradouro, $numero, $bairro, $cidade, $uf, $cep];
 $cadastroCompleto = true;

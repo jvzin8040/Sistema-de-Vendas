@@ -1,0 +1,134 @@
+body {
+    background: #820AD1;
+}
+
+.minha-conta-bg-container {
+    background-color: #820AD1;
+    padding: 15px 3vw 40px 3vw;
+    min-height: 120vh;
+    min-height: 100dvh;
+}
+
+.minha-conta-main-title {
+    font-size: 2rem;
+    color: #820AD1;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    margin-top: 4px;
+    text-shadow: 0 1px 8px #e2c4fd22;
+    font-weight: bold;
+}
+
+.minha-conta-container {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
+    max-width: 900px;
+    margin: 0 auto 2.2em auto;
+    padding: 30px 30px 28px 30px;
+    box-sizing: border-box;
+}
+
+.minha-conta-titulo {
+    color: #222 !important;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    font-size: 1.25em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.minha-conta-container input[type="text"],
+.minha-conta-container input[type="email"],
+.minha-conta-container input[type="date"],
+.minha-conta-container select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #d9d5ec;
+    font-size: 15px;
+    margin-bottom: 4px;
+    background: #f6f4fa;
+    outline: none;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+.minha-conta-container input:disabled {
+    background: #f6f4fa;
+    color: #999;
+    cursor: not-allowed;
+}
+.minha-conta-container select {
+    appearance: none;
+    background: #f6f4fa url("data:image/svg+xml;charset=UTF-8,<svg width='20' height='20' xmlns='http://www.w3.org/2000/svg'><polygon points='5,8 10,13 15,8' fill='%23630dbb'/></svg>") no-repeat right 16px center/16px 16px;
+    font-weight: 500;
+}
+
+.minha-conta-container label {
+    color: #222;
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 18px;
+    font-size: 16px;
+}
+
+.label-opcional {
+    font-size: 12px;
+    color: #b649ff;
+    font-weight: 500;
+    margin-left: 3px;
+}
+
+.form-section-title {
+    text-align: center;
+    margin: 30px 0 10px 0;
+    color: #630dbb;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.buttons {
+    margin-top: 32px;
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+}
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-save {
+    background-color: #a259ff;
+    color: white;
+}
+.btn-save:hover {
+    background-color: #8f3dff;
+}
+
+@media (max-width: 950px) {
+    .minha-conta-container {
+        max-width: 98vw;
+        padding: 24px 10px 16px 10px;
+    }
+}
+@media (max-width: 700px) {
+    .minha-conta-bg-container {
+        padding: 14px 4vw 18px 4vw;
+    }
+    .minha-conta-container {
+        padding: 14px 4vw 18px 4vw;
+    }
+}
+@media (max-width: 600px) {
+    .form-section-title {
+        font-size: 1.1em;
+    }
+}
