@@ -13,10 +13,21 @@ if (!$produto) {
   echo "<script>alert('Produto inválido.'); window.location.href='index.php';</script>";
   exit;
 }
+
+$msg = $_GET['msg'] ?? '';
+if ($msg === 'adicionado') {
+  echo "<script>alert('Produto adicionado ao carrinho!');</script>";
+}
+if ($msg === 'limiteEstoque') {
+  echo "<script>alert('Você não pode adicionar mais do que o estoque disponível!');</script>";
+}
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +44,7 @@ if (!$produto) {
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/produto.css">
 </head>
+
 <body>
   <?php include 'header.php'; ?>
 
@@ -75,7 +87,6 @@ if (!$produto) {
             <!-- Campo de quantidade único para ambos os botões -->
             <label for="quantidadeUnica" style="margin-right: 8px;">Quantidade:</label>
             <input type="number" id="quantidadeUnica" value="1" min="1" max="<?php echo $produto['qtdEstoque']; ?>" style="width:60px; margin-bottom: 10px;">
-
             <!-- Formulário para Comprar Agora -->
             <form id="formComprar" method="POST" action="../Controller/comprarAgora.php" style="display:inline;">
               <input type="hidden" name="id_produto" value="<?php echo $produto['ID_produto']; ?>">
@@ -105,35 +116,36 @@ if (!$produto) {
   <?php include 'footer.php'; ?>
 
   <?php if ($produto['qtdEstoque'] > 0): ?>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Miniaturas da galeria
-      const miniaturas = document.querySelectorAll('.galeria img');
-      const imagemPrincipal = document.querySelector('.imagem-principal img');
-      miniaturas.forEach(img => {
-        img.addEventListener('click', () => {
-          imagemPrincipal.src = img.src;
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Miniaturas da galeria
+        const miniaturas = document.querySelectorAll('.galeria img');
+        const imagemPrincipal = document.querySelector('.imagem-principal img');
+        miniaturas.forEach(img => {
+          img.addEventListener('click', () => {
+            imagemPrincipal.src = img.src;
+          });
+        });
+
+        // Sincroniza quantidade única nos dois formulários antes de enviar
+        function syncQuantidadeAndSubmit(formId, inputId) {
+          const qty = document.getElementById('quantidadeUnica').value;
+          document.getElementById(inputId).value = qty;
+          document.getElementById(formId).submit();
+        }
+
+        document.getElementById('formComprar').addEventListener('submit', function(e) {
+          e.preventDefault();
+          syncQuantidadeAndSubmit('formComprar', 'quantidadeComprar');
+        });
+
+        document.getElementById('formCarrinho').addEventListener('submit', function(e) {
+          e.preventDefault();
+          syncQuantidadeAndSubmit('formCarrinho', 'quantidadeCarrinho');
         });
       });
-
-      // Sincroniza quantidade única nos dois formulários antes de enviar
-      function syncQuantidadeAndSubmit(formId, inputId) {
-        const qty = document.getElementById('quantidadeUnica').value;
-        document.getElementById(inputId).value = qty;
-        document.getElementById(formId).submit();
-      }
-
-      document.getElementById('formComprar').addEventListener('submit', function(e) {
-        e.preventDefault();
-        syncQuantidadeAndSubmit('formComprar', 'quantidadeComprar');
-      });
-
-      document.getElementById('formCarrinho').addEventListener('submit', function(e) {
-        e.preventDefault();
-        syncQuantidadeAndSubmit('formCarrinho', 'quantidadeCarrinho');
-      });
-    });
-  </script>
+    </script>
   <?php endif; ?>
 </body>
+
 </html>

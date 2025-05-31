@@ -11,7 +11,10 @@ $categorias = Produto::listarCategorias();
             <?php foreach ($categorias as $cat): ?>
                 <div class="category">
                     <a href="exibirCategoria.php?categoria=<?= urlencode($cat['nome']) ?>" style="text-decoration:none; color:inherit;">
-                        <img src="images/<?= strtolower(preg_replace('/[^a-zA-Z0-9]/', '-', $cat['nome'])) ?>.png" alt="<?= htmlspecialchars($cat['nome']) ?>" onerror="this.onerror=null;this.src='images/no-image.png';">
+                        <img src="../public/uploads/<?= $cat['imagem'] ? htmlspecialchars($cat['imagem']) : 'no-image.png' ?>"
+                             alt="<?= htmlspecialchars($cat['nome']) ?>"
+                             onerror="this.onerror=null;this.src='public/uploads/no-image.png';"
+                             style="width:96px; height:96px; object-fit:cover; border-radius:8px;">
                         <h3><?= htmlspecialchars($cat['nome']) ?></h3>
                         <p>Confira produtos da categoria <?= htmlspecialchars($cat['nome']) ?>!</p>
                     </a>

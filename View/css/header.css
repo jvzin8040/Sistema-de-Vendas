@@ -15,7 +15,7 @@ header {
     justify-content: space-between;
 
 
-     flex-wrap: wrap;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -23,14 +23,16 @@ header {
     display: flex;
     align-items: center;
     gap: 15px;
-    white-space: nowrap; /* Impede quebra de linha */
+    white-space: nowrap;
+    /* Impede quebra de linha */
 }
 
 .header-actions a {
     color: white;
     text-decoration: none;
     font-size: 14px;
-    display: inline-block; /* Mantém na mesma linha */
+    display: inline-block;
+    /* Mantém na mesma linha */
 }
 
 .login-button {
@@ -51,4 +53,10 @@ header {
 
 .logo-img:hover {
     transform: scale(1.05);
+    border-radius: 7px;
+    background: #ece6fa;
+    box-shadow: 0 1px 6px #a17bf722;
+    max-width: 60px;
+    max-height: 60px;
+
 }

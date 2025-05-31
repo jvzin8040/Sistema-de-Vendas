@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Pessoa
 {
     public static function cadastrar($nome, $email, $telefone, $senha, $confirmar_senha)
@@ -60,5 +60,18 @@ class Pessoa
         } else {
             return ['success' => false];
         }
+    }
+
+    public static function buscarPessoaPorId($id)
+    {
+        include(__DIR__ . '/../Model/conexaoBD.php');
+        $stmt = $conexao->prepare("SELECT * FROM pessoa WHERE ID_pessoa = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $dados = $result->fetch_assoc();
+        $stmt->close();
+        $conexao->close();
+        return $dados;
     }
 }

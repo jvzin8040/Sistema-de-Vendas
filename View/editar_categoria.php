@@ -41,9 +41,13 @@ $categorias = Produto::listarCategorias();
             </select>
 
             <!-- Editar categoria -->
-            <form action="../Controller/editarCategoriaAction.php" method="post">
+            <form action="../Controller/editarCategoriaAction.php" method="post" enctype="multipart/form-data">
                 <label for="nome_categoria">Alterar nome da categoria</label>
                 <input type="text" id="nome_categoria" name="nome" required />
+
+                <!-- Novo campo para imagem -->
+                <label for="imagem_categoria">Imagem da Categoria</label>
+                <input type="file" id="imagem_categoria" name="imagem" accept="image/*" />
 
                 <input type="hidden" name="id_categoria" id="categoria_id_hidden" />
 

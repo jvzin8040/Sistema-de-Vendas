@@ -9,7 +9,7 @@ if (!isset($_SESSION)) {
             <img src="../View/images/eid_store_logo.png" alt="EID Store Logo" class="logo-img">
         </a>
         <div class="header-actions">
-            <a href="../Controller/logout.php">Início</a>
+            <a href="../Controller/logout.php">Sair</a>
             <button class="login-button" onclick="window.location.href='painelGestor.php'">Painel do Gestor</button>
         </div>
     </div>

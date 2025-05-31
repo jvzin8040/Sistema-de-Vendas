@@ -4,7 +4,7 @@ class Produto
     public static function listarTodos()
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
-        $sql = "SELECT ID_produto, nome, preco, qtdEstoque, imagem FROM Produto";
+        $sql = "SELECT ID_produto, nome, preco, qtdEstoque, imagem FROM Produto ORDER BY nome ASC";
         $result = $conexao->query($sql);
         $produtos = [];
         if ($result) {
@@ -15,10 +15,11 @@ class Produto
         return $produtos;
     }
 
+    // Agora traz o campo imagem também
     public static function listarCategorias()
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
-        $sql = "SELECT ID_categoria, nome FROM Categoria";
+        $sql = "SELECT ID_categoria, nome, imagem FROM Categoria";
         $result = $conexao->query($sql);
         $categorias = [];
         if ($result) {
@@ -90,12 +91,10 @@ class Produto
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
 
-        // Verificar dados obrigatórios mínimos
         if (empty($nome) || empty($descricao) || $categoria === null) {
             return ['success' => false, 'message' => 'Por favor, preencha todos os campos obrigatórios.'];
         }
 
-        // Processa arquivos enviados (imagens)
         $caminhosImagens = ["", "", ""];
         if ($imagens && count($imagens['name']) > 0) {
             $uploads_dir = '../public/uploads/';
@@ -116,7 +115,6 @@ class Produto
             }
         }
 
-        // Montar SQL de atualização
         $sql = "UPDATE Produto SET nome = ?, descricao = ?, ID_categoria = ?, preco = ?, qtdEstoque = ?";
         if ($caminhosImagens[0] !== "") $sql .= ", imagem = ?";
         if ($caminhosImagens[1] !== "") $sql .= ", imagem_2 = ?";
@@ -162,7 +160,6 @@ class Produto
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
 
-        // Buscar nomes das imagens
         $sql_select = "SELECT imagem, imagem_2, imagem_3 FROM Produto WHERE ID_produto = ?";
         $stmt_select = $conexao->prepare($sql_select);
         $stmt_select->bind_param("i", $produto_id);
@@ -178,7 +175,6 @@ class Produto
         $row = $result->fetch_assoc();
         $stmt_select->close();
 
-        // Apagar arquivos de imagem
         $uploads_dir = '../public/uploads/';
         $imagens = [$row['imagem'], $row['imagem_2'], $row['imagem_3']];
         foreach ($imagens as $img) {
@@ -190,7 +186,6 @@ class Produto
             }
         }
 
-        // Excluir do banco
         $sql_delete = "DELETE FROM Produto WHERE ID_produto = ?";
         $stmt_delete = $conexao->prepare($sql_delete);
         if (!$stmt_delete) {
@@ -214,7 +209,7 @@ class Produto
     public static function buscarPorId2($id)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
-        $sql = "SELECT ID_produto, nome, descricao, preco, qtdEstoque, ID_categoria FROM Produto WHERE ID_produto = ?";
+        $sql = "SELECT ID_produto, nome, descricao, preco, qtdEstoque, ID_categoria, imagem FROM Produto WHERE ID_produto = ?";
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -272,34 +267,54 @@ class Produto
 
     // ----------- CATEGORIA CRUD -----------
 
-    // LISTAR TODAS AS CATEGORIAS (já existe: listarCategorias)
-
-    // CRIAR UMA NOVA CATEGORIA
-    public static function criarCategoria($nome)
+    public static function criarCategoria($nome, $imagem = null)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
-        $stmt = $conexao->prepare("INSERT INTO Categoria (nome) VALUES (?)");
-        $stmt->bind_param("s", $nome);
+        if ($imagem) {
+            $stmt = $conexao->prepare("INSERT INTO Categoria (nome, imagem) VALUES (?, ?)");
+            $stmt->bind_param("ss", $nome, $imagem);
+        } else {
+            $stmt = $conexao->prepare("INSERT INTO Categoria (nome) VALUES (?)");
+            $stmt->bind_param("s", $nome);
+        }
         $stmt->execute();
         $stmt->close();
         $conexao->close();
     }
 
-    // EDITAR UMA CATEGORIA
-    public static function editarCategoria($id, $nome)
+    public static function editarCategoria($id, $nome, $imagem = null)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
-        $stmt = $conexao->prepare("UPDATE Categoria SET nome=? WHERE ID_categoria=?");
-        $stmt->bind_param("si", $nome, $id);
+        if ($imagem) {
+            $stmt = $conexao->prepare("UPDATE Categoria SET nome=?, imagem=? WHERE ID_categoria=?");
+            $stmt->bind_param("ssi", $nome, $imagem, $id);
+        } else {
+            $stmt = $conexao->prepare("UPDATE Categoria SET nome=? WHERE ID_categoria=?");
+            $stmt->bind_param("si", $nome, $id);
+        }
         $stmt->execute();
         $stmt->close();
         $conexao->close();
     }
 
-    // EXCLUIR UMA CATEGORIA
     public static function excluirCategoria($id)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
+        // Remove imagem do disco se existir
+        $stmtBusca = $conexao->prepare("SELECT imagem FROM Categoria WHERE ID_categoria=?");
+        $stmtBusca->bind_param("i", $id);
+        $stmtBusca->execute();
+        $result = $stmtBusca->get_result();
+        if ($row = $result->fetch_assoc()) {
+            if (!empty($row['imagem'])) {
+                $filepath = "../public/uploads/" . $row['imagem'];
+                if (file_exists($filepath)) {
+                    unlink($filepath);
+                }
+            }
+        }
+        $stmtBusca->close();
+
         $stmt = $conexao->prepare("DELETE FROM Categoria WHERE ID_categoria=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -307,7 +322,6 @@ class Produto
         $conexao->close();
     }
 
-    // BUSCAR CATEGORIA POR ID
     public static function buscarCategoriaPorId($id)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
@@ -321,14 +335,13 @@ class Produto
         return $categoria;
     }
 
-
-     public static function listarPorCategoria($categoriaNome)
+    public static function listarPorCategoria($categoriaNome)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
         $con = $conexao;
         $sql = "SELECT p.* FROM Produto p
             JOIN Categoria c ON p.ID_categoria = c.ID_categoria
-            WHERE c.nome = ?";
+            WHERE c.nome = ? ORDER BY nome ASC";
         $stmt = $con->prepare($sql);
         $stmt->bind_param("s", $categoriaNome);
         $stmt->execute();

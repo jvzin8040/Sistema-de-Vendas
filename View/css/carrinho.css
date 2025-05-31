@@ -1,0 +1,249 @@
+/* Estilos para a página de carrinho */
+.cart-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.cart-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #820AD1;
+}
+
+.cart-items {
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+    width: 80px;
+    height: auto;
+}
+
+.item-details {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-btn {
+    background-color: #820AD1;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.remove-btn {
+    background-color: #ff3333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-summary {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.summary-details {
+    max-width: 400px;
+    margin-left: auto;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.summary-row.total {
+    font-weight: bold;
+    font-size: 1.2em;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #820AD1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+/* Estilo para os botões interativos */
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.quantity-btn:hover {
+    background: #820AD1;
+    color: white;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #820AD1;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+    padding: 5px;
+}
+
+.remove-btn:hover {
+    color: #6d00c7;
+}
+
+/* Estilo para o campo de cupom */
+.coupon-row {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+#coupon-code {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+
+#coupon-message {
+    font-size: 14px;
+    margin-left: 10px;
+}
+.coupon-section {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.coupon-input {
+    display: flex;
+    gap: 10px;
+}
+
+.coupon-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.apply-coupon-btn {
+    padding: 10px 15px;
+    background-color: #820AD1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.apply-coupon-btn:hover {
+    background-color: #6a00b8;
+}
+
+.coupon-message {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.coupon-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.coupon-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.summary-row.discount {
+    color: #28a745;
+    font-weight: bold;
+}
+/* Estilos para a seção de cupom */
+.coupon-section {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.coupon-input {
+    display: flex;
+    gap: 10px;
+}
+
+.coupon-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.apply-coupon-btn {
+    padding: 10px 15px;
+    background-color: #820AD1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.apply-coupon-btn:hover {
+    background-color: #6a00b8;
+}
+
+.coupon-message {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.coupon-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.coupon-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.summary-row.discount {
+    color: #28a745;
+    font-weight: bold;
+}
