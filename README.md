@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS Proprietario (
 CREATE TABLE IF NOT EXISTS Categoria (
     ID_categoria INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
+    imagem VARCHAR(255) NOT NULL,
     descricao TEXT
 );
 
@@ -142,6 +143,15 @@ CREATE TABLE IF NOT EXISTS MetodoPagamento (
     cartaoCredito VARCHAR(30),
     chavePix VARCHAR(50),
     boleto VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS Contato (
+    ID_contato INT PRIMARY KEY AUTO_INCREMENT,
+    ID_pessoa INT NOT NULL,
+    assunto VARCHAR(50) NOT NULL,
+    mensagem TEXT NOT NULL,
+    data_envio DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ID_pessoa) REFERENCES Pessoa(ID_pessoa)
 );
 
 CREATE TABLE IF NOT EXISTS Sistema (    
