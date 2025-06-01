@@ -58,15 +58,7 @@ $categorias = Produto::listarCategorias();
             </form>
         </div>
     </main>
-    <script>
-        // Limita o número de imagens selecionadas para no máximo 3
-        function limitarImagens(input) {
-            if (input.files.length > 3) {
-                alert("Você pode enviar no máximo 3 imagens.");
-                input.value = "";
-            }
-        }
-    </script>
+    <script src="js/cadastrar_produto.js"></script>
     <?php include 'footer.php'; ?>
 </body>
 </html>

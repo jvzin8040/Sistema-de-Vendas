@@ -21,10 +21,4 @@ if (!isset($_SESSION)) {
     </div>
 </header>
 <link rel="stylesheet" href="css/headerPrivativo.css">
-<script>
-function confirmLogout(userName) {
-    if (confirm(`Olá, ${userName}! Tem certeza que deseja sair?`)) {
-        window.location.href = '../Controller/logout.php';
-    }
-}
-</script>
+<script src="js/headerPrivativo.js"></script>
