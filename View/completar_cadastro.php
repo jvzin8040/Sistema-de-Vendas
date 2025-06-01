@@ -25,40 +25,40 @@ require_once('../Controller/completarCadastroController.php');
         <div class="container">
             <form action="../Controller/completarCadastroAction.php" method="POST">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="Nome" value="<?php echo htmlspecialchars($nome ?? ''); ?>" readonly>
+                <input type="text" id="nome" name="Nome" value="<?php echo htmlspecialchars($nome ?? ''); ?>" readonly required>
 
                 <label for="sobrenome">Sobrenome</label>
-                <input type="text" id="sobrenome" name="Sobrenome" value="<?php echo htmlspecialchars($sobrenome ?? ''); ?>" placeholder="Digite seu sobrenome" <?php if (empty($sobrenome)) echo "required"; ?>>
+                <input type="text" id="sobrenome" name="Sobrenome" value="<?php echo htmlspecialchars($sobrenome ?? ''); ?>" placeholder="Digite seu sobrenome" required>
 
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="CPF" placeholder="000.000.000-00" maxlength="14" autocomplete="off" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <input type="text" id="cpf" name="CPF" placeholder="000.000.000-00" maxlength="14" autocomplete="off" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
 
                 <label for="cnpj">CNPJ <span style="font-size:12px;color:#ddd;">(Opcional, se for empresa)</span></label>
-                <input type="text" id="cnpj" name="CNPJ" value="<?php echo htmlspecialchars($cnpj ?? ''); ?>" placeholder="Digite seu CNPJ">
+                <input type="text" id="cnpj" name="CNPJ" value="<?php echo htmlspecialchars($cnpj ?? ''); ?>" placeholder="00.000.000/0000-00" maxlength="18" autocomplete="off" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
 
                 <label for="rg">RG</label>
-                <input type="text" id="rg" name="RG" placeholder="00.000.000-0" maxlength="12" autocomplete="off" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <input type="text" id="rg" name="RG" placeholder="00.000.000-0" maxlength="12" autocomplete="off" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
 
                 <label for="nascimento">Data de nascimento</label>
-                <input type="date" id="nascimento" name="DataNascimento">
+                <input type="date" id="nascimento" name="DataNascimento" required>
 
                 <label for="logradouro">Logradouro</label>
-                <input type="text" id="logradouro" name="Logradouro" placeholder="Rua, avenida...">
+                <input type="text" id="logradouro" name="Logradouro" placeholder="Rua, avenida..." required>
 
                 <label for="numero">Número</label>
-                <input type="text" id="numero" name="Numero">
+                <input type="text" id="numero" name="Numero" required>
 
                 <label for="bairro">Bairro</label>
-                <input type="text" id="bairro" name="Bairro">
+                <input type="text" id="bairro" name="Bairro" required>
 
                 <label for="complemento">Complemento</label>
                 <input type="text" id="complemento" name="Complemento">
 
                 <label for="cep">CEP</label>
-                <input type="text" id="cep" name="CEP" maxlength="9" placeholder="00000-000" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <input type="text" id="cep" name="CEP" maxlength="9" placeholder="00000-000" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
 
                 <label for="cidade">Cidade</label>
-                <input type="text" id="cidade" name="Cidade">
+                <input type="text" id="cidade" name="Cidade" required>
 
                 <label for="estado">Estado (UF)</label>
                 <select id="estado" name="Estado" required style="width: 100%; padding: 10px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 5px;">

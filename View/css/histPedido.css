@@ -14,7 +14,7 @@ html, body {
     flex-direction: column;
 }
 
-/* Aqui está o segredo: flex coluna + flex-grow */
+
 .container {
     flex: 1 0 auto;
     display: flex;
@@ -33,7 +33,7 @@ html, body {
 
 .espaco-flex {
     flex: 1 0 0;
-    /* Nenhuma borda ou cor, fica invisível, só serve para empurrar o rodapé */
+    
 }
 
 footer {
@@ -60,7 +60,7 @@ footer {
     margin: 0;
 }
 
-/* Caixa do pedido: toda clicável! */
+
 .order-item {
     padding: 14px 18px;
     border: 1px solid #ccc;
@@ -87,7 +87,7 @@ footer {
     font-weight: 500;
 }
 
-/* Status cores */
+
 .status-pendente .order-link,
 .status-pendente {
     color: orange;

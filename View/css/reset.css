@@ -1,4 +1,4 @@
-/* Reset e configurações base */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,13 +12,13 @@ body {
 }
 
   .linha {
-    display: flex; /* Deixa os itens na mesma linha */
-    justify-content: space-between; /* Espaço igual entre colunas */
-    align-items: flex-end; /* Alinha verticalmente */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-end; 
     padding: 10px;
   }
   
   .coluna {
-    width: 30%; /* Cada coluna ocupa 30% da linha */
-    text-align: center; /* Centraliza o texto dentro da coluna */
+    width: 30%; 
+    text-align: center; 
   }

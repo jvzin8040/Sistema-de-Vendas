@@ -1,46 +1,45 @@
-/* Estilo corrigido e reforçado para o rodapé */
+
 .footer {
-    background-color: #ffffff; /* Fundo branco */
-    color: #000000; /* Texto preto */
+    background-color: #ffffff; 
+    color: #000000; 
     text-align: center;
-    padding: 20px 0; /* Espaçamento interno superior e inferior */
+    padding: 20px 0; 
 }
 
-/* Container dos ícones sociais */
+
 .footer .social-icons {
-    margin-bottom: 15px; /* Espaço abaixo dos ícones */
+    margin-bottom: 15px; 
 }
 
-/* Estilização dos ícones sociais */
 .footer .social-icons img {
-    width: 24px; /* Tamanho dos ícones */
+    width: 24px; 
     height: 24px;
-    filter: invert(0%); /* Garante que ícones escuros apareçam no fundo claro */
+    filter: invert(0%); 
 }
 
-/* Lista de links do rodapé */
+
 .footer-links {
-    display: flex; /* Exibe os links lado a lado */
-    justify-content: center; /* Centraliza horizontalmente */
-    gap: 20px; /* Espaço entre os links */
-    list-style: none; /* Remove bolinhas */
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    list-style: none; 
     padding: 0;
     margin-bottom: 10px;
 }
 
-/* Estilo dos links do rodapé */
+
 .footer a {
-    color: #000000 !important; /* Força o texto preto */
-    text-decoration: none; /* Remove sublinhado */
+    color: #000000 !important; 
+    text-decoration: none; 
 }
 
-/* Efeito hover dos links */
+
 .footer a:hover {
-    text-decoration: underline; /* Sublinha ao passar o mouse */
+    text-decoration: underline; 
 }
 
-/* Texto final do rodapé */
+
 .footer p {
     font-size: 14px;
-    color: #000000; /* Cor reforçada */
+    color: #000000; 
 }

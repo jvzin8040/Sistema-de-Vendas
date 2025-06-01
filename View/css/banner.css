@@ -29,7 +29,6 @@
   z-index: 1;
 }
 
-/* Botões */
 .banner button {
   position: absolute;
   top: 50%;
@@ -52,7 +51,7 @@
   right: 10px;
 }
 
-/* Bolinhas */
+
 .indicators {
   position: absolute;
   bottom: 15px;

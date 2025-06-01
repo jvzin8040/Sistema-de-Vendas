@@ -33,7 +33,7 @@
     border-radius: 4px;
     cursor: pointer;
 }
-/* Borda e fundo SEMPRE visíveis na logo */
+
 .logo-img {
     width: 80px;
     height: auto;
@@ -45,7 +45,7 @@
     max-width: 60px;
     max-height: 60px;
 }
-/* Só efeito de zoom no hover */
+
 .logo-img:hover {
     transform: scale(1.05);
 }

@@ -1,7 +1,7 @@
 .categories-container {
     max-width: 1200px;
     margin: 48px auto 48px auto;
-    padding: 40px 16px; /* Espaço interno maior em cima e embaixo */
+    padding: 40px 16px; 
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 12px #a17bf73a;
@@ -14,7 +14,6 @@
     justify-content: center;
 }
 
-/* Usa o mesmo card dos produtos, mas pode customizar para categoria */
 .product-card.category-card {
     width: 200px;
     height: 220px;

@@ -93,7 +93,6 @@ body {
     max-width: 420px;
     margin-left: auto;
     margin-right: auto;
-    /* Adiciona sombra, borda e destaca a caixa */
     border: 1.5px solid #bda0e6;
     box-shadow: 0 2px 16px #a17bf740, 0 0 0 3px #ece6fa;
 }

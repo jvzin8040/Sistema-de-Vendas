@@ -24,7 +24,7 @@ body.carrinho-bg {
     padding: 20px;
     max-width: 900px;
     width: 100%;
-    margin: 30px auto 0 auto; /* apenas margem em cima e centralizado */
+    margin: 30px auto 0 auto; 
     min-height: 350px;
 }
 
@@ -43,7 +43,7 @@ footer {
     margin-top: 32px;
 }
 
-/* Itens do carrinho */
+
 .cart-item {
     display: flex;
     align-items: center;
@@ -126,7 +126,6 @@ footer {
     background: #b30909;
 }
 
-/* Resumo do carrinho */
 .cart-summary {
     background-color: #f5f5f5;
     padding: 20px;
@@ -152,7 +151,6 @@ footer {
     font-weight: bold;
 }
 
-/* Botão finalizar */
 .checkout-btn {
     width: 100%;
     padding: 12px;
@@ -168,7 +166,6 @@ footer {
     background-color: #6a00b8;
 }
 
-/* Responsividade */
 @media (max-width: 700px) {
     .cart-container {
         padding: 10px;
@@ -202,7 +199,6 @@ footer {
     }
 }
 
-/* --- Cupom (se usar) --- */
 .coupon-row {
     display: flex;
     align-items: center;

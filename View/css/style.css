@@ -1,4 +1,4 @@
-/* Estilo base para resetar margens e paddings */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,51 +7,51 @@
 }
 
 .linha {
-    display: flex; /* Deixa os itens na mesma linha */
-    justify-content: space-between; /* Espaço igual entre colunas */
-    align-items: flex-end; /* Alinha verticalmente */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-end; 
     padding: 10px;
   }
   
   .coluna {
-    width: 30%; /* Cada coluna ocupa 30% da linha */
-    text-align: center; /* Centraliza o texto dentro da coluna */
+    width: 30%; 
+    text-align: center; 
   }
 
-/* Fundo e cor de texto padrão */
+
 body {
     background: #ffffff;
     color: #333;
 }
 
-/* Cabeçalho */
+
 header {
     background-color: #1C1D22;
     color: white;
     padding: 10px 20px;
 }
 
-/* Área superior do cabeçalho */
+
 .top-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-/* Ações do usuário (conta, login, carrinho) */
+
 .header-actions {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-/* Links nas ações do header */
+
 .header-actions a {
     color: white;
     text-decoration: none;
 }
 
-/* Botão de login */
+
 .login-button {
     color: white;
     background: #8000ff;
@@ -61,19 +61,19 @@ header {
     cursor: pointer;
 }
 
-/* Logo da loja */
+
 .logo-img {
     width: 80px;
     height: auto;
 }
 
-/* Wrapper da barra de busca */
+
 .search-wrapper {
     display: flex;
     justify-content: center;
 }
 
-/* Barra de busca */
+
 .search-bar {
     display: flex;
     align-items: center;
@@ -84,7 +84,7 @@ header {
     height: 45px;
 }
 
-/* Categoria de busca */
+
 .search-category {
     background-color: #f0f0f0;
     border: none;
@@ -94,7 +94,7 @@ header {
     cursor: pointer;
 }
 
-/* Campo de busca */
+
 .search-bar input {
     flex: 1;
     border: none;
@@ -102,7 +102,7 @@ header {
     font-size: 16px;
 }
 
-/* Botão de busca */
+
 .search-button {
     background-color: #f0f0f0;
     border: none;
@@ -111,16 +111,16 @@ header {
     cursor: pointer;
 }
 
-/* Wrapper do CEP e Navegação */
+
 .cep-wrapper {
     display: flex;
-    justify-content: space-between; /* Espaço entre CEP e links */
-    align-items: center; /* 🔥 Agora sim: alinha verticalmente no centro */
+    justify-content: space-between; 
+    align-items: center; 
     padding: 10px 20px;
     background-color: #1C1D22;
 }
 
-/* Grupo do input de CEP */
+
 .cep-input-group {
     display: flex;
     align-items: center;
@@ -129,14 +129,14 @@ header {
     border-radius: 8px;
 }
 
-/* Ícone de localização */
+
 .cep-icon {
     width: 20px;
     height: 20px;
     margin-right: 8px;
 }
 
-/* Estilo do input de CEP */
+
 .input-cep {
     border: none;
     outline: none;
@@ -145,16 +145,16 @@ header {
     width: 100%;
 }
 
-/* Navegação principal abaixo da busca */
+
 .bottom-nav {
     display: flex;
-    justify-content: center; /* 🔥 Centraliza horizontalmente */
+    justify-content: center; 
     align-items: center;
-    gap: 30px; /* Espaçamento entre Categorias e Ofertas */
-    margin-top: 20px; /* Espaçamento acima (entre a busca e os links) */
+    gap: 30px; 
+    margin-top: 20px; 
 }
 
-/* Links da navegação */
+
 .bottom-nav a {
     color: white;
     font-size: 18px;
@@ -162,7 +162,7 @@ header {
     transition: color 0.3s ease;
 }
 
-/* Efeito hover nos links */
+
 .bottom-nav a:hover {
     color: #820AD1;
 }
@@ -175,70 +175,70 @@ header {
   
   .carousel {
     display: flex;
-    width: 100%; /* 100% x quantidade de banners */
+    width: 100%; 
     transition: transform 0.5s ease;
   }
   
   .slide {
     width: 100%;
     flex-shrink: 0;
-    display: none; /* Esconde todas */
+    display: none;
   }
   
   .slide.active {
-    display: block; /* Só mostra o banner ativo */
+    display: block; 
   }
 
-/* Produtos em destaque */
+
 .products {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap; /* Permite quebra de linha para responsividade */
+    flex-wrap: wrap; 
     padding: 20px;
     background-color: #820AD1;
 }
 
-/* Card de produto */
+
 .product-card {
     display: flex;
-    flex-direction: column; /* Deixa imagem, título, preço e parcelas em coluna */
-    justify-content: flex-end; /* Empurra tudo para o final da altura da div */
-    align-items: center; /* Centraliza horizontalmente */
-    width: 200px; /* Largura fixa */
-    height: 350px; /* Altura fixa para alinhar tudo certinho */
+    flex-direction: column; 
+    justify-content: flex-end; 
+    align-items: center; 
+    width: 200px; 
+    height: 350px; 
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
     text-align: center;
-    background-color: #fff; /* Fundo branco para destacar */
+    background-color: #fff; 
 }
 
-/* Imagem do produto */
+
 .product-card img {
     width: 100%;
     max-width: 100%;
 }
 
-/* Seção de categorias */
+
 .categories {
     padding: 40px 20px;
     text-align: center;
 }
 
-/* Cada categoria */
+
 .category {
     margin-top: 20px;
 }
 
 .category img {
-    width: 300px; /* Largura desejada */
-    height: auto; /* Altura automática para manter a proporção */
-    object-fit: cover; /* Cobre o espaço sem distorcer */
+    width: 300px; 
+    height: auto; 
+    object-fit: cover; 
 }
 
 /* Rodapé */
 .footer {
-    background-color: #1C1D22; /* Azul escuro */
+    background-color: #1C1D22; 
     color: white;
     text-align: center;
     padding: 20px 0;
@@ -252,7 +252,7 @@ header {
 .linha {
     display: flex;
     justify-content: center;
-    gap: 40px; /* Espaço entre as colunas */
+    gap: 40px; 
     margin-bottom: 20px;
 }
 
@@ -261,7 +261,6 @@ header {
     font-size: 14px;
 }
 
-/* Estilo responsivo para telas menores */
 @media (max-width: 768px) {
     .top-header, .search-wrapper, .bottom-nav, .product-list {
         flex-direction: column;

@@ -38,7 +38,7 @@
     cursor: pointer;
 }
 
-/* Logo estilos */
+
 .logo-img {
     width: 80px;
     height: auto;
@@ -54,13 +54,13 @@
     transform: scale(1.05);
 }
 
-/* --- Busca (Barra de pesquisa) --- */
+
 .search-wrapper {
     position: relative;
     flex: 1 1 320px;
     min-width: 240px;
     max-width: 470px;
-    z-index: 100; /* adiciona contexto de empilhamento */
+    z-index: 100; 
 }
 
 .search-bar {
@@ -128,12 +128,12 @@
     background: #820ad1;
 }
 
-/* Resultados da busca */
+
 .search-results {
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 9999; /* bem alto para garantir que fique acima do banner/conteudo */
+    z-index: 9999; 
     background: #fff;
     width: 100%;
     border: 1px solid #ccc;
@@ -167,7 +167,7 @@
     color: #555;
 }
 
-/* --- CEP/Navegação inferior --- */
+
 .linha {
     display: flex;
     justify-content: space-between;

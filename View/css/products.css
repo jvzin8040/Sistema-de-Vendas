@@ -4,7 +4,7 @@ body {
     margin: 0;
 }
 
-/* Título de produtos */
+
 .products-title {
     color: #630dbb;
     text-align: center;
@@ -15,7 +15,7 @@ body {
     letter-spacing: 1px;
 }
 
-/* Link faz o card inteiro ser clicável */
+
 .product-link {
     text-decoration: none;
     color: inherit;
@@ -23,7 +23,7 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Card de produto */
+
 .product-card {
     display: flex;
     flex-direction: column;
@@ -46,10 +46,10 @@ body {
     transform: translateY(-4px) scale(1.03);
 }
 
-/* Container da imagem deve recortar com border-radius igual ao do card */
+
 .product-img-container {
     width: 100%;
-    height: 190px; /* Aumentado de 150px para 190px */
+    height: 190px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,7 +59,7 @@ body {
     background: #fafafa;
 }
 
-/* Imagem SEM excessos */
+
 .product-img-container img {
     width: 100%;
     height: 100%;
@@ -70,7 +70,7 @@ body {
     background: transparent;
 }
 
-/* Título do produto em roxo */
+
 .product-card .product-name-title {
     color: #630dbb;
     font-size: 1.1em;
@@ -80,7 +80,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Botões do carrossel (pode ajustar se quiser) */
+
 .carousel-btn {
     background: #630dbb;
     border: none;
@@ -100,7 +100,7 @@ body {
 .prev-btn { left: 8px; }
 .next-btn { right: 8px; }
 
-/* Responsividade */
+
 @media (max-width: 900px) {
     .product-card {
         width: 46vw;
@@ -110,7 +110,7 @@ body {
         padding: 10px;
     }
     .product-img-container {
-        height: 140px; /* Aumentado proporcionalmente */
+        height: 140px; 
     }
 }
 
@@ -123,6 +123,6 @@ body {
         padding: 8px;
     }
     .product-img-container {
-        height: 100px; /* Aumentado proporcionalmente */
+        height: 100px; 
     }
 }

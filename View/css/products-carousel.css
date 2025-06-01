@@ -9,10 +9,10 @@ body {
     border-radius: 12px;
     box-shadow: 0 2px 12px #a17bf73a;
     padding: 35px 30px;
-    max-width: 1200px; /* ou 500px no caso do card de pedido */
+    max-width: 1200px; 
     margin: 40px auto;
     position: relative;
-    min-height: 340px; /* Garante altura para setas centralizarem */
+    min-height: 340px; 
 }
 
 .products-carousel {
@@ -65,7 +65,7 @@ body {
     opacity: 1;
 }
 .prev-btn {
-    left: -22px; /* deixa metade para fora da faixa branca */
+    left: -22px; 
 }
 .next-btn {
     right: -22px;

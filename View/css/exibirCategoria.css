@@ -19,7 +19,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 28px 24px;
-    justify-content: center; /* <--- CENTRALIZA OS PRODUTOS */
+    justify-content: center; 
 }
 .produto-link {
     text-decoration: none;
@@ -29,7 +29,6 @@
     margin-bottom: 0;
     flex: 0 1 220px;
 }
-/* NOVA BORDA IGUAL CATEGORIA */
 .produto-card {
     background: #f8f4ff;
     border-radius: 12px;
