@@ -18,7 +18,7 @@ if ($id_produto <= 0 || $quantidade <= 0) {
     exit();
 }
 
-// Agora busca também o sobrenome!
+
 $sql = "SELECT sobrenome, cpf, rg, dataNascimento, logradouro, numero, bairro, complemento, cidade, uf, cep
         FROM Pessoa
         WHERE ID_pessoa = ?";

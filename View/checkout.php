@@ -1,45 +1,5 @@
 <?php
-session_start();
-require_once('../Model/conexaoBD.php');
-
-if (!isset($_SESSION['id_cliente']) || !isset($_SESSION['checkout'])) {
-    header("Location: pagina_login.php"); 
-    exit();
-}
-
-$id_cliente = $_SESSION['id_cliente'];
-$id_produto = $_SESSION['checkout']['id_produto'];
-$quantidade = $_SESSION['checkout']['quantidade'];
-
-// Busca dados do produto
-$sql_prod = "SELECT nome, preco, imagem FROM Produto WHERE ID_produto = ?";
-$stmt_prod = $conexao->prepare($sql_prod);
-$stmt_prod->bind_param("i", $id_produto);
-$stmt_prod->execute();
-$stmt_prod->bind_result($produto_nome, $produto_preco, $produto_imagem);
-$stmt_prod->fetch();
-$stmt_prod->close();
-
-// Caminho correto da imagem - igual ao exibirProduto
-if ($produto_imagem && trim($produto_imagem) !== '') {
-    $img_src = '../public/uploads/' . htmlspecialchars($produto_imagem);
-} else {
-    $img_src = '../public/uploads/no-image.png';
-}
-
-// Busca dados do cliente
-$sql = "SELECT nome, sobrenome, cpf, cnpj, rg, dataNascimento, logradouro, numero, bairro, complemento, cidade, uf, cep
-        FROM Pessoa WHERE ID_pessoa = ?";
-$stmt = $conexao->prepare($sql);
-$stmt->bind_param("i", $id_cliente);
-$stmt->execute();
-$stmt->bind_result($nome, $sobrenome, $cpf, $cnpj, $rg, $dataNascimento,
-    $logradouro, $numero, $bairro, $complemento, $cidade, $uf, $cep);
-$stmt->fetch();
-$stmt->close();
-
-$title = "EID Store";
-$total = $produto_preco * $quantidade;
+require_once('../Controller/CheckoutController.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -89,7 +49,7 @@ $total = $produto_preco * $quantidade;
             <input type="text" name="rg" id="rg" value="<?php echo htmlspecialchars($rg ?? ''); ?>">
             <label for="cpf">CPF</label>
             <input type="text" name="cpf" id="cpf" value="<?php echo htmlspecialchars($cpf ?? ''); ?>" required>
-             <label for="cnpj">CNPJ <span style="font-size:12px;color:#b649ff;font-weight:500;">(Opcional)</span> </label>
+            <label for="cnpj">CNPJ <span style="font-size:12px;color:#b649ff;font-weight:500;">(Opcional)</span> </label>
             <input type="text" name="cnpj" id="cnpj" value="<?php echo htmlspecialchars($cnpj ?? ''); ?>">
             <label for="dataNascimento">Data de Nascimento</label>
             <input type="date" name="dataNascimento" id="dataNascimento" value="<?php echo htmlspecialchars($dataNascimento ?? ''); ?>">
@@ -110,7 +70,7 @@ $total = $produto_preco * $quantidade;
             <label for="uf">UF</label>
             <input type="text" name="uf" id="uf" value="<?php echo htmlspecialchars($uf ?? ''); ?>" required>
 
-            <!-- Pagamento -->
+         
             <div class="pagamento-container">
                 <h3>Método de Pagamento</h3>
                 <table class="pagamento-metodo-table">
@@ -133,7 +93,7 @@ $total = $produto_preco * $quantidade;
                         <td><label for="boleto">Boleto Bancário</label></td>
                     </tr>
                 </table>
-                <!-- Parcelamento: só mostra se cartão -->
+               
                 <div id="parcela-section" class="parcela-options">
                     <label for="parcelas">Parcelamento:</label>
                     <select name="parcelas" id="parcelas">

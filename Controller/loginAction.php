@@ -13,7 +13,6 @@ if ($result['success']) {
     $_SESSION['usuario_email'] = $email;
     $_SESSION['id_cliente'] = $result['id'];
 
-    // Redirecionamento inteligente após login
     if (isset($_SESSION['compra_pendente'])) {
         echo "<script>
             alert('{$result['nome']}, Seja Bem-Vindo(a)!');

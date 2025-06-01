@@ -11,7 +11,7 @@ $id_cliente = $_SESSION['id_cliente'];
 $mensagem = $_SESSION['mensagem'] ?? "";
 unset($_SESSION['mensagem']);
 
-// Sempre busca os dados atualizados para preencher o formulário
+
 $pessoa = Pessoa::buscarPessoaPorIdDados($id_cliente);
 ?>
 <!DOCTYPE html>
@@ -101,7 +101,7 @@ $pessoa = Pessoa::buscarPessoaPorIdDados($id_cliente);
   </div>
   <?php include 'footer.php'; ?>
   <script>
-    // Máscara CPF
+    
     document.getElementById('cpf').addEventListener('input', function(e){
       let v = e.target.value.replace(/\D/g, "").slice(0,11);
       v = v.replace(/(\d{3})(\d)/, "$1.$2");
@@ -109,7 +109,7 @@ $pessoa = Pessoa::buscarPessoaPorIdDados($id_cliente);
       v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
       e.target.value = v;
     });
-    // Máscara RG
+   
     document.getElementById('rg').addEventListener('input', function(e){
       let v = e.target.value.replace(/\D/g, "").slice(0,9);
       v = v.replace(/(\d{2})(\d)/, "$1.$2");
@@ -117,7 +117,7 @@ $pessoa = Pessoa::buscarPessoaPorIdDados($id_cliente);
       v = v.replace(/(\d{3})(\d{1})$/, "$1-$2");
       e.target.value = v;
     });
-    // Máscara Telefone
+    
     document.getElementById('telefone').addEventListener('input', function(e){
       let v = e.target.value.replace(/\D/g, "").slice(0,11);
       if(v.length <= 10){
@@ -129,7 +129,7 @@ $pessoa = Pessoa::buscarPessoaPorIdDados($id_cliente);
       }
       e.target.value = v;
     });
-    // Máscara CNPJ
+    
     document.getElementById('cnpj').addEventListener('input', function(e){
       let v = e.target.value.replace(/\D/g, "").slice(0,14);
       v = v.replace(/^(\d{2})(\d)/, "$1.$2");
@@ -138,7 +138,7 @@ $pessoa = Pessoa::buscarPessoaPorIdDados($id_cliente);
       v = v.replace(/(\d{4})(\d)/, "$1-$2");
       e.target.value = v;
     });
-    // Máscara CEP
+    
     document.getElementById('cep').addEventListener('input', function(e){
       let v = e.target.value.replace(/\D/g, "").slice(0,8);
       v = v.replace(/(\d{5})(\d)/, "$1-$2");

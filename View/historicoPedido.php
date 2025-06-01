@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de Pedidos</title>
-    <!-- Bibliotecas e CSS do projeto -->
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
@@ -42,9 +42,9 @@
                 <button onclick="applyFilters()" class="statusf">Filtrar</button>
             </div>
             <ul class="order-list" id="order-list">
-                <!-- Os pedidos serão carregados aqui via AJAX -->
+              
             </ul>
-            <!-- Espaço flexível para empurrar o footer -->
+     
             <div class="espaco-flex"></div>
         </div>
         <?php include 'footer.php'; ?>

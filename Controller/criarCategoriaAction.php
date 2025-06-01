@@ -23,7 +23,7 @@ function salvarImagemCategoria($file)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'])) {
     $nome = trim($_POST['nome']);
 
-    // Agora a imagem é obrigatória
+   
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagem = salvarImagemCategoria($_FILES['imagem']);
         if ($nome !== '' && $imagem !== null) {

@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_categoria'], $_POS
     $id = intval($_POST['id_categoria']);
     $nome = trim($_POST['nome']);
 
-    // Agora a imagem é obrigatória
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagem = salvarImagemCategoria($_FILES['imagem']);
         if ($id > 0 && $nome !== '' && $imagem !== null) {

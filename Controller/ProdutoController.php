@@ -11,8 +11,7 @@ class ProdutoController {
         if (!$produto) {
             echo "<script>alert('Produto inválido.'); window.location.href='index.php';</script>";
             exit;
-        }
-        // Passa os dados para a View
+        }    
         include(__DIR__ . '/../View/exibirProduto.php');
     }
 }

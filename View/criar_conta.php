@@ -53,7 +53,6 @@ $title = "EID Store";
 
 <?php include 'footer.php'; ?>
 
-<!-- Script para formatar telefone -->
 <script src="js/criar_conta.js"></script>
 
 </body>

@@ -5,7 +5,6 @@
     <title>Pedido Concluído | EID Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS principal do sistema -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/search.css">
@@ -17,10 +16,9 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/histPedido.css">
 
-    <!-- CSS do formulário desta página -->
+   
     <link rel="stylesheet" href="css/form3.css">
 
-    <!-- Flatpickr (exemplo de JS externo usado no seu sistema) -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
 </head>

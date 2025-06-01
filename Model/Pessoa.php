@@ -75,7 +75,6 @@ class Pessoa
         return $dados;
     }
 
-    // NOVO MÉTODO
     public static function buscarPessoaPorIdDados($id)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');

@@ -2,7 +2,6 @@
 session_start();
 require_once(__DIR__ . '/../Model/Pessoa.php');
 
-// Verifica se está logado
 if (!isset($_SESSION['id_cliente'])) {
     header("Location: ../View/pagina_login.php");
     exit();
@@ -38,6 +37,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Redireciona sempre para a view após processar o POST
 header("Location: ../View/minhaConta.php");
 exit();

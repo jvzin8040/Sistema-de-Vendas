@@ -1,7 +1,5 @@
 <?php
 $title = "EID Store";
-
-
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +40,6 @@ $title = "EID Store";
         <button type="submit">Continuar</button>
       </form>
 
-      <!-- Botão para login cliente -->
       <div style="text-align:center; margin-top: 20px;">
         <a href="pagina_login.php">
             <button type="button" style="background:#6C63FF;color:#fff;padding:10px 25px;border:none;border-radius:5px;cursor:pointer;">

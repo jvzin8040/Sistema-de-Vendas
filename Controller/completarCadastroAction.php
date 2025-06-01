@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_cliente'])) {
 
 $id_cliente = $_SESSION['id_cliente'];
 
-// Busca nome e sobrenome atuais para verificar obrigatoriedade do sobrenome
+
 $sql_busca = "SELECT nome, sobrenome FROM Pessoa WHERE ID_pessoa = ?";
 $stmt_busca = $conexao->prepare($sql_busca);
 $stmt_busca->bind_param("i", $id_cliente);
@@ -18,8 +18,8 @@ $stmt_busca->bind_result($nome_atual, $sobrenome_atual);
 $stmt_busca->fetch();
 $stmt_busca->close();
 
-// Receba os dados do POST
-$nome        = $nome_atual; // não altera nome!
+
+$nome        = $nome_atual; 
 $sobrenome   = $_POST['Sobrenome'] ?? '';
 $cpf         = $_POST['CPF'] ?? '';
 $cnpj        = $_POST['CNPJ'] ?? '';
@@ -33,7 +33,7 @@ $cep         = $_POST['CEP'] ?? '';
 $cidade      = $_POST['Cidade'] ?? '';
 $estado      = $_POST['Estado'] ?? '';
 
-// Validação básica dos campos obrigatórios
+
 $camposObrigatorios = [$sobrenome, $cpf, $rg, $dataNasc, $logradouro, $numero, $bairro, $cidade, $estado, $cep];
 $cadastroCompleto = true;
 foreach ($camposObrigatorios as $campo) {
@@ -49,7 +49,7 @@ if (!$cadastroCompleto) {
     exit();
 }
 
-// Atualize os dados na tabela Pessoa
+
 $sql = "UPDATE Pessoa SET 
     sobrenome = ?, cpf = ?, cnpj = ?, rg = ?, dataNascimento = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, cep = ?, cidade = ?, uf = ?
     WHERE ID_pessoa = ?";

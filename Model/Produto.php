@@ -15,7 +15,6 @@ class Produto
         return $produtos;
     }
 
-    // Agora traz o campo imagem também
     public static function listarCategorias()
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
@@ -44,7 +43,6 @@ class Produto
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
 
-        // Verifica se a categoria já existe
         $stmtCat = $conexao->prepare("SELECT ID_categoria FROM Categoria WHERE nome = ?");
         $stmtCat->bind_param("s", $categoriaNome);
         $stmtCat->execute();
@@ -62,7 +60,6 @@ class Produto
         }
         $stmtCat->close();
 
-        // Manipular imagens (até 3)
         $caminhosImagens = ["", "", ""];
         $diretorioDestino = "../public/uploads/";
         for ($i = 0; $i < min(3, count($imagens['name'])); $i++) {
@@ -78,7 +75,6 @@ class Produto
             }
         }
 
-        // Inserir o produto
         $stmtProd = $conexao->prepare("INSERT INTO Produto (nome, preco, qtdEstoque, ID_categoria, descricao, imagem, imagem_2, imagem_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmtProd->bind_param("sdiissss", $nome, $preco, $quantidade, $idCategoria, $descricao, $caminhosImagens[0], $caminhosImagens[1], $caminhosImagens[2]);
         $ok = $stmtProd->execute();
@@ -265,8 +261,6 @@ class Produto
         return $produtos;
     }
 
-    // ----------- CATEGORIA CRUD -----------
-
     public static function criarCategoria($nome, $imagem = null)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
@@ -300,7 +294,6 @@ class Produto
     public static function excluirCategoria($id)
     {
         include(__DIR__ . '/../Model/conexaoBD.php');
-        // Remove imagem do disco se existir
         $stmtBusca = $conexao->prepare("SELECT imagem FROM Categoria WHERE ID_categoria=?");
         $stmtBusca->bind_param("i", $id);
         $stmtBusca->execute();

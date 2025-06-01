@@ -3,7 +3,7 @@ require_once(__DIR__ . '/../Model/Produto.php');
 $categorias = Produto::listarCategorias();
 ?>
 
-<link rel="stylesheet" href="css/categories.css"> <!-- Reaproveita o CSS dos produtos -->
+<link rel="stylesheet" href="css/categories.css"> 
 
 <section class="categories-container" id="categorias">
     <h2 style="color:#630dbb;text-align:center;margin-bottom:24px;">Categorias</h2>

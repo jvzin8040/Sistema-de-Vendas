@@ -2,7 +2,6 @@
 require_once('../Model/Produto.php');
 $categorias = Produto::listarCategorias();
 
-// Mostra mensagem de sucesso/erro
 $msg = '';
 if (isset($_GET['msg'])) {
     $msg = htmlspecialchars($_GET['msg']);
@@ -31,7 +30,6 @@ if (isset($_GET['msg'])) {
                 </div>
             <?php endif; ?>
 
-            <!-- Criar nova categoria -->
             <form action="../Controller/criarCategoriaAction.php" method="post" enctype="multipart/form-data" style="margin-bottom:24px;">
                 <label for="nova_categoria">Nova Categoria</label>
                 <input type="text" id="nova_categoria" name="nome" required placeholder="Nome da nova categoria" />
@@ -44,7 +42,6 @@ if (isset($_GET['msg'])) {
                 </button>
             </form>
 
-            <!-- Selecionar categoria para editar/excluir -->
             <label for="categoria_id">Escolha a categoria</label>
             <select id="categoria_id" name="categoria_id" onchange="carregarCategoriaPorId()" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
                 <option value="">Selecione uma categoria</option>
@@ -55,12 +52,10 @@ if (isset($_GET['msg'])) {
                 <?php endforeach; ?>
             </select>
 
-            <!-- Editar categoria -->
             <form action="../Controller/editarCategoriaAction.php" method="post" enctype="multipart/form-data">
                 <label for="nome_categoria">Alterar nome da categoria</label>
                 <input type="text" id="nome_categoria" name="nome" required />
 
-                <!-- Novo campo para imagem -->
                 <label for="imagem_categoria">Imagem da Categoria</label>
                 <input type="file" id="imagem_categoria" name="imagem" accept="image/*" required />
 
@@ -71,7 +66,6 @@ if (isset($_GET['msg'])) {
                 </button>
             </form>
 
-            <!-- Excluir categoria -->
             <form action="../Controller/excluirCategoriaAction.php" method="post" onsubmit="return verificarCategoriaSelecionada();" style="margin-top:15px;">
                 <input type="hidden" name="id_categoria" id="categoria_id_hidden_excluir" />
                 <button type="submit" class="delete-button" style="background-color: #d11a2a; color: white; padding: 10px; width: 100%; border: none; border-radius: 5px; cursor:pointer;">

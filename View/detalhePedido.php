@@ -1,70 +1,5 @@
 <?php
-session_start();
-include(__DIR__ . '/../Model/conexaoBD.php');
-
-if (!isset($_SESSION['id_cliente'])) {
-    echo "Você precisa estar logado para ver os detalhes do pedido.";
-    exit;
-} 
-
-$msg = isset($_GET['msg']) ? $_GET['msg'] : '';
-
-if (!isset($_GET['id'])) {
-    echo "Pedido não especificado.";
-    exit;
-}
-
-$id_cliente = intval($_SESSION['id_cliente']);
-$id_pedido = intval($_GET['id']);
-
-// Buscar pedido no banco
-$sql = "SELECT * FROM Pedido WHERE ID_pedido = $id_pedido AND ID_cliente = $id_cliente";
-$result = $conexao->query($sql);
-
-if ($result && $result->num_rows > 0) {
-    $pedido = $result->fetch_assoc();
-} else {
-    echo "Pedido não encontrado.";
-    exit;
-}
-
-// Método de pagamento bonito
-function nomeMetodoPagamento($metodo) {
-    switch (strtolower(trim($metodo ?? ''))) {
-        case 'credito':
-        case 'cartao_credito':
-        case 'cartão de crédito':
-        case 'cartao de credito':
-        case 'cartao':
-            return 'Cartão de Crédito';
-        case 'debito':
-        case 'cartao_debito':
-        case 'cartão de débito':
-        case 'cartao de debito':
-            return 'Cartão de Débito';
-        case 'pix':
-            return 'Pix';
-        case 'boleto':
-            return 'Boleto Bancário';
-        default:
-            return 'Não informado';
-    }
-}
-
-// Buscar os produtos do pedido
-$sqlItens = "SELECT ip.quantidade, ip.preco_unitario, p.nome, p.imagem
-             FROM item_pedido ip
-             INNER JOIN Produto p ON ip.ID_produto = p.ID_produto
-             WHERE ip.ID_pedido = $id_pedido";
-$resultItens = $conexao->query($sqlItens);
-
-// Conta quantos produtos há
-$numProdutos = $resultItens ? $resultItens->num_rows : 0;
-
-// Calcula valor da parcela se parcelado
-$parcelas = isset($pedido['parcelas']) ? intval($pedido['parcelas']) : 1;
-$precoTotal = isset($pedido['precoTotal']) ? floatval($pedido['precoTotal']) : 0.0;
-$valorParcela = ($parcelas > 1 && $precoTotal > 0) ? $precoTotal / $parcelas : 0;
+require_once('../Controller/detalhePedidoController.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -117,7 +52,7 @@ $valorParcela = ($parcelas > 1 && $precoTotal > 0) ? $precoTotal / $parcelas : 0
             <?php endif; ?>
             <dt>Quantidade de Produtos:</dt>
             <dd><?= $pedido['qtdDeProduto'] ?? '' ?></dd>
-            <?php if ($numProdutos === 1): // Só mostra preço unitário se for um produto ?>
+            <?php if ($numProdutos === 1): ?>
                 <dt>Preço Unitário:</dt>
                 <dd>R$ <?= isset($pedido['precoUnitario']) ? number_format($pedido['precoUnitario'], 2, ',', '.') : '' ?></dd>
             <?php endif; ?>

@@ -18,11 +18,11 @@ $status = $_POST['status'] ?? 'todos';
 
 $where = ["ID_cliente = $id_cliente"];
 
-// TRATAMENTO DO FILTRO DE DATA
+
 if (!empty($dateRange)) {
-    // Normaliza separadores comuns para flatpickr
+   
     $dateRange = str_replace(
-        [" até ", " a ", " to ", " - ", "–", "—"], // inclui traços unicode também
+        [" até ", " a ", " to ", " - ", "–", "—"], 
         "|",
         $dateRange
     );
@@ -34,13 +34,13 @@ if (!empty($dateRange)) {
         if ($inicio && $fim) {
             $inicio_sql = $inicio->format("Y-m-d");
             $fim_sql = $fim->format("Y-m-d");
-            // Garante que o início é menor ou igual ao fim
+           
             if ($inicio_sql > $fim_sql) {
                 [$inicio_sql, $fim_sql] = [$fim_sql, $inicio_sql];
             }
             $where[] = "(data >= '$inicio_sql' AND data <= '$fim_sql')";
         } else {
-            // Se alguma data estiver inválida, força a query a não retornar nada
+          
             $where[] = "1=0";
         }
     } elseif (count($datas) === 1 && trim($datas[0]) != "") {

@@ -1,17 +1,6 @@
 <?php 
-session_start(); // Sempre inicie a sessão no topo
-
-$title = "EID Store"; 
-
-// Salva intenção de compra (caso venha de um botão "comprar agora")
-if (isset($_GET['comprar_agora']) && isset($_GET['id'])) {
-    $_SESSION['compra_pendente'] = [
-        'id_produto' => $_GET['id'],
-        'quantidade' => $_GET['quantidade'] ?? 1
-    ];
-}
+require_once('../Controller/paginaLoginController.php'); 
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -48,7 +37,7 @@ if (isset($_GET['comprar_agora']) && isset($_GET['id'])) {
             <button type="submit">Continuar</button>
         </form>
 
-        <!-- Botão para área restrita (login admin/funcionário) -->
+        
         <div style="text-align:center; margin-top: 20px;">
             <a href="area_restrita.php">
                 <button type="button" style="background:#6C63FF;color:#fff;padding:10px 25px;border:none;border-radius:5px;cursor:pointer;">

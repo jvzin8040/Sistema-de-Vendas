@@ -9,7 +9,6 @@ class Funcionario
             return ['success' => false, 'message' => 'As senhas não coincidem.'];
         }
 
-        // Verificar se registro já existe
         $stmtVerifica = $conexao->prepare("SELECT registro FROM Funcionario WHERE registro = ?");
         $stmtVerifica->bind_param("s", $registro);
         $stmtVerifica->execute();
@@ -21,10 +20,8 @@ class Funcionario
         }
         $stmtVerifica->close();
 
-        // Criptografar senha
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-        // Inserir na tabela Pessoa (sem senha)
         $stmtPessoa = $conexao->prepare("INSERT INTO Pessoa (nome, telefone) VALUES (?, ?)");
         $stmtPessoa->bind_param("ss", $nome, $telefone);
 

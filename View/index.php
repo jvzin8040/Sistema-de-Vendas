@@ -30,7 +30,6 @@ $title = "EID Store";
     <?php include 'categoria.php'; ?>
     <?php include 'footer.php'; ?>
 
-    <!-- Script JS -->
     <script src="js/banner.js"></script>
 </body>
 

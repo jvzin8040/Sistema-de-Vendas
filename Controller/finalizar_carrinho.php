@@ -11,7 +11,6 @@ if (empty($_SESSION['carrinho'])) {
     exit();
 }
 
-// Guarda os produtos selecionados para o checkout
 $_SESSION['checkout_multi'] = $_SESSION['carrinho'];
 header('Location: ../View/checkout_multi.php');
 exit();

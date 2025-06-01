@@ -1,38 +1,5 @@
 <?php
-session_start();
-require_once '../Model/Produto.php';
-require_once '../Model/conexaoBD.php';
-
-if (!isset($_SESSION['id_cliente']) || empty($_SESSION['checkout_multi'])) {
-    header('Location: carrinho.php'); exit();
-}
-
-$id_cliente = $_SESSION['id_cliente'];
-$ids = array_keys($_SESSION['checkout_multi']);
-$produtos = [];
-$total = 0;
-
-// Buscar produtos do carrinho
-foreach ($ids as $id) {
-    $produto = Produto::buscarPorId2($id);
-    if ($produto) {
-        $produto['quantidade'] = $_SESSION['checkout_multi'][$id];
-        $produto['subtotal'] = $produto['preco'] * $produto['quantidade'];
-        $produtos[] = $produto;
-        $total += $produto['subtotal'];
-    }
-}
-
-// Buscar dados do cliente logado para preencher automático
-$sql = "SELECT nome, sobrenome, cpf, cnpj, rg, dataNascimento, logradouro, numero, bairro, complemento, cidade, uf, cep
-        FROM Pessoa WHERE ID_pessoa = ?";
-$stmt = $conexao->prepare($sql);
-$stmt->bind_param("i", $id_cliente);
-$stmt->execute();
-$stmt->bind_result($nome, $sobrenome, $cpf, $cnpj, $rg, $dataNascimento,
-    $logradouro, $numero, $bairro, $complemento, $cidade, $uf, $cep);
-$stmt->fetch();
-$stmt->close();
+require_once '../Controller/checkoutMultiController.php'; // Controller prepara $produtos, $total e dados do cliente
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -74,7 +41,7 @@ $stmt->close();
     </div>
 
     <div class="container">
-        <form action="../Controller/checkout_multi_action.php" method="post">
+        <form action="../Controller/checkout_MultiAction.php" method="post">
             <div class="form-section-title">Dados Pessoais</div>
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome" value="<?php echo htmlspecialchars($nome ?? ''); ?>" required>

@@ -41,7 +41,7 @@ $title = "EID Store";
                     <form action="editar_categoria.php" method="get">
                         <button type="submit">Editar as categorias</button>
                     </form>
-                    <!-- Botão para editar status de pedidos -->
+                    
                     <form action="editarStatusPedido.php" method="get">
                         <button type="submit">Editar status dos pedidos</button>
                     </form>
