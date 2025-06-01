@@ -66,7 +66,21 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
     <link rel="stylesheet" href="css/search.css"> <!-- Incluindo o CSS da barra de busca -->
     <style>
         body { background-color: #820AD1; margin:0; min-height:100vh;}
-        .admin-container { max-width: 900px; margin: 50px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 1px 1px 20px rgba(0,0,0,0.2); padding: 32px; padding-bottom: 80px;}
+        /* AUMENTA a caixa até o rodapé */
+        .admin-container { 
+            max-width: 900px; 
+            min-height: calc(100vh - 40px); /* 40px é o margin-top do footer */
+            margin: 50px auto 0 auto; 
+            background: #fff; 
+            border-radius: 16px; 
+            box-shadow: 1px 1px 20px rgba(0,0,0,0.2); 
+            padding: 32px; 
+            padding-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+        }
         h1 { 
             text-align: center; 
             margin-bottom: 30px; 
@@ -81,9 +95,9 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
         .erro { background: #D10A0A; color: #fff; padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align:center;}
         footer { margin-top: 40px; }
         .btn-voltar {
-            display: inline-block;
-            margin: 30px auto 0 auto;
-            padding: 10px 28px; /* aumento da largura lateral */
+            display: block;
+            margin: 50px auto 0 auto;
+            padding: 10px 28px;
             background-color: #6A0AD6;
             color: white;
             border: none;
@@ -92,9 +106,12 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
             cursor: pointer;
             text-decoration: none;
             text-align: center;
-            position: relative;
+            /* CENTRALIZA E FIXA NO FINAL DA CAIXA */
+            position: absolute;
             left: 50%;
+            bottom: 32px;
             transform: translateX(-50%);
+            width: max-content;
         }
         .btn-voltar:hover {
             background-color: rgb(141, 100, 189);
@@ -115,6 +132,7 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
         @media (max-width: 1000px) {
             .admin-container { padding: 10px; max-width: 100vw; }
             table, thead, tbody, th, td, tr { font-size: 13px; }
+            .btn-voltar { bottom: 16px; }
         }
     </style>
 </head>
@@ -167,7 +185,7 @@ $statuses = ['Pendente', 'Concluído', 'Cancelado'];
                 <?php endforeach;?>
             </tbody>
         </table>
-        <a href="painelGestor.php" class="btn-voltar">Voltar</a>
+        
     </div>
     <?php if (file_exists('footer.php')) include 'footer.php'; ?>
 </body>

@@ -37,14 +37,14 @@ $mensagens = listarMensagensDeContato();
     <link rel="stylesheet" href="css/footer.css" />
     <style>
         body {
-            background-color: #fff;
+            background-color: #820AD1 !important;
             margin: 0;
             padding: 0;
         }
         .contact-main {
             min-height: 100vh;
             padding: 50px 20px;
-            background-color: #fff;
+            background-color: transparent;
         }
         .mensagens-card {
             background-color: #fff;

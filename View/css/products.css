@@ -1,17 +1,18 @@
-
 body {
     background: #820AD1 !important;
     min-height: 100vh;
     margin: 0;
 }
 
-/* Produtos em destaque */
-.products {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap; /* Permite quebra de linha para responsividade */
-    padding: 20px;
-    background-color: #820AD1;
+/* Título de produtos */
+.products-title {
+    color: #630dbb;
+    text-align: center;
+    margin-bottom: 24px;
+    margin-top: 0;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 /* Link faz o card inteiro ser clicável */
@@ -19,25 +20,25 @@ body {
     text-decoration: none;
     color: inherit;
     display: block;
-    /* Remove highlight azul em mobile */
     -webkit-tap-highlight-color: transparent;
 }
 
 /* Card de produto */
 .product-card {
     display: flex;
-    flex-direction: column; /* Deixa imagem, título, preço e parcelas em coluna */
-    justify-content: flex-end; /* Empurra tudo para o final da altura da div */
-    align-items: center; /* Centraliza horizontalmente */
-    width: 200px; /* Largura fixa */
-    height: 325px; /* Altura fixa para alinhar tudo certinho */
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 200px;
+    height: 325px;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
     text-align: center;
-    background-color: #fff; /* Fundo branco para destacar */
+    background-color: #fff;
     transition: box-shadow .2s;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .product-card:hover {
@@ -45,11 +46,83 @@ body {
     transform: translateY(-4px) scale(1.03);
 }
 
-/* Imagem do produto */
-.product-card img {
+/* Container da imagem deve recortar com border-radius igual ao do card */
+.product-img-container {
     width: 100%;
-    max-width: 100%;
-    /* Melhora visual */
-    object-fit: contain;
+    height: 190px; /* Aumentado de 150px para 190px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     margin-bottom: 10px;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+/* Imagem SEM excessos */
+.product-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+/* Título do produto em roxo */
+.product-card .product-name-title {
+    color: #630dbb;
+    font-size: 1.1em;
+    margin: 0 0 6px 0;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Botões do carrossel (pode ajustar se quiser) */
+.carousel-btn {
+    background: #630dbb;
+    border: none;
+    color: #fff;
+    font-size: 2em;
+    border-radius: 50%;
+    padding: 8px 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(99,13,187,0.18);
+    transition: background .2s;
+}
+.carousel-btn:hover { background: #4b0991; }
+.prev-btn { left: 8px; }
+.next-btn { right: 8px; }
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .product-card {
+        width: 46vw;
+        min-width: 160px;
+        max-width: 240px;
+        height: 300px;
+        padding: 10px;
+    }
+    .product-img-container {
+        height: 140px; /* Aumentado proporcionalmente */
+    }
+}
+
+@media (max-width: 600px) {
+    .product-card {
+        width: 95vw;
+        max-width: 300px;
+        min-width: 140px;
+        height: 240px;
+        padding: 8px;
+    }
+    .product-img-container {
+        height: 100px; /* Aumentado proporcionalmente */
+    }
 }

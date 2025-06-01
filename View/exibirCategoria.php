@@ -8,7 +8,6 @@ if (!$categoria) {
 }
 $produtos = Produto::listarPorCategoria($categoria);
 
-define('BASE_URL', '/tcc/V9/Sistema-de-Vendas'); // ajuste se necessário
 $title = "<br>Produtos da categoria: " . htmlspecialchars($categoria);
 
 include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
@@ -22,44 +21,37 @@ include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/cep-nav.css">
     <link rel="stylesheet" href="css/products.css">
     <link rel="stylesheet" href="css/categories.css">
     <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
 
     <style>
-        /* Container central aumentado e espaçamento maior do footer */
         .container {
-            max-width: 1260px; /* Aumenta largura */
-            margin: 0 auto 54px auto; /* margem maior embaixo para afastar do footer */
+            max-width: 1260px;
+            margin: 0 auto 54px auto;
             padding: 0 20px 0 20px;
             background: #fff;
             border-radius: 22px;
             box-shadow: 0 2px 18px #b8a7ff24;
-            min-height: 75vh; /* Garante que o conteúdo não fique colado no footer */
+            min-height: 75vh;
         }
-
-        /* Título centralizado e destacado */
         .title-categoria {
             margin: 38px 0 26px 0;
             text-align: center;
-            font-size: 2.1em;
+            font-size: 1.7em;
             color: #630dbb;
             font-weight: bold;
             letter-spacing: 1px;
         }
-
         .produtos-matriz-row {
             display: flex;
             flex-wrap: wrap;
             gap: 28px 24px;
-            justify-content: flex-start;
+            justify-content: center; /* <--- CENTRALIZA OS PRODUTOS */
         }
-
         .produto-link {
             text-decoration: none;
             color: inherit;
@@ -68,26 +60,26 @@ include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
             margin-bottom: 0;
             flex: 0 1 220px;
         }
-
+        /* NOVA BORDA IGUAL CATEGORIA */
         .produto-card {
             background: #f8f4ff;
             border-radius: 12px;
             box-shadow: 0 2px 10px #b8a7ff30;
+            border: 0.8px solid #d2c5ee;
             padding: 18px 14px 14px 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: box-shadow 0.2s, transform 0.19s;
+            transition: box-shadow 0.2s, transform 0.19s, border-color 0.2s;
             height: 100%;
             cursor: pointer;
         }
-
         .produto-card:hover {
             box-shadow: 0 6px 28px #a17bf74c;
+            border-color: #a17bf7;
             transform: translateY(-3px) scale(1.02);
             background: #ece6fa;
         }
-
         .produto-card img {
             width: 100px;
             height: 100px;
@@ -96,14 +88,12 @@ include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
             background: #ece6fa;
             margin-bottom: 10px;
         }
-
         .produto-card h3 {
             color: #630dbb;
             font-size: 1.1em;
             margin: 0 0 6px 0;
             text-align: center;
         }
-
         .produto-card .price {
             color: #6C63FF;
             font-weight: bold;
@@ -111,15 +101,12 @@ include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
             margin-bottom: 6px;
             display: block;
         }
-
         .produto-card .estoque {
             font-size: 0.93em;
             color: #8271b0;
             margin-bottom: 6px;
             display: block;
         }
-
-        /* Responsivo: para celular (menos de 650px), vira duas colunas */
         @media (max-width: 900px) {
             .container {
                 max-width: 98vw;
@@ -135,7 +122,6 @@ include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
                 max-width: 260px;
             }
         }
-
         @media (max-width: 650px) {
             .container {
                 border-radius: 10px;
@@ -159,8 +145,6 @@ include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
 </head>
 
 <body>
-    
-
     <div class="container">
         <h2 class="title-categoria"><?= $title ?></h2>
         <div class="produtos-matriz-row">
@@ -169,8 +153,8 @@ include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
                     <a href="exibirProduto.php?id=<?= $produto['ID_produto'] ?>" class="produto-link">
                         <div class="produto-card">
                             <img src="<?= !empty($produto['imagem'])
-                                            ? BASE_URL . '/public/uploads/' . htmlspecialchars($produto['imagem'])
-                                            : BASE_URL . '/public/uploads/no-image.png'; ?>"
+                                            ? '../public/uploads/' . htmlspecialchars($produto['imagem'])
+                                            : '../public/uploads/no-image.png'; ?>"
                                 alt="<?= htmlspecialchars($produto['nome']) ?>">
                             <h3><?= htmlspecialchars($produto['nome']) ?></h3>
                             <span class="price">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></span>
@@ -187,5 +171,4 @@ include 'header.php'; // Inclua o header.php aqui, ANTES de qualquer HTML!
 
     <?php include 'footer.php'; ?>
 </body>
-
 </html>

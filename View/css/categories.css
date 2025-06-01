@@ -1,25 +1,62 @@
-/* Seção de categorias */
-.categories {
-    width: 100vw;             /* Garante 100% da largura da janela */
-    margin-left: 50%;
-    transform: translateX(-50%);
-    padding: 40px 20px;
+.categories-container {
+    max-width: 1200px;
+    margin: 48px auto 48px auto;
+    padding: 40px 16px; /* Espaço interno maior em cima e embaixo */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #a17bf73a;
+}
+
+.categories-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 24px;
+    justify-content: center;
+}
+
+/* Usa o mesmo card dos produtos, mas pode customizar para categoria */
+.product-card.category-card {
+    width: 200px;
+    height: 220px;
+    min-height: 210px;
+    padding: 18px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.product-card.category-card img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 12px;
+}
+.product-card.category-card h3 {
+    font-size: 1.08em;
+    color: #630dbb;
+    margin: 0 0 2px 0;
     text-align: center;
-    background: #fff;              
-    border-radius: 12px;           
-    box-shadow: 0 2px 12px #a17bf73a; 
-    max-width: 1200px;             
-    margin-top: 40px;             
-    margin-bottom: 40px;            
+    font-weight: bold;
+}
+.product-card.category-card:hover {
+    box-shadow: 0 6px 32px rgba(130,10,209,0.12);
+    transform: translateY(-3px) scale(1.03);
+    background: #f9f7ff;
+    border-color: #d2c5ee;
 }
 
-/* Cada categoria */
-.category {
-    margin-top: 20px;
-}
-
-.category img {
-    width: 300px; /* Largura desejada */
-    height: auto; /* Altura automática para manter a proporção */
-    object-fit: cover; /* Cobre o espaço sem distorcer */
+@media (max-width: 700px) {
+    .categories-row {
+        gap: 18px 4vw;
+    }
+    .product-card.category-card {
+        width: 44vw;
+        min-width: 120px;
+        max-width: 260px;
+        height: 180px;
+        min-height: 140px;
+    }
+    .product-card.category-card img {
+        width: 70px;
+        height: 70px;
+    }
 }

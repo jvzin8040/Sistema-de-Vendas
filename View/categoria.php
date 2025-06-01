@@ -3,25 +3,26 @@ require_once(__DIR__ . '/../Model/Produto.php');
 $categorias = Produto::listarCategorias();
 ?>
 
-<!-- Categorias -->
-<section class="categories" id="categorias">
-    <h2>Categorias</h2>
-    <div class="linha">
+<link rel="stylesheet" href="css/categories.css"> <!-- Reaproveita o CSS dos produtos -->
+
+<section class="categories-container" id="categorias">
+    <h2 style="color:#630dbb;text-align:center;margin-bottom:24px;">Categorias</h2>
+    <div class="categories-row">
         <?php if ($categorias && count($categorias)): ?>
             <?php foreach ($categorias as $cat): ?>
-                <div class="category">
-                    <a href="exibirCategoria.php?categoria=<?= urlencode($cat['nome']) ?>" style="text-decoration:none; color:inherit;">
+                <a href="exibirCategoria.php?categoria=<?= urlencode($cat['nome']) ?>" class="product-link" style="text-decoration:none; color:inherit;">
+                    <div class="product-card category-card">
                         <img src="../public/uploads/<?= $cat['imagem'] ? htmlspecialchars($cat['imagem']) : 'no-image.png' ?>"
                              alt="<?= htmlspecialchars($cat['nome']) ?>"
-                             onerror="this.onerror=null;this.src='public/uploads/no-image.png';"
-                             style="width:96px; height:96px; object-fit:cover; border-radius:8px;">
+                             onerror="this.onerror=null;this.src='/Sistema-de-Vendas/public/uploads/no-image.png';"
+                             style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
                         <h3><?= htmlspecialchars($cat['nome']) ?></h3>
-                        <p>Confira produtos da categoria <?= htmlspecialchars($cat['nome']) ?>!</p>
-                    </a>
-                </div>
+                        <p style="color:#666; font-size:0.92em; margin:6px 0 0 0;">Confira produtos da categoria!</p>
+                    </div>
+                </a>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>Nenhuma categoria encontrada.</p>
+            <p style="margin:40px auto;text-align:center;color:#888;">Nenhuma categoria encontrada.</p>
         <?php endif; ?>
     </div>
 </section>

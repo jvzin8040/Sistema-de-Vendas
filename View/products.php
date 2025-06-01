@@ -1,29 +1,31 @@
 <?php
 require_once(__DIR__ . '/../Model/Produto.php');
 $produtos = Produto::listarTodos();
-define('BASE_URL', '/tcc/V9/Sistema-de-Vendas'); // alterar se necessário
 ?>
 
 <link rel="stylesheet" href="css/products-carousel.css">
 
 <section class="products-carousel-container" id="produtos">
+    <h2 class="products-title">Produtos</h2>
     <button class="carousel-btn prev-btn" aria-label="Anterior" style="display:none;">&#10094;</button>
     <div class="products-carousel">
         <?php if (empty($produtos)): ?>
             <p class="no-products-msg">Nenhum produto cadastrado.</p>
         <?php else: ?>
             <?php foreach ($produtos as $produto): ?>
-                <a href="exibirProduto.php?id=<?php echo $produto['ID_produto']; ?>" class="product-link" style="text-decoration: none; color: inherit; display: block;">
+                <a href="exibirProduto.php?id=<?php echo $produto['ID_produto']; ?>" class="product-link">
                     <div class="product-card">
-                        <img
-                            src="<?php
+                        <div class="product-img-container">
+                            <img
+                                src="<?php
                                     echo !empty($produto['imagem'])
-                                        ? BASE_URL . '/public/uploads/' . htmlspecialchars($produto['imagem'])
-                                        : BASE_URL . '/public/uploads/no-image.png';
+                                        ? '../public/uploads/' . htmlspecialchars($produto['imagem'])
+                                        : '../public/uploads/no-image.png';
                                     ?>"
-                            alt="<?php echo htmlspecialchars($produto['nome']); ?>"
-                            style="max-width: 100%; height: auto;">
-                        <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
+                                alt="<?php echo htmlspecialchars($produto['nome']); ?>"
+                            >
+                        </div>
+                        <h3 class="product-name-title"><?php echo htmlspecialchars($produto['nome']); ?></h3>
                         <p>
                             R$
                             <?php
