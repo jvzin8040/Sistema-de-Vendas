@@ -1,0 +1,108 @@
+body {
+    background-color: #820AD1;
+    margin: 0;
+    padding: 0;
+}
+.contact-main {
+    min-height: 100vh;
+    padding: 50px 20px;
+}
+.contact-card {
+    background-color: #fff;
+    max-width: 500px;
+    margin: 0 auto 35px auto;
+    padding: 38px 32px 28px 32px;
+    border-radius: 10px;
+    box-shadow: 0 6px 46px #0002;
+}
+.contact-card h2 {
+    text-align: center;
+    color: #820AD1;
+    margin-bottom: 28px;
+    font-size: 2em;
+    font-weight: 700;
+}
+.contact-form label {
+    font-weight: 500;
+    color: #820AD1;
+    margin-bottom: 6px;
+    display: block;
+    font-size: 1em;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px 12px;
+    font-size: 1em;
+    background: #f7f4fd;
+    color: #2e235c;
+    margin-bottom: 15px;
+}
+.contact-form textarea {
+    resize: vertical;
+}
+.submit-btn {
+    background: #820AD1;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 0;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.submit-btn:hover {
+    background: #5e047f;
+}
+.success-msg {
+    color: #155724;
+    background: #d4edda;
+    padding: 10px 16px;
+    border-radius: 7px;
+    margin-bottom: 16px;
+    text-align: center;
+    border: 1px solid #b8dfc6;
+}
+.error-msg {
+    color: #721c24;
+    background: #f8d7da;
+    padding: 10px 16px;
+    border-radius: 7px;
+    margin-bottom: 16px;
+    text-align: center;
+    border: 1px solid #f5c6cb;
+}
+.contact-info {
+    background: #fff;
+    color: #2e235c;
+    border-radius: 10px;
+    margin: 0 auto 0 auto;
+    max-width: 500px;
+    padding: 24px 20px;
+    box-shadow: 0 2px 12px #2e235c15;
+}
+.contact-info h3 {
+    color: #820AD1;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.contact-info p {
+    margin: 0 0 6px 0;
+    font-size: 1em;
+}
+@media (max-width: 650px) {
+    .contact-main {
+        padding: 16px 2vw;
+    }
+    .contact-card, .contact-info {
+        max-width: 98vw;
+        padding: 16px 2vw;
+    }
+}
