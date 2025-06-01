@@ -16,6 +16,12 @@ if (!$produto) {
 }
 
 $msg = $_GET['msg'] ?? '';
+if ($msg === 'adicionado') {
+  echo "<script>alert('Produto adicionado ao carrinho!');</script>";
+}
+if ($msg === 'limiteEstoque') {
+  echo "<script>alert('Você não pode adicionar mais do que o estoque disponível!');</script>";
+}
 
 
 $galeria = [];
