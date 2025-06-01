@@ -48,10 +48,10 @@ $pessoa = Pessoa::buscarPessoaPorIdDados($id_cliente);
         <input type="email" name="email" id="email" maxlength="80" value="<?= htmlspecialchars($pessoa['email'] ?? '') ?>" required>
 
         <label for="telefone">Telefone</label>
-        <input type="text" name="telefone" id="telefone" maxlength="15" value="<?= htmlspecialchars($pessoa['telefone'] ?? '') ?>">
+        <input type="text" name="telefone" id="telefone" maxlength="15" value="<?= htmlspecialchars($pessoa['telefone'] ?? '') ?>" required>
 
         <label for="rg">RG</label>
-        <input type="text" name="rg" id="rg" maxlength="12" value="<?= htmlspecialchars($pessoa['rg'] ?? '') ?>">
+        <input type="text" name="rg" id="rg" maxlength="12" value="<?= htmlspecialchars($pessoa['rg'] ?? '') ?>" required>
 
         <label for="cpf">CPF</label>
         <input type="text" name="cpf" id="cpf" maxlength="14" value="<?= htmlspecialchars($pessoa['cpf'] ?? '') ?>" required>
@@ -60,7 +60,7 @@ $pessoa = Pessoa::buscarPessoaPorIdDados($id_cliente);
         <input type="text" name="cnpj" id="cnpj" maxlength="18" value="<?= htmlspecialchars($pessoa['cnpj'] ?? '') ?>">
 
         <label for="dataNascimento">Data de Nascimento</label>
-        <input type="date" name="dataNascimento" id="dataNascimento" value="<?= htmlspecialchars($pessoa['dataNascimento'] ?? '') ?>">
+        <input type="date" name="dataNascimento" id="dataNascimento" value="<?= htmlspecialchars($pessoa['dataNascimento'] ?? '') ?>" required>
 
         <div class="form-section-title">Endereço</div>
         <label for="logradouro">Logradouro</label>

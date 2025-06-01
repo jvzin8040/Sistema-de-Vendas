@@ -103,7 +103,16 @@ $stmt->close();
             <label for="cep">CEP</label>
             <input type="text" name="cep" id="cep" value="<?php echo htmlspecialchars($cep ?? ''); ?>" required>
             <label for="uf">UF</label>
-            <input type="text" name="uf" id="uf" value="<?php echo htmlspecialchars($uf ?? ''); ?>" required>
+            <select name="uf" id="uf" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="">Selecione</option>
+                <?php
+                $ufs = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+                foreach ($ufs as $sigla) {
+                    $selected = ($uf ?? '') === $sigla ? 'selected' : '';
+                    echo "<option value=\"$sigla\" $selected>$sigla</option>";
+                }
+                ?>
+            </select>
 
             <!-- Pagamento -->
             <div class="pagamento-container">
@@ -161,6 +170,29 @@ $stmt->close();
             elem.addEventListener('change', toggleParcelamento);
         });
         toggleParcelamento();
+    });
+
+    // Máscaras de CPF, RG, CNPJ, CEP
+    function aplicarMascara(elemento, mascara) {
+        elemento.addEventListener('input', function() {
+            let v = elemento.value.replace(/\D/g, '');
+            let i = 0;
+            elemento.value = mascara.replace(/#/g, _ => v[i++] || '');
+        });
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        // CPF: 000.000.000-00
+        const cpf = document.getElementById('cpf');
+        if (cpf) aplicarMascara(cpf, '###.###.###-##');
+        // CNPJ: 00.000.000/0000-00
+        const cnpj = document.getElementById('cnpj');
+        if (cnpj) aplicarMascara(cnpj, '##.###.###/####-##');
+        // RG: 00.000.000-0
+        const rg = document.getElementById('rg');
+        if (rg) aplicarMascara(rg, '##.###.###-#');
+        // CEP: 00000-000
+        const cep = document.getElementById('cep');
+        if (cep) aplicarMascara(cep, '#####-###');
     });
 </script>
 <script src="js/cep-sync.js"></script>

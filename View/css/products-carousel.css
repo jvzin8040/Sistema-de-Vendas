@@ -43,7 +43,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #820AD1;
+    background: #580391;
     color: #fff;
     border: none;
     font-size: 2.2em;
@@ -61,7 +61,7 @@ body {
 }
 .carousel-btn:active,
 .carousel-btn:focus {
-    background: #630dbb;
+    background: #290052;
     opacity: 1;
 }
 .prev-btn {

@@ -17,7 +17,7 @@ $categorias = Produto::listarCategorias();
         </a>
 
         <!-- Busca -->
-        <div class="search-wrapper" style="position: relative;">
+        <div class="search-wrapper">
             <div class="search-bar">
                 <select class="search-category" id="search-categoria">
                     <option value="">Todos</option>
@@ -76,53 +76,26 @@ $categorias = Produto::listarCategorias();
     </div>
 </header>
 
-<style>
-    .search-results {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 999;
-        background: #fff;
-        width: 100%;
-        border: 1px solid #ccc;
-        max-height: 300px;
-        overflow-y: auto;
-        display: none;
-        color: #222;
-        border-radius: 0 0 6px 6px;
-    }
-
-    .search-item {
-        display: flex;
-        align-items: center;
-        padding: 6px 10px;
-        cursor: pointer;
-        transition: background 0.15s;
-    }
-
-    .search-item:hover {
-        background: #f4f2ff;
-    }
-
-    .search-item img {
-        margin-right: 10px;
-        border-radius: 3px;
-        width: 38px;
-        height: 38px;
-        object-fit: cover;
-        background: #eee;
-    }
-
-    .no-result {
-        padding: 10px;
-        color: #555;
-    }
-</style>
 <script>
-    // Busca dinâmica de produtos com filtro de categoria
+    // Busca dinâmica de produtos com filtro de categoria + FIX de dropdown flutuante
     const inputBusca = document.getElementById('input-busca-produto');
     const selectCategoria = document.getElementById('search-categoria');
     const resultadoBusca = document.getElementById('resultado-busca-produto');
+
+    function posicionarResultados() {
+        const searchBar = document.querySelector('.search-bar');
+        if (!searchBar || !resultadoBusca) return;
+        const rect = searchBar.getBoundingClientRect();
+        resultadoBusca.style.position = "fixed";
+        resultadoBusca.style.left = rect.left + "px";
+        resultadoBusca.style.top = rect.bottom + "px";
+        resultadoBusca.style.width = rect.width + "px";
+        resultadoBusca.style.margin = "0";
+        resultadoBusca.style.right = "unset";
+        resultadoBusca.style.zIndex = 9999;
+        resultadoBusca.style.maxWidth = rect.width + "px";
+    }
+
     if (inputBusca && resultadoBusca && selectCategoria) {
         inputBusca.addEventListener('input', fazerBusca);
         selectCategoria.addEventListener('change', fazerBusca);
@@ -141,6 +114,7 @@ $categorias = Produto::listarCategorias();
                     if (!produtos.length) {
                         resultadoBusca.innerHTML = '<div class="no-result">Nenhum produto encontrado.</div>';
                         resultadoBusca.style.display = 'block';
+                        posicionarResultados();
                         return;
                     }
                     resultadoBusca.innerHTML = produtos.map(prod => `
@@ -150,6 +124,7 @@ $categorias = Produto::listarCategorias();
                     </div>
                 `).join('');
                     resultadoBusca.style.display = 'block';
+                    posicionarResultados();
                 });
         }
 
@@ -158,6 +133,18 @@ $categorias = Produto::listarCategorias();
                 resultadoBusca.style.display = 'none';
             }
         });
+        // Reposiciona ao redimensionar a tela
+        window.addEventListener('resize', function() {
+            if (resultadoBusca.style.display === 'block') {
+                posicionarResultados();
+            }
+        });
+        // Opcional: Reposiciona ao dar scroll
+        window.addEventListener('scroll', function() {
+            if (resultadoBusca.style.display === 'block') {
+                posicionarResultados();
+            }
+        }, true);
     }
 
     // --- Sincronização do campo CEP (header <-> forms de CEP) ---
@@ -199,4 +186,5 @@ $categorias = Produto::listarCategorias();
             window.location.href = '../Controller/logout.php';
         }
     }
-</script> <script src="js/cep-sync.js"></script>
+</script>
+<script src="js/cep-sync.js"></script>

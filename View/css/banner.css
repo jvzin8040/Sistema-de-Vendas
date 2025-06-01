@@ -37,6 +37,7 @@
   background-color: rgba(0, 0, 0, 0.3);
   border: none;
   color: white;
+  border-radius: 10px;
   font-size: 2rem;
   padding: 0.5rem 1rem;
   cursor: pointer;

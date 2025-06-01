@@ -61,6 +61,10 @@ $resultItens = $conexao->query($sqlItens);
 // Conta quantos produtos há
 $numProdutos = $resultItens ? $resultItens->num_rows : 0;
 
+// Calcula valor da parcela se parcelado
+$parcelas = isset($pedido['parcelas']) ? intval($pedido['parcelas']) : 1;
+$precoTotal = isset($pedido['precoTotal']) ? floatval($pedido['precoTotal']) : 0.0;
+$valorParcela = ($parcelas > 1 && $precoTotal > 0) ? $precoTotal / $parcelas : 0;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -252,7 +256,10 @@ $numProdutos = $resultItens ? $resultItens->num_rows : 0;
                 intval($pedido['parcelas']) > 1
             ): ?>
                 <dt>Parcelamento:</dt>
-                <dd><?= intval($pedido['parcelas']) ?>x sem juros</dd>
+                <dd>
+                    <?= intval($pedido['parcelas']) ?>x sem juros 
+                    de R$ <?= number_format($valorParcela, 2, ',', '.') ?>
+                </dd>
             <?php endif; ?>
             <dt>Quantidade de Produtos:</dt>
             <dd><?= $pedido['qtdDeProduto'] ?? '' ?></dd>

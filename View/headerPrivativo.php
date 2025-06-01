@@ -10,7 +10,7 @@ if (!isset($_SESSION)) {
         </a>
         <div class="header-actions">
             <?php if (isset($_SESSION['logado']) && $_SESSION['logado'] === true): ?>
-                <a href="minha_conta.php">Minha Conta</a>
+                <a href="minhaConta.php">Minha Conta</a>
                 <a href="historicoPedido.php">Histórico de Pedidos</a>
                 <a href="#" class="login-button" onclick="confirmLogout('<?php echo addslashes($_SESSION['usuario_nome'] ?? 'usuario'); ?>')">Sair</a>
             <?php else: ?>

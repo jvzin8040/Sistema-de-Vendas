@@ -93,6 +93,9 @@ body {
     max-width: 420px;
     margin-left: auto;
     margin-right: auto;
+    /* Adiciona sombra, borda e destaca a caixa */
+    border: 1.5px solid #bda0e6;
+    box-shadow: 0 2px 16px #a17bf740, 0 0 0 3px #ece6fa;
 }
 .pagamento-container h3 {
     text-align: center;
@@ -129,13 +132,33 @@ body {
 }
 #parcelas {
     min-width: 220px;
-    padding: 6px 12px;
+    padding: 10px;
     border-radius: 5px;
-    border: 1px solid #a17bf7;
+    border: 1px solid #ccc;
     font-size: 1.05em;
     background: #fff;
     color: #3b2061;
     text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+select#uf {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.05em;
+    background: #fff;
+    color: #3b2061;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 button[type="submit"] {
     display: block;
@@ -169,5 +192,13 @@ button[type="submit"]:hover {
     }
     .pagamento-container {
         padding: 14px 5vw 11px 5vw;
+    }
+    select#uf {
+        min-width: unset;
+        width: 100%;
+    }
+    #parcelas {
+        min-width: unset;
+        width: 100%;
     }
 }

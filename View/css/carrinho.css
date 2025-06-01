@@ -6,12 +6,10 @@ html, body {
 body.carrinho-bg {
     background: #820AD1;
     min-height: 100vh;
-    height: 100%;
 }
 
 .pagina-wrapper {
     min-height: 100vh;
-    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -26,8 +24,8 @@ body.carrinho-bg {
     padding: 20px;
     max-width: 900px;
     width: 100%;
-    margin: 30px auto 20px auto;
-    min-height: 350px; /* para garantir altura mínima central */
+    margin: 30px auto 0 auto; /* apenas margem em cima e centralizado */
+    min-height: 350px;
 }
 
 .cart-container h1 {
@@ -42,7 +40,7 @@ body.carrinho-bg {
     flex-grow: 1;
 }
 footer {
-    margin-top: auto;
+    margin-top: 32px;
 }
 
 /* Itens do carrinho */
