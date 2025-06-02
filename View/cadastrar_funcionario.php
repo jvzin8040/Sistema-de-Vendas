@@ -32,19 +32,19 @@ $title = "EID Store";
 
             <form action="../Controller/cadastroStaffAction.php" method="post" style="display: flex; flex-direction: column; gap: 15px;">
                 <label for="nome">Nome</label>
-                <input type="text" name="nome" id="nome" required>
+                <input type="text" name="nome" id="nome" required placeholder="Ex: Maria da Silva">
 
                 <label for="registro">Registro</label>
-                <input type="text" name="registro" id="registro" required>
+                <input type="text" name="registro" id="registro" required placeholder="Ex: 123456">
 
                 <label for="telefone">Telefone</label>
-                <input type="tel" name="telefone" id="telefone" required>
+                <input type="tel" name="telefone" id="telefone" required placeholder="(11) 99999-9999" maxlength="15" autocomplete="tel">
 
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" id="senha" required>
+                <input type="password" name="senha" id="senha" required placeholder="Insira uma senha" minlength="6" maxlength="20">
 
                 <label for="confirmar_senha">Confirmar senha</label>
-                <input type="password" name="confirmar_senha" id="confirmar_senha" required>
+                <input type="password" name="confirmar_senha" id="confirmar_senha" required placeholder="Repita a senha acima">
 
                 <button type="submit" style="background-color: #8000ff; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer;">
                     Continuar
@@ -55,6 +55,7 @@ $title = "EID Store";
 
     <?php include 'footer.php'; ?>
 
+    <script src="js/cadastrar_funcionario.js"></script>
 </body>
 
 </html>
