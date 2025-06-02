@@ -19,11 +19,6 @@
 <br>Ou se preferir copie e cole o link https://www.youtube.com/watch?v=e7awGEal0c8
 
    <br>
-
-<h2>📸 Capturas de Tela</h2>
-    <p>**</p>
-
-
 <footer>
     <h2>👨‍💻 Desenvolvido por</h2>
 <ul>
