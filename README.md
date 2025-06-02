@@ -19,6 +19,14 @@
 <br>Ou se preferir copie e cole o link https://www.youtube.com/watch?v=e7awGEal0c8
 
    <br>
+
+SENHA DO ADMINISTRADOR PADRÂO:
+
+LOGIN: 594000 <br>
+SENHA: rodrigo123
+
+
+   
 <footer>
     <h2>👨‍💻 Desenvolvido por</h2>
 <ul>
